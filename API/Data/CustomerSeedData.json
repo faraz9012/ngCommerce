@@ -1,0 +1,34 @@
+[
+    {
+        "username": "Faraz",
+        "email": "faraz.arif@paymytuition.com",
+        "customerGuid": "157ce190-7f16-41ae-94ed-ec76f87a008f",
+        "active": true,
+        "createdOnUtc": "2023-11-23T09:25:38",
+        "lastLoginDateUtc": "2023-11-23T09:25:38"
+    },
+    {
+        "username": "Erin",
+        "email": "erinengland@lunchpod.com",
+        "customerGuid": "5C0C7782-8E08-4783-BB95-924FDEEE8CFB",
+        "active": true,
+        "createdOnUtc": "2023-11-23T09:25:38",
+        "lastLoginDateUtc": "2023-11-23T09:25:38"
+    },
+    {
+        "username": "Tommie",
+        "email": "tommieengland@lunchpod.com",
+        "customerGuid": "1FBE5A66-7CD2-48EC-B686-27CF4C0444DF",
+        "active": true,
+        "createdOnUtc": "2023-11-23T09:25:38",
+        "lastLoginDateUtc": "2023-11-23T09:25:38"
+    },
+    {
+        "username": "Olsen",
+        "email": "olsenengland@lunchpod.com",
+        "customerGuid": "172D4F72-5186-428A-B896-B9A7AA2AE6D2",
+        "active": true,
+        "createdOnUtc": "2023-11-23T09:25:38",
+        "lastLoginDateUtc": "2023-11-23T09:25:38"
+    }
+]
