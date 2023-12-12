@@ -52,6 +52,7 @@ public class CustomerController : BaseApiController
         return await _context.Customers.FindAsync(Id);
     }
 
+    [AllowAnonymous]
     [HttpPost("register")]
     public virtual async Task<ActionResult<CustomerDto>> Register(RegisterDto registerDto)
     {
@@ -77,6 +78,7 @@ public class CustomerController : BaseApiController
         };
     }
 
+    [AllowAnonymous]
     [HttpPost("login")]
     public virtual async Task<ActionResult<CustomerDto>> Login(LoginDto loginDto)
     {
