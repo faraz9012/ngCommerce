@@ -1,0 +1,8 @@
+.topbar{
+    background-color: #373738;
+    color: #fff;
+    height: 2em;
+}
+.spacer {
+    flex: 1 1 auto;
+}
