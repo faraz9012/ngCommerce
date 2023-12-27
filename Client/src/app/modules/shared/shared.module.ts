@@ -5,9 +5,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatGridTile} from '@angular/material/grid-list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [],
@@ -20,7 +22,9 @@ import {MatCardModule} from '@angular/material/card';
     MatGridListModule,
     MatSidenavModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatCardModule,
+    MatMenuModule,
   ],
   exports: [
     MatSlideToggleModule,
@@ -30,7 +34,10 @@ import {MatCardModule} from '@angular/material/card';
     MatGridListModule,
     MatSidenavModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatGridTile,
+    MatCardModule,
+    MatMenuModule,
   ]
 })
 export class AngularMaterialSharedModule { }
