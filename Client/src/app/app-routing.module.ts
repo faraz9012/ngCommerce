@@ -4,10 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: "",
-    loadChildren:() => import("./modules/public/public.module").then(m => m.PublicModule)
+    loadChildren:() => import("./modules/public/public.module").then(m => m.PublicModule),
+    pathMatch: 'full'
   },
   {
-    path: "admin/dashboard",
+    path: "admin",
     loadChildren:() => import("./modules/admin/admin.module").then(m => m.AdminModule)
   }
 ];
