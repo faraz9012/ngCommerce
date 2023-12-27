@@ -10,6 +10,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatTreeModule} from '@angular/material/tree';
 
 @NgModule({
   declarations: [],
@@ -25,6 +26,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatCardModule,
     MatCardModule,
     MatMenuModule,
+    MatTreeModule
   ],
   exports: [
     MatSlideToggleModule,
@@ -38,6 +40,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatGridTile,
     MatCardModule,
     MatMenuModule,
+    MatTreeModule
   ]
 })
 export class AngularMaterialSharedModule { }
