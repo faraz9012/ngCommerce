@@ -5,6 +5,7 @@ import { AdminComponent } from "./admin.component";
 import { AngularMaterialSharedModule } from "../shared/shared.module";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { ListCustomerComponent } from './components/customers/list-customer/list-customer.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,10 @@ const routes: Routes = [
         path: 'dashboard',
         component: DashboardComponent
       },
+      {
+        path: "admin/customer",
+        loadChildren:() => import("./modules/customers/customers.module").then(m => m.CustomersModule),
+      }
     ]
   }
 ];
@@ -29,6 +34,7 @@ const routes: Routes = [
     AdminComponent,
     DashboardComponent,
     NavigationComponent,
+    ListCustomerComponent,
   ],
   imports: [
     CommonModule,

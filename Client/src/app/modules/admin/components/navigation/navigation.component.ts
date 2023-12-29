@@ -6,18 +6,45 @@ import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
 
 interface SubMenu {
+  icon: string;
   name: string;
+  url?: string;
   children?: SubMenu[];
 }
 
 const TREE_DATA: SubMenu[] = [
   {
-    name: 'Products',
-    children: [{name: 'List Products'}, {name: 'Add New'}],
+    icon: 'dashboard',
+    name: 'Dashboard',
+    url: '/admin/dashboard'
   },
   {
+    icon: 'category',
+    name: 'Products',
+    children: [
+      {
+        icon: 'radio_button_checked',
+        name: 'List Products'
+      }, 
+      {
+        icon: 'radio_button_checked',
+        name: 'Add New'
+      }
+    ],
+  },
+  {
+    icon: 'group',
     name: 'Customers',
-    children: [{name: 'List Customers'}, {name: 'Add New'}],
+    children: [
+      {
+        icon: 'radio_button_checked',
+        name: 'List Customers',
+        url: 'customer/list'
+      }, 
+      {
+        icon: 'radio_button_checked',
+        name: 'Add New'
+      }],
   },
 ];
 
