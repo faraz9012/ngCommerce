@@ -5,7 +5,10 @@ import { AdminComponent } from "./admin.component";
 import { AngularMaterialSharedModule } from "../shared/shared.module";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { ListCustomerComponent } from './components/customers/list-customer/list-customer.component';
+import { ListCustomersComponent } from './components/customers/list-customers/list-customers.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 const routes: Routes = [
@@ -34,12 +37,15 @@ const routes: Routes = [
     AdminComponent,
     DashboardComponent,
     NavigationComponent,
-    ListCustomerComponent,
+    ListCustomersComponent,
   ],
   imports: [
     CommonModule,
     AngularMaterialSharedModule,
     RouterModule.forChild(routes),
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ]
 })
 export class AdminModule { }
