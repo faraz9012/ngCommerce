@@ -5,21 +5,33 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { AngularMaterialSharedModule } from "../shared/shared.module";
 import { PublicComponent } from "./public.component";
+import { LoginComponent } from './components/login/login.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { FormsModule } from "@angular/forms";
 
 const routes: Routes = [
   {
     path: "",
-    component: PublicComponent
+    component: PublicComponent,
+    children: [
+      {
+        path: "login",
+        component: LoginComponent
+      }
+    ]
   }
 ];
 
 @NgModule({
   declarations: [
     PublicComponent,
-    HomepageComponent
+    HomepageComponent,
+    LoginComponent,
+    NavigationComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     AngularMaterialSharedModule,
     RouterModule.forChild(routes)
   ]

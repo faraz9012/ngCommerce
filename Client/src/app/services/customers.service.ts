@@ -11,10 +11,9 @@ export interface Customer {
   providedIn: 'root'
 })
 export class CustomersService {
-
+  baseUrl = 'https://localhost:5001/api/'
   members:Customer[] = [];
 
-  baseUrl = 'https://localhost:5001/api/'
   constructor(private http:HttpClient) { }
 
   getAllCustomers(){
@@ -26,4 +25,6 @@ export class CustomersService {
       })
     );
   }
+
+
 }

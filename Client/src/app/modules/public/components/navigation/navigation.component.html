@@ -1,0 +1,31 @@
+<!-- Topbar -->
+<mat-toolbar class="topbar">
+    <button mat-icon-button class="facebook-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>facebook</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+    </button>
+</mat-toolbar>
+
+<!-- Navbar -->
+<mat-toolbar class="navbar">
+    <span>My Application</span>
+    <span class="spacer"></span>
+
+    @if((accountService.currentUser$ | async)){
+        <button mat-icon-button aria-label="Logout icon" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+        </button>
+    }
+    @else {
+        <button mat-icon-button aria-label="Login icon">
+            <mat-icon>login</mat-icon>
+        </button>
+    }
+
+  </mat-toolbar>
