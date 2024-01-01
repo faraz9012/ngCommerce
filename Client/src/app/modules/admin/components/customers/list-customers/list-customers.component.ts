@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { ListCustomersDataSource, ListCustomersItem } from './list-customers-datasource';
+import { ListCustomersDataSource, ListCustomersItem } from '../../../constants/list-customers-datasource';
 import { CustomersService } from "../../../../../services/admin/customers.service";
 
 @Component({
@@ -33,6 +33,5 @@ export class ListCustomersComponent implements AfterViewInit, OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
-    console.log(this.dataSource);
   }
 }

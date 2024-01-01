@@ -13,7 +13,7 @@ export interface ListCustomersItem {
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: ListCustomersItem[] = [
+const CUSTOMERS_LIST_DATA: ListCustomersItem[] = [
   
 ];
 
@@ -23,7 +23,7 @@ const EXAMPLE_DATA: ListCustomersItem[] = [
  * (including sorting, pagination, and filtering).
  */
 export class ListCustomersDataSource extends DataSource<ListCustomersItem> {
-  data: ListCustomersItem[] = EXAMPLE_DATA;
+  data: ListCustomersItem[] = CUSTOMERS_LIST_DATA;
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
