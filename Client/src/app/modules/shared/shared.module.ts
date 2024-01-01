@@ -11,6 +11,9 @@ import {MatListModule} from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatTreeModule} from '@angular/material/tree';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import {MatInputModule} from '@angular/material/input';
+
 
 @NgModule({
   declarations: [],
@@ -26,7 +29,9 @@ import {MatTreeModule} from '@angular/material/tree';
     MatCardModule,
     MatCardModule,
     MatMenuModule,
-    MatTreeModule
+    MatTreeModule,
+    MatFormFieldModule, 
+    MatInputModule,
   ],
   exports: [
     MatSlideToggleModule,
@@ -40,7 +45,9 @@ import {MatTreeModule} from '@angular/material/tree';
     MatGridTile,
     MatCardModule,
     MatMenuModule,
-    MatTreeModule
+    MatTreeModule,
+    MatFormFieldModule, 
+    MatInputModule,
   ]
 })
 export class AngularMaterialSharedModule { }

@@ -7,7 +7,7 @@ import { AngularMaterialSharedModule } from "../shared/shared.module";
 import { PublicComponent } from "./public.component";
 import { LoginComponent } from './components/login/login.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 const routes: Routes = [
   {
@@ -32,6 +32,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularMaterialSharedModule,
     RouterModule.forChild(routes)
   ]
