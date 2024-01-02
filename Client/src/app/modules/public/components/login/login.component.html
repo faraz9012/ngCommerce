@@ -1,6 +1,6 @@
-<section [ngStyle]="(isHandset$ | async) ? {'margin': '10px 0'} : {'margin': '2em auto 2em auto'}">
+<section [class]="(isHandset$ | async) ? 'my-5' : 'mx-auto my-3'">
     <mat-card class="loginForm-card"  
-     [style]="(isHandset$ | async) ? 'margin:10px;' : 'margin-inline: auto;'">
+     [class]="(isHandset$ | async) ? 'm-3' : 'mx-auto'">
         <mat-card-header >
             <mat-card-title>Welcome back</mat-card-title>
             <mat-card-subtitle>Enter your credentials to sign in</mat-card-subtitle>

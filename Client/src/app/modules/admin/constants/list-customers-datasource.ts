@@ -13,9 +13,7 @@ export interface ListCustomersItem {
 }
 
 // TODO: replace this with real data from your application
-const CUSTOMERS_LIST_DATA: ListCustomersItem[] = [
-  
-];
+const CUSTOMERS_LIST_DATA: ListCustomersItem[] = [];
 
 /**
  * Data source for the ListCustomers view. This class should

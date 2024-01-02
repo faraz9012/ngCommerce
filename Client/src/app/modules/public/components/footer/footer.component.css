@@ -1,0 +1,8 @@
+
+.footer-links {list-style-type: none;padding: 0;}
+
+.footer-links a{ color: rgba(54, 54, 54, 0.9);}
+.footer-links a:hover{ color: rgba(247, 148, 33, .9);}
+
+.bg-dark {background-color: #373738;}
+.bg-light {background-color: #F6F7F8;}

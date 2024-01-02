@@ -8,6 +8,7 @@ import { PublicComponent } from "./public.component";
 import { LoginComponent } from './components/login/login.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FooterComponent } from './components/footer/footer.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
     PublicComponent,
     HomepageComponent,
     LoginComponent,
-    NavigationComponent
+    NavigationComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
