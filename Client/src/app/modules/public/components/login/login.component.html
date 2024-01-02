@@ -1,36 +1,39 @@
-<section>
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" autocomplete="on">
-        <div>
-            <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input
-                 matInput 
-                 placeholder="pat@example.com" 
-                 formControlName="email"
-                 required >
-                @if (this.loginForm.controls['email'].errors && this.loginForm.controls['email'].touched) {
-                <mat-error>
-                    Please enter your email
-                </mat-error>
-                }
-            </mat-form-field>
-        </div>
-        <div>
-            
-        <mat-form-field>
-            <mat-label>Password</mat-label>
-            <input
-             matInput 
-             placeholder="password"
-             formControlName="password"
-             required >
-            @if (this.loginForm.controls['password'].invalid) {
-            <mat-error>
-                Please enter password
-            </mat-error>
-            }
-        </mat-form-field>
-        </div>
-        <button type="submit" class="btn btn-gradient w-100 mt-4 mb-0">Sign in</button>
-    </form>
+<section [ngStyle]="(isHandset$ | async) ? {'margin': '10px 0'} : {'margin': '2em auto 2em auto'}">
+    <mat-card class="loginForm-card"  
+     [style]="(isHandset$ | async) ? 'margin:10px;' : 'margin-inline: auto;'">
+        <mat-card-header >
+            <mat-card-title>Welcome back</mat-card-title>
+            <mat-card-subtitle>Enter your credentials to sign in</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()" autocomplete="on">
+                <div>
+                    <mat-form-field class="w-full">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="user@example.com" formControlName="email" required>
+                        @if (this.loginForm.controls['email'].errors && this.loginForm.controls['email'].touched) {
+                        <mat-error>
+                            Please enter your email
+                        </mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="w-full">
+                        <mat-label>Password</mat-label>
+                        <input matInput placeholder="password" formControlName="password" required>
+                        @if (this.loginForm.controls['password'].invalid) {
+                        <mat-error>
+                            Please enter password
+                        </mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+                <button mat-flat-button color="primary" type="submit" class="w-full">
+                    <span>Sign in</span>
+                    <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+                </button>
+            </form>
+        </mat-card-content>
+    </mat-card>
 </section>

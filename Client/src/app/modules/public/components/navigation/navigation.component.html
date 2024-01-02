@@ -14,12 +14,14 @@
 
 <!-- Navbar -->
 <mat-toolbar class="navbar">
-    <span>My Application</span>
+    <span>ngCommerce</span>
     <span class="spacer"></span>
 
     @if((accountService.currentUser$ | async)){
         <button mat-icon-button aria-label="Logout icon" (click)="logout()">
             <mat-icon>logout</mat-icon>
+            <!-- FOR AVATAR -->
+          <!-- <div mat-card-avatar class="example-header-image"></div> -->
         </button>
     }
     @else {
