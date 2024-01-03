@@ -44,13 +44,13 @@
         </button>
 
         @if((accountService.currentUser$ | async)){
-        <button mat-flat-button color="primary" type="button" routerLink="/login">
+        <button mat-flat-button color="primary" type="button" (click)="logout()">
             <span>Logout</span>
             <mat-icon iconPositionEnd>logout</mat-icon>
         </button>
         }
         @else {
-        <button mat-flat-button color="primary" type="button" (click)="logout()">
+        <button mat-flat-button color="primary" type="button" routerLink="/login" >
             <span>Login</span>
             <mat-icon iconPositionEnd>login</mat-icon>
         </button>
