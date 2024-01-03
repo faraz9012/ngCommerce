@@ -14,20 +14,52 @@
 
 <!-- Navbar -->
 <mat-toolbar class="navbar">
-    <span>ngCommerce</span>
-    <span class="spacer"></span>
+    <div>
+        <span>ngCommerce</span>
+    </div>
 
-    @if((accountService.currentUser$ | async)){
-        <button mat-icon-button aria-label="Logout icon" (click)="logout()">
-            <mat-icon>logout</mat-icon>
-            <!-- FOR AVATAR -->
-          <!-- <div mat-card-avatar class="example-header-image"></div> -->
-        </button>
-    }
-    @else {
-        <button mat-icon-button aria-label="Login icon" routerLink="/login">
-            <mat-icon>login</mat-icon>
-        </button>
-    }
+    <div>
+        <h3>Search bar</h3>
+    </div>
 
-  </mat-toolbar>
+    <div class="d-flex align-items-center">
+        <button mat-icon-button aria-label="Wishlist heart icon">
+            <mat-icon class="count">favorite</mat-icon>
+            <small>
+                <span class="count-item">
+                    2
+                </span>
+            </small>
+        </button>
+        <button mat-icon-button aria-label="Shopping cart icon">
+            <mat-icon class="count">shopping_cart</mat-icon>
+            <small>
+                <span class="count-item">
+                    2
+                </span>
+            </small>
+        </button>
+        <button mat-icon-button aria-label="Menu icon" (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        @if((accountService.currentUser$ | async)){
+        <button mat-flat-button color="primary" type="button" routerLink="/login">
+            <span>Logout</span>
+            <mat-icon iconPositionEnd>logout</mat-icon>
+        </button>
+        }
+        @else {
+        <button mat-flat-button color="primary" type="button" (click)="logout()">
+            <span>Login</span>
+            <mat-icon iconPositionEnd>login</mat-icon>
+        </button>
+        }
+    </div>
+
+</mat-toolbar>
+<mat-drawer-container class="example-container" autosize>
+<mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+    <p>Lorem, ipsum dolor sit amet consectetur.</p>
+</mat-drawer></mat-drawer-container>

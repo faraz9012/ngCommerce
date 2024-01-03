@@ -1,8 +1,15 @@
-.topbar{
-    background-color: #373738;
-    color: #fff;
-    height: 2em;
-}
-.spacer {
-    flex: 1 1 auto;
-}
+.topbar{ background-color: #373738;color: #fff;height: 2em;}
+.navbar{ display: flex; justify-content: space-between; background-color: #FFF;}
+.count{position: relative;}
+.count-item{ position: absolute; top: 0; right: .5em; font-size: .5em; color: #FFF; background-color: red; width: 18px; height: 18px; border-radius: 30px; display: flex; align-items: center; justify-content: center;}
+
+.example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .example-sidenav {
+    padding: 20px;
+  }

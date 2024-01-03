@@ -7,7 +7,7 @@ import { AccountService } from "../../../../services/account.service";
   styleUrl: './navigation.component.css'
 })
 export class NavigationComponent {
-
+  showFiller = false;
   constructor(public accountService:AccountService){}
 
   logout(){
