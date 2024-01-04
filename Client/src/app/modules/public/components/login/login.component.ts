@@ -5,7 +5,6 @@ import { Observable, map, of, shareReplay } from "rxjs";
 
 import { AccountService } from "../../../../services/account.service";
 import { User } from "../../models/user";
-import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 
 @Component({
   selector: 'app-login',
@@ -21,7 +20,6 @@ export class LoginComponent implements OnInit {
     public accountService: AccountService,
     private router: Router,
     private fb: FormBuilder,
-    private breakpointObserver: BreakpointObserver
   ) { }
 
   ngOnInit(): void {
@@ -47,9 +45,4 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.HandsetPortrait || Breakpoints.HandsetLandscape)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
 }

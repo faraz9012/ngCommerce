@@ -2,14 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from "./admin.component";
-import { AngularMaterialSharedModule } from "../shared/shared.module";
+import { FontAwesomeSharedModule } from "../shared/shared.module";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { ListCustomersComponent } from './components/customers/list-customers/list-customers.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-
 
 const routes: Routes = [
   {
@@ -41,11 +37,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    AngularMaterialSharedModule,
+    FontAwesomeSharedModule,
     RouterModule.forChild(routes),
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
   ]
 })
 export class AdminModule { }

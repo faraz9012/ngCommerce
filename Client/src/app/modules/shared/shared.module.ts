@@ -1,53 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatGridTile} from '@angular/material/grid-list';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import {MatTreeModule} from '@angular/material/tree';
-import { MatFormFieldModule } from "@angular/material/form-field";
-import {MatInputModule} from '@angular/material/input';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    MatSlideToggleModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatGridListModule,
-    MatSidenavModule,
-    MatListModule,
-    MatCardModule,
-    MatCardModule,
-    MatMenuModule,
-    MatTreeModule,
-    MatFormFieldModule, 
-    MatInputModule,
+    FontAwesomeModule
   ],
-  exports: [
-    MatSlideToggleModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatGridListModule,
-    MatSidenavModule,
-    MatListModule,
-    MatCardModule,
-    MatGridTile,
-    MatCardModule,
-    MatMenuModule,
-    MatTreeModule,
-    MatFormFieldModule, 
-    MatInputModule,
-  ]
+  exports: [FontAwesomeModule]
 })
-export class AngularMaterialSharedModule { }
+export class FontAwesomeSharedModule { }

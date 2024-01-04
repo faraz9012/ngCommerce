@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomepageComponent } from './components/homepage/homepage.component';
-import { AngularMaterialSharedModule } from "../shared/shared.module";
+import { FontAwesomeSharedModule } from "../shared/shared.module";
 import { PublicComponent } from "./public.component";
 import { LoginComponent } from './components/login/login.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -15,6 +15,10 @@ const routes: Routes = [
     path: "",
     component: PublicComponent,
     children: [
+      {
+        path: "",
+        component: HomepageComponent
+      },
       {
         path: "login",
         component: LoginComponent
@@ -35,7 +39,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularMaterialSharedModule,
+    FontAwesomeSharedModule,
     RouterModule.forChild(routes)
   ]
 })
