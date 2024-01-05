@@ -1,1 +1,53 @@
-<p>Footer</p>
+<footer class="relative bg-[#e2e8f0] pt-8 pb-6">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-wrap text-left lg:text-left">
+            <div class="w-full lg:w-6/12 px-4">
+                <h4 class="text-3xl fonat-semibold">Let's keep in touch!</h4>
+                <h5 class="text-lg mt-0 mb-2">
+                    Find us on any of these platforms, we respond 1-2 business days.
+                </h5>
+                <div class="mt-6 lg:mb-0 mb-6 flex">
+                    @for(socialLink of socialLinks; track socialLink){
+                        @for(link of socialLink.subLinks; track link){
+
+                            <a
+                            class="bg-white shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 group"
+                            type="button" routerLink="{{link.route}}">
+                            <fa-icon [icon]="link.icon"
+                                        class=" text-gray-600 group-hover:text-indigo-600"></fa-icon>
+                        </a>
+                        }
+                    }
+                    
+                </div>
+            </div>
+            <div class="w-full lg:w-6/12 px-4">
+                <div class="flex flex-wrap items-top mb-6">
+                    @for(footerLink of footerLinks; track footerLink; let isFirst = $first){
+                    <div class="w-full lg:w-4/12 px-4 " [class.ml-auto]="isFirst">
+                        <span
+                            class="block uppercase text-sm font-semibold mb-2">{{footerLink.columnTitle}}</span>
+                        <ul class="list-unstyled">
+                            @for(link of footerLink.subLinks; track link){
+                            <li>
+                                <a class="text-gray-700 hover:text-indigo-600 font-medium block pb-2 text-sm w-fit"
+                                    href="{{link.route}}">
+                                    {{link.title}}
+                                </a>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <hr class="my-6">
+        <div class="flex flex-wrap items-center md:justify-between justify-center">
+            <div class="w-full md:w-4/12 px-4 mx-auto text-center">
+                <div class="text-sm font-semibold py-1">
+                    Copyright © 2024 ngCommerce</div>
+            </div>
+        </div>
+    </div>
+</footer>
