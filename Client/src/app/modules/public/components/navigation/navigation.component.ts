@@ -3,6 +3,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 
 import { AccountService } from "../../../../services/account.service";
 import { Navbar } from "../../constants/navbar";
+import { Social_Links } from "../../constants/footer";
 
 @Component({
   selector: 'app-navigation',
@@ -26,6 +27,7 @@ export class NavigationComponent {
   isToggle = false;
   showMiniCart = false;
 
+  socialLinks = Social_Links;
 
   @HostBinding('@.disabled') get disableAnimation() {
     return !this.isToggle;

@@ -1,3 +1,33 @@
+<div class="bg-[#111827] text-white py-1 hidden lg:block">
+    <div class="mx-auto max-w-7xl lg:px-8 flex justify-between items-center">
+        <div class="flex">
+            @for(socialLink of socialLinks; track socialLink){
+            @for(link of socialLink.subLinks; track link){
+
+            <a class="bg-white shadow-lg font-normal h-7 w-7 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 group"
+                type="button" routerLink="{{link.route}}">
+                <fa-icon [icon]="link.icon" class=" text-gray-600 group-hover:text-indigo-600"></fa-icon>
+            </a>
+            }
+            }
+        </div>
+        <!-- search form -->
+        <div>
+            <form class="mr-2 border rounded-md bg-white">
+                <div class="relative">
+                    <input type="text" placeholder="Search..."
+                        class="block w-full appearance-none bg-transparent py-1 pl-4 pr-12 text-base text-slate-900 placeholder:text-slate-600 focus:outline-none sm:text-sm sm:leading-6" />
+                    <svg class="pointer-events-none absolute right-2 top-1 h-6 w-6 fill-slate-400"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M20.47 21.53a.75.75 0 1 0 1.06-1.06l-1.06 1.06Zm-9.97-4.28a6.75 6.75 0 0 1-6.75-6.75h-1.5a8.25 8.25 0 0 0 8.25 8.25v-1.5ZM3.75 10.5a6.75 6.75 0 0 1 6.75-6.75v-1.5a8.25 8.25 0 0 0-8.25 8.25h1.5Zm6.75-6.75a6.75 6.75 0 0 1 6.75 6.75h1.5a8.25 8.25 0 0 0-8.25-8.25v1.5Zm11.03 16.72-5.196-5.197-1.061 1.06 5.197 5.197 1.06-1.06Zm-4.28-9.97c0 1.864-.755 3.55-1.977 4.773l1.06 1.06A8.226 8.226 0 0 0 18.75 10.5h-1.5Zm-1.977 4.773A6.727 6.727 0 0 1 10.5 17.25v1.5a8.226 8.226 0 0 0 5.834-2.416l-1.061-1.061Z">
+                        </path>
+                    </svg>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <header class="bg-white">
     <nav class="mx-auto flex max-w-7xl items-center justify-between p-5 lg:px-8" aria-label="Global">
         <div class="flex lg:flex-1">
@@ -6,7 +36,7 @@
                 <img class="h-8 w-auto" src="{{logo}}" alt="logo">
             </a>
         </div>
-        
+
         <!-- Mobile togglers-->
         <div class="flex justify-end lg:hidden">
             <!-- Mini Shopping cart toggler-->
@@ -90,19 +120,6 @@
         <!-- Right side Menu -->
         <div class="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center">
 
-            <!-- search form -->
-            <form class="mr-2 border rounded-md">
-                <div class="relative">
-                    <input type="text" placeholder="Search..."
-                        class="block w-full appearance-none bg-transparent py-2 pl-4 pr-12 text-base text-slate-900 placeholder:text-slate-600 focus:outline-none sm:text-sm sm:leading-6" />
-                    <svg class="pointer-events-none absolute right-2 top-2 h-6 w-6 fill-slate-400"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M20.47 21.53a.75.75 0 1 0 1.06-1.06l-1.06 1.06Zm-9.97-4.28a6.75 6.75 0 0 1-6.75-6.75h-1.5a8.25 8.25 0 0 0 8.25 8.25v-1.5ZM3.75 10.5a6.75 6.75 0 0 1 6.75-6.75v-1.5a8.25 8.25 0 0 0-8.25 8.25h1.5Zm6.75-6.75a6.75 6.75 0 0 1 6.75 6.75h1.5a8.25 8.25 0 0 0-8.25-8.25v1.5Zm11.03 16.72-5.196-5.197-1.061 1.06 5.197 5.197 1.06-1.06Zm-4.28-9.97c0 1.864-.755 3.55-1.977 4.773l1.06 1.06A8.226 8.226 0 0 0 18.75 10.5h-1.5Zm-1.977 4.773A6.727 6.727 0 0 1 10.5 17.25v1.5a8.226 8.226 0 0 0 5.834-2.416l-1.061-1.061Z">
-                        </path>
-                    </svg>
-                </div>
-            </form>
 
             <!-- Mini shopping cart toggler -->
             <button type="button"
@@ -114,7 +131,7 @@
                         d="M528.1 301.3l47.3-208C578.8 78.3 567.4 64 552 64H159.2l-9.2-44.8C147.8 8 137.9 0 126.5 0H24C10.7 0 0 10.7 0 24v16c0 13.3 10.7 24 24 24h69.9l70.2 343.4C147.3 417.1 136 435.2 136 456c0 30.9 25.1 56 56 56s56-25.1 56-56c0-15.7-6.4-29.8-16.8-40h209.6C430.4 426.2 424 440.3 424 456c0 30.9 25.1 56 56 56s56-25.1 56-56c0-22.2-12.9-41.3-31.6-50.4l5.5-24.3c3.4-15-8-29.3-23.4-29.3H218.1l-6.5-32h293.1c11.2 0 20.9-7.8 23.4-18.7z" />
                 </svg>
             </button>
-            
+
             <!-- Login/Logout button -->
             @if((_accountService.currentUser$ | async)){
             <button (click)="logout()"
@@ -140,8 +157,7 @@
             <div class="flex items-center justify-between">
                 <a href="#" class="-m-1.5 p-1.5">
                     <span class="sr-only">Your Company</span>
-                    <img class="h-8 w-auto" src="{{logo}}"
-                        alt="logo">
+                    <img class="h-8 w-auto" src="{{logo}}" alt="logo">
                 </a>
                 <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" (click)="isToggle = !isToggle">
                     <span class="sr-only">Close menu</span>
@@ -151,7 +167,7 @@
                     </svg>
                 </button>
             </div>
-            
+
             <!-- search form -->
             <form class="border rounded-md mt-4">
                 <div class="relative">
@@ -201,7 +217,21 @@
                         }
                         }
                     </div>
-                    <div class="py-6">
+
+                    <div class="py-4">
+
+                        <div class="flex pb-5 items-center justify-center">
+                            @for(socialLink of socialLinks; track socialLink){
+                            @for(link of socialLink.subLinks; track link){
+
+                            <a class="bg-white shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 group"
+                                type="button" routerLink="{{link.route}}">
+                                <fa-icon [icon]="link.icon"
+                                    class=" text-gray-600 group-hover:text-indigo-600"></fa-icon>
+                            </a>
+                            }
+                            }
+                        </div>
                         @if((_accountService.currentUser$ | async)){
                         <a routerLink="/login"
                             class="font-medium leading-6 text-white p-2 px-3 rounded-md bg-indigo-500 shadow-lg shadow-indigo-500/50 flex align-middle w-full text-center justify-center items-center">
