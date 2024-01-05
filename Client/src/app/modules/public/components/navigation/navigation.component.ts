@@ -26,7 +26,6 @@ export class NavigationComponent {
   logo = '../../../../../favicon.ico';
   isToggle = false;
   showMiniCart = false;
-
   socialLinks = Social_Links;
 
   @HostBinding('@.disabled') get disableAnimation() {
@@ -41,7 +40,6 @@ export class NavigationComponent {
 
   toggleSubMenu(menu: any) {
     menu.isToggle = !menu.isToggle;
-
     this.menuList.filter(item => item !== menu).forEach(item => item.isToggle = false);
   }
   

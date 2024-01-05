@@ -9,9 +9,6 @@ import { Footer_Menu, Social_Links } from "../../constants/footer";
 })
 export class FooterComponent implements OnInit{
  ngOnInit(): void {
-  this.socialLinks.forEach(socialLink => {
-    console.log(socialLink.subLinks?.length);
-  });
  }
  footerLinks = Footer_Menu;
  socialLinks = Social_Links;

@@ -6,3 +6,7 @@
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #f1f1f1; }
+::-webkit-scrollbar {width: 4px;height: 5px;}
+    ::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);border-radius: 100px;}
+    ::-webkit-scrollbar-thumb {background-color: rgba(99, 101, 241, 0.788);outline: 1px solid rgba(99, 101, 241, 0.774);border-radius: 100px;}
+        ::-webkit-scrollbar-thumb:hover {background-color: var(--link-hover-color);}

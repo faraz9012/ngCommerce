@@ -1,28 +1,69 @@
-
-<form [formGroup]="loginForm" (ngSubmit)="onLogin()" autocomplete="on">
-    <div>
-        <div class="w-full">
-            <label>Email</label>
-            <input matInput placeholder="user@example.com" formControlName="email" required>
+<section class="relative flex flex-wrap lg:items-center">
+    <div class="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
+      <div class="mx-auto max-w-lg text-center">
+        <h1 class="text-2xl font-bold sm:text-3xl">Welcome back!</h1>
+  
+        <p class="mt-4 text-gray-500">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero nulla eaque error neque
+          ipsa culpa autem, at itaque nostrum!
+        </p>
+      </div>
+  
+      <form
+       [formGroup]="loginForm" 
+       (ngSubmit)="onLogin()" 
+       autocomplete="off" 
+       class="mx-auto mb-0 mt-8 max-w-md space-y-4">
+        <div>
+          <label for="email" class="sr-only">Email</label>
+          <div class="relative">
+            <input
+              type="email"
+              class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+              placeholder="user@example.com" 
+              formControlName="email" 
+              required
+            />
             @if (this.loginForm.controls['email'].errors && this.loginForm.controls['email'].touched) {
-            <div>
-                Please enter your email
-            </div>
-            }
+                <div class="text-red-500">
+                    Please enter your email
+                </div>
+                }
+          </div>
         </div>
-    </div>
-    <div>
-        <div class="w-full">
-            <label>Password</label>
-            <input matInput placeholder="password" formControlName="password" required>
-            @if (this.loginForm.controls['password'].invalid) {
-            <div>
+  
+        <div>
+          <label for="password" class="sr-only">Password</label>
+  
+          <div class="relative">
+            <input
+              type="password"
+              class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+              placeholder="password" 
+              formControlName="password" 
+              required
+            />
+            @if (this.loginForm.controls['password'].invalid && this.loginForm.controls['password'].touched) {
+            <div class="text-red-500">
                 Please enter password
             </div>
             }
+          </div>
         </div>
+  
+        <div class="flex items-center justify-between">
+          <p class="text-sm text-gray-500">
+            No account?
+            <a class="underline" >Sign up</a>
+          </p>
+  
+          <button
+            type="submit"
+            class="inline-block rounded-lg bg-indigo-500 px-5 py-3 text-sm font-medium text-white"
+          >
+            Sign in
+          </button>
+        </div>
+      </form>
     </div>
-    <button  color="primary" type="submit" class="w-full">
-        <span>Sign in</span>
-    </button>
-</form>
+  </section>
