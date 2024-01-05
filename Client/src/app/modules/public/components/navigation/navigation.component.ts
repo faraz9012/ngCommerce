@@ -22,7 +22,11 @@ import { Navbar } from "../../constants/navbar";
   ]
 })
 export class NavigationComponent {
+  logo = '../../../../../favicon.ico';
   isToggle = false;
+  showMiniCart = false;
+
+
   @HostBinding('@.disabled') get disableAnimation() {
     return !this.isToggle;
   }

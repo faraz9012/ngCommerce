@@ -40,4 +40,22 @@ export const Navbar: menu[] = [
         title: "F.A.Q's",
         route: "/"
     },
+    {
+        title: "Categories",
+        isToggle: false,
+        subMenu: [
+            {
+                icon: faTshirt,
+                title: "Shirts",
+                route: "/",
+                desc: "Lorem ipsum dolor sit amet, consectetur"
+            },
+            {
+                icon: faHeadphones,
+                title: "Headphones",
+                route: "/",
+                desc: "Lorem ipsum dolor sit amet, "
+            }
+        ]
+    }
 ];
