@@ -219,15 +219,14 @@
                     </div>
 
                     <div class="py-4">
-
                         <div class="flex pb-5 items-center justify-center">
                             @for(socialLink of socialLinks; track socialLink){
                             @for(link of socialLink.subLinks; track link){
 
-                            <a class="bg-white shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 group"
+                            <a class="bg-white shadow-lg font-normal h-12 w-12 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 group"
                                 type="button" routerLink="{{link.route}}">
                                 <fa-icon [icon]="link.icon"
-                                    class=" text-gray-600 group-hover:text-indigo-600"></fa-icon>
+                                    class=" text-gray-600 group-hover:text-indigo-600 text-lg"></fa-icon>
                             </a>
                             }
                             }
