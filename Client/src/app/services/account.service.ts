@@ -19,8 +19,9 @@ export class AccountService {
   constructor(
     private http:HttpClient,
     private router:Router, 
-  ) { }
-
+  ) { 
+    this.checkCurrentUser()
+  }
   
   login(model:any){
     return this.http.post<User>(this.baseUrl + 'customer/login', model).pipe(
@@ -41,6 +42,14 @@ export class AccountService {
     const remainingTime = decodedToken.exp * 1000 - Date.now();
 
     this.autoLogout(remainingTime);
+  }
+
+  checkCurrentUser(){
+    const userExists = localStorage.getItem('user');
+    
+    if(!userExists) return;
+    const currentUser = JSON.parse(userExists);
+    this.setCurrentUser(currentUser)
   }
 
   autoLogout(expirationDuration: number){
