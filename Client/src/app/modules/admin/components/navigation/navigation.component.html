@@ -14,7 +14,7 @@
                         </path>
                     </svg>
                 </button>
-                <a href="https://flowbite.com" class="flex ms-2 md:me-24">
+                <a routerLink="/admin" class="flex ms-2 md:me-24">
                     <img src="{{logo}}" class="h-8 me-3" alt="FlowBite Logo" />
                     <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap ">ngCommerce</span>
                 </a>
@@ -42,19 +42,19 @@
                         </div>
                         <ul class="py-1" role="none">
                             <li>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                <a routerLink="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     role="menuitem">Dashboard</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  "
+                                <a routerLink="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  "
                                     role="menuitem">Settings</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  "
+                                <a routerLink="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  "
                                     role="menuitem">Earnings</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  "
+                                <a routerLink="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  "
                                     role="menuitem">Sign out</a>
                             </li>
                         </ul>
@@ -95,7 +95,7 @@
                 <!-- 'Product' sub-menu, show/hide based on menu state. -->
                 <div class="mt-2 space-y-2" id="disclosure-1" [style]="(menu.isToggle) ? '' : 'display:none;'">
                     @for(subMenu of menu.subMenu; track subMenu){
-                    <a routerLink={{subMenu.route}}
+                    <a routerLink={{subMenu.route}} routerLinkActive="bg-gray-100 text-indigo-600"
                         class="block rounded-lg py-2 pl-6 pr-3 text-sm font-normal leading-7 text-gray-700 hover:bg-gray-100 hover:text-indigo-600">
 
                         <fa-icon [icon]="subMenu.icon" class=" text-gray-600 w-10 h-10 mr-2"></fa-icon>
@@ -106,13 +106,18 @@
             </div>
             }
             @else {
-            <a class="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-gray-900 hover:bg-gray-100 group hover:text-indigo-600 cursor-pointer"
-                href={{menu.route}}>
-                <div class="flex items-center justify-start">
-                    <div class="w-10">
-                        <fa-icon [icon]="menu.icon" class="text-gray-600 hover:text-indigo-600"></fa-icon>
+            <a routerLink={{menu.route}} routerLinkActive="bg-gray-100" #rla="routerLinkActive"
+                class="group relative flex items-center -mx-3 hover:bg-gray-100">
+                <div class="flex h-11 w-11 flex-none items-center justify-center">
+
+                    <fa-icon [icon]="menu.icon" [class]="rla.isActive ?'text-indigo-600' : ''"
+                        class="h-6 w-6 text-gray-600 group-hover:text-indigo-600"></fa-icon>
+                </div>
+                <div class="flex-auto">
+                    <div class="block font-medium text-gray-900 group-hover:text-indigo-600 ml-1"
+                        [class]="rla.isActive ?'text-indigo-600' : ''">
+                        {{menu.title}}
                     </div>
-                    <div class="-mx-1">{{menu.title}}</div>
                 </div>
             </a>
             }
@@ -123,7 +128,7 @@
 
 <div class="p-4 lg:ml-64">
     <div class="p-4 mt-12">
-        Content goes here
+        <router-outlet></router-outlet>
     </div>
 </div>
 
@@ -167,7 +172,7 @@
                     <!-- 'Product' sub-menu, show/hide based on menu state. -->
                     <div class="mt-2 space-y-2" id="disclosure-1" [style]="(menu.isToggle) ? '' : 'display:none;'">
                         @for(subMenu of menu.subMenu; track subMenu){
-                        <a routerLink={{subMenu.route}}
+                        <a routerLink={{subMenu.route}} routerLinkActive="bg-gray-100 text-indigo-600"
                             class="block rounded-lg py-2 pl-6 pr-3 text-sm font-normal leading-7 text-gray-700 hover:bg-gray-100 hover:text-indigo-600">
     
                             <fa-icon [icon]="subMenu.icon" class=" text-gray-600 w-10 h-10 mr-2"></fa-icon>
@@ -178,13 +183,18 @@
                 </div>
                 }
                 @else {
-                <a class="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-gray-900 hover:bg-gray-100 group hover:text-indigo-600 cursor-pointer"
-                    href={{menu.route}}>
-                    <div class="flex items-center justify-start">
-                        <div class="w-10">
-                            <fa-icon [icon]="menu.icon" class="text-gray-600 hover:text-indigo-600"></fa-icon>
+                <a routerLink={{menu.route}} routerLinkActive="bg-gray-100" #rla="routerLinkActive"
+                    class="group relative flex items-center -mx-3 hover:bg-gray-100">
+                    <div class="flex h-11 w-11 flex-none items-center justify-center">
+    
+                        <fa-icon [icon]="menu.icon" [class]="rla.isActive ?'text-indigo-600' : ''"
+                            class="h-6 w-6 text-gray-600 group-hover:text-indigo-600"></fa-icon>
+                    </div>
+                    <div class="flex-auto">
+                        <div class="block font-medium text-gray-900 group-hover:text-indigo-600 ml-1"
+                            [class]="rla.isActive ?'text-indigo-600' : ''">
+                            {{menu.title}}
                         </div>
-                        <div class="-mx-1">{{menu.title}}</div>
                     </div>
                 </a>
                 }

@@ -12,7 +12,7 @@ export const Side_Navbar: sideMenu[] = [
     {
         icon: faChartPie,
         title: "Dashboard",
-        route: "/"
+        route: "/admin"
     },
     {
         icon: faShoppingCart,
@@ -22,12 +22,12 @@ export const Side_Navbar: sideMenu[] = [
             {
                 icon: faCircleDot,
                 title: "Categories",
-                route: "/",
+                route: "/admin/categories",
             },
             {
                 icon: faCircleDot,
                 title: "Products",
-                route: "/",
+                route: "/admin/products",
             }
         ]
     },
@@ -39,7 +39,7 @@ export const Side_Navbar: sideMenu[] = [
             {
                 icon: faCircleDot,
                 title: "Orders",
-                route: "/",
+                route: "/admin/orders",
             }
         ]
     },
@@ -50,13 +50,13 @@ export const Side_Navbar: sideMenu[] = [
         subMenu: [
             {
                 icon: faCircleDot,
-                title: "Shirts",
-                route: "/",
+                title: "List customers",
+                route: "/admin/customer/list",
             },
             {
                 icon: faCircleDot,
-                title: "Headphones",
-                route: "/",
+                title: "Add customer",
+                route: "/admin/add-customer",
             }
         ]
     },
