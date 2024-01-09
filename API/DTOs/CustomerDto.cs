@@ -1,6 +1,10 @@
 ﻿namespace API.DTOs;
 public class CustomerDto
 {
-    public string Username { get; set; }
-    public string Token { get; set; }
+        public int Id { get; set; }    
+        public string UserName { get; set; }
+        public string email {get; set;}
+        public string Gender { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime LastLoginDateUtc { get; set; }
 }

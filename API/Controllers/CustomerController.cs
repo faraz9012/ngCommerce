@@ -17,15 +17,17 @@ public class CustomerController : BaseApiController
 
     private readonly DataContext _context;
     private readonly ITokesnService _tokesnService;
+    private readonly ICustomerRepository _customerRepository;
 
     #endregion
 
     #region Ctor
 
-    public CustomerController(DataContext context, ITokesnService tokesnService)
+    public CustomerController(DataContext context, ITokesnService tokesnService, ICustomerRepository customerRepository)
     {
         _context = context;
         _tokesnService = tokesnService;
+        _customerRepository = customerRepository;
     }
 
     #endregion
@@ -51,10 +53,16 @@ public class CustomerController : BaseApiController
     {
         return await _context.Customers.FindAsync(Id);
     }
+    
+    [HttpGet("{username}")]
+    public virtual async Task<ActionResult<Customer>> GetCustomerByUsername(string username)
+    {
+        return await _customerRepository.GetCustomerByUsername(username);
+    }
 
     [AllowAnonymous]
     [HttpPost("register")]
-    public virtual async Task<ActionResult<CustomerDto>> Register(RegisterDto registerDto)
+    public virtual async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
     {
 
         if (await EmailAlreadyInUse(registerDto.Email)) return BadRequest("Email is already in use");
@@ -71,7 +79,7 @@ public class CustomerController : BaseApiController
 
         _context.Customers.Add(customer);
 
-        return new CustomerDto
+        return new UserDto
         {
             Username = customer.Username,
             Token = _tokesnService.CreateToken(customer),
@@ -80,7 +88,7 @@ public class CustomerController : BaseApiController
 
     [AllowAnonymous]
     [HttpPost("login")]
-    public virtual async Task<ActionResult<CustomerDto>> Login(LoginDto loginDto)
+    public virtual async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
     {
         var customer = await _context.Customers.SingleOrDefaultAsync(x => x.Email == loginDto.Email);
 
@@ -96,7 +104,7 @@ public class CustomerController : BaseApiController
                 return Unauthorized("Invalid Password");
         }
 
-        return new CustomerDto
+        return new UserDto
         {
             Username = customer.Username,
             Token = _tokesnService.CreateToken(customer),
