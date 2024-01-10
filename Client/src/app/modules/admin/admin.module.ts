@@ -14,14 +14,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: DashboardComponent
+        component: DashboardComponent,
+        pathMatch: 'full',
       },
       {
-        path: 'dashboard',
-        component: DashboardComponent
-      },
-      {
-        path: "admin/customer",
+        path: "customer",
         loadChildren:() => import("./modules/customers/customers.module").then(m => m.CustomersModule),
       }
     ]

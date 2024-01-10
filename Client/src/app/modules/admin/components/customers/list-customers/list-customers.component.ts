@@ -12,10 +12,13 @@ import { Customer } from "../../../models/customers";
 })
 export class ListCustomersComponent implements OnInit {
   showModal: boolean = false;
+  toggleDropdown: boolean = false;
   customers$: Observable<Customer[]> | undefined;
   user$: Observable<Customer> | undefined;
   selectedUser: Customer | undefined;
   editUser:any;
+
+  
   faSave = faSave;
   faSearch = faSearch;
 
@@ -23,6 +26,11 @@ export class ListCustomersComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchAllCustomers();
+  }
+
+  clickedOutSide():void {
+    this.toggleDropdown = false;
+    console.log('Clicked outside');
   }
 
   fetchAllCustomers(): void {

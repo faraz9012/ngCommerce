@@ -2,11 +2,12 @@
 
 <div *ngIf="showModal" class="fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50 z-50"></div>
 
-<div class="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4">
-    <div>
+<div (clickOutside)="clickedOutSide()" class="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4">
+    <div >
         <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction"
-            class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 "
-            type="button">
+            class="relative inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 "
+            type="button"
+            (click)="toggleDropdown =!toggleDropdown">
             <span class="sr-only">Action button</span>
             Action
             <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -16,7 +17,9 @@
             </svg>
         </button>
         <!-- Dropdown menu -->
-        <div id="dropdownAction" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+        <div id="dropdownAction"
+         class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
+         *ngIf="toggleDropdown">
             <ul class="py-1 text-sm text-gray-700 " aria-labelledby="dropdownActionButton">
                 <li>
                     <a href="#" class="block px-4 py-2 hover:bg-gray-100">Reward</a>
@@ -47,7 +50,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">

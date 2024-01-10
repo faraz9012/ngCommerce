@@ -6,13 +6,15 @@ interface sideMenu {
     route?: string;
     subMenu?: sideMenu[];
     isToggle?: boolean;
+    exact?: boolean;
 }
 
 export const Side_Navbar: sideMenu[] = [
     {
         icon: faChartPie,
         title: "Dashboard",
-        route: "/admin"
+        route: "/admin",
+        exact: true
     },
     {
         icon: faShoppingCart,

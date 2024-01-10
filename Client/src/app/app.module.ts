@@ -7,10 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from "./modules/admin/admin.module";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { JwtInterceptor } from "./interceptors/jwt.interceptor";
+import { ClickOutSideDirective } from './directives/click-out-side.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ClickOutSideDirective
   ],
   imports: [
     BrowserModule,

@@ -106,7 +106,7 @@
             </div>
             }
             @else {
-            <a routerLink={{menu.route}} routerLinkActive="bg-gray-100" #rla="routerLinkActive"
+            <a routerLink={{menu.route}} routerLinkActive="bg-gray-100" [routerLinkActiveOptions]="{exact: !!menu.exact}" #rla="routerLinkActive"
                 class="group relative flex items-center -mx-3 hover:bg-gray-100">
                 <div class="flex h-11 w-11 flex-none items-center justify-center">
 
