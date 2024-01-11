@@ -6,14 +6,12 @@ import { Subscription, filter, fromEvent } from "rxjs";
   selector: '[clickOutside]'
 })
 export class ClickOutSideDirective implements AfterViewInit, OnDestroy {
- @Output() clickOutside = new EventEmitter<void>();
+  @Output() clickOutside = new EventEmitter<void>();
   documentClickSubscription: Subscription | undefined;
 
   constructor(private element: ElementRef, @Inject(DOCUMENT) private document: Document) { }
-  
-  ngAfterViewInit(): void {
-      console.log('Clicked outside from directive');
 
+  ngAfterViewInit(): void {
     this.documentClickSubscription = fromEvent(this.document, 'click').pipe(filter((event) => {
       return !this.isInside(event.target as HTMLElement);
     })
@@ -23,7 +21,7 @@ export class ClickOutSideDirective implements AfterViewInit, OnDestroy {
     })
   }
 
-  isInside(elementToCheck: HTMLElement):boolean {
+  isInside(elementToCheck: HTMLElement): boolean {
     return elementToCheck === this.element.nativeElement || this.element.nativeElement.contains(elementToCheck)
   }
 
