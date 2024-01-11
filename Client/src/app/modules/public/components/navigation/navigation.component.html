@@ -28,7 +28,7 @@
         </div>
     </div>
 </div>
-<header class="bg-white">
+<header class="bg-white/65 backdrop-blur-lg sticky z-[49] top-0">
     <nav class="mx-auto flex max-w-7xl items-center justify-between p-5 lg:px-8" aria-label="Global">
         <div class="flex lg:flex-1">
             <a routerLink="/" class="-m-1.5 p-1.5">
@@ -41,8 +41,9 @@
         <div class="flex justify-end lg:hidden">
             <!-- Mini Shopping cart toggler-->
             <button type="button"
-                class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 mr-2"
-                (click)="showMiniCart = !showMiniCart">
+                class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 mr-2" type="button"
+                data-drawer-target="mini-shopping-cart" data-drawer-show="mini-shopping-cart"
+                data-drawer-placement="right" aria-controls="mini-shopping-cart">
                 <span class="sr-only">Open main menu</span>
                 <svg height="16" width="18" viewBox="0 0 576 512">
                     <path fill="currentColor"
@@ -122,8 +123,9 @@
 
             <!-- Mini shopping cart toggler -->
             <button type="button"
-                class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 mr-2"
-                (click)="showMiniCart = !showMiniCart">
+                class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 mr-2" type="button"
+                data-drawer-target="mini-shopping-cart" data-drawer-show="mini-shopping-cart"
+                data-drawer-placement="right" aria-controls="mini-shopping-cart">
                 <span class="sr-only">Open main menu</span>
                 <svg height="16" width="18" viewBox="0 0 576 512">
                     <path fill="currentColor"
@@ -150,9 +152,9 @@
     <!-- Mobile menu, show/hide based on menu open state. -->
     <div class="lg:hidden" role="dialog" aria-modal="true" [style]="isToggle ? '' : 'display: none'">
         <!-- Background backdrop, show/hide based on slide-over state. -->
-        <div class="fixed inset-0 z-10"></div>
+        <div class="fixed inset-0 z-50"></div>
         <div
-            class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+            class="fixed inset-y-0 right-0 z-50 h-dvh w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div class="flex items-center justify-between">
                 <a href="#" class="-m-1.5 p-1.5">
                     <span class="sr-only">Your Company</span>
@@ -247,43 +249,40 @@
             </div>
         </div>
     </div>
+</header>
 
-    <!-- Mini shopping cart. -->
-    <div class="" role="dialog" aria-modal="true" [style]="showMiniCart ? '' : 'display: none'">
-        <!-- Background backdrop, show/hide based on slide-over state. -->
-        <div class="fixed inset-0 z-10"></div>
-        <div
-            class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 transition-transform">
-            <div class="flex items-center justify-between">
-                <a href="#" class="-m-1.5 p-1.5">
-                    <h4 class="font-medium">Mini shopping cart</h4>
-                </a>
-                <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700"
-                    (click)="showMiniCart = !showMiniCart">
-                    <span class="sr-only">Close menu</span>
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+<!-- Mini shopping cart. -->
+<div id="mini-shopping-cart"
+    class="fixed top-0 right-0 z-50 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white w-80 dark:bg-gray-800"
+    tabindex="-1" aria-labelledby="drawer-right-label">
+    <h5 id="drawer-label" class="inline-flex items-center mb-6 text-base font-semibold">
+        Mini shopping cart</h5>
+
+
+    <button type="button" data-drawer-hide="mini-shopping-cart" aria-controls="mini-shopping-cart"
+        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+        </svg>
+        <span class="sr-only">Close menu</span>
+    </button>
+
+    <div class="flow-root">
+        <div class="-my-6 divide-y divide-gray-500/10">
+            <div class="space-y-2 py-6 h-[80dvh] overflow-y-auto overflow-x-hidden">
+                <h1>Items in cart will be shown here </h1>
+            </div>
+            <div class="py-6 w-100">
+                <button
+                    class="font-medium leading-6 text-white p-2 px-3 rounded-md bg-indigo-500 shadow-lg shadow-indigo-500/50 flex align-middle w-full text-center justify-center items-center">Got
+                    to cart&nbsp;
+                    <svg height="16" width="18" viewBox="0 0 576 512">
+                        <path fill="currentColor"
+                            d="M528.1 301.3l47.3-208C578.8 78.3 567.4 64 552 64H159.2l-9.2-44.8C147.8 8 137.9 0 126.5 0H24C10.7 0 0 10.7 0 24v16c0 13.3 10.7 24 24 24h69.9l70.2 343.4C147.3 417.1 136 435.2 136 456c0 30.9 25.1 56 56 56s56-25.1 56-56c0-15.7-6.4-29.8-16.8-40h209.6C430.4 426.2 424 440.3 424 456c0 30.9 25.1 56 56 56s56-25.1 56-56c0-22.2-12.9-41.3-31.6-50.4l5.5-24.3c3.4-15-8-29.3-23.4-29.3H218.1l-6.5-32h293.1c11.2 0 20.9-7.8 23.4-18.7z" />
                     </svg>
                 </button>
             </div>
-            <div class="mt-6 flow-root">
-                <div class="-my-6 divide-y divide-gray-500/10">
-                    <div class="space-y-2 py-6 h-[80dvh] overflow-y-auto overflow-x-hidden">
-                        <h1>Items in cart will be shown here </h1>
-                    </div>
-                    <div class="py-6 w-100">
-                        <button
-                            class="font-medium leading-6 text-white p-2 px-3 rounded-md bg-indigo-500 shadow-lg shadow-indigo-500/50 flex align-middle w-full text-center justify-center items-center">Got
-                            to cart&nbsp;
-                            <svg height="16" width="18" viewBox="0 0 576 512">
-                                <path fill="currentColor"
-                                    d="M528.1 301.3l47.3-208C578.8 78.3 567.4 64 552 64H159.2l-9.2-44.8C147.8 8 137.9 0 126.5 0H24C10.7 0 0 10.7 0 24v16c0 13.3 10.7 24 24 24h69.9l70.2 343.4C147.3 417.1 136 435.2 136 456c0 30.9 25.1 56 56 56s56-25.1 56-56c0-15.7-6.4-29.8-16.8-40h209.6C430.4 426.2 424 440.3 424 456c0 30.9 25.1 56 56 56s56-25.1 56-56c0-22.2-12.9-41.3-31.6-50.4l5.5-24.3c3.4-15-8-29.3-23.4-29.3H218.1l-6.5-32h293.1c11.2 0 20.9-7.8 23.4-18.7z" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
-</header>
+</div>
