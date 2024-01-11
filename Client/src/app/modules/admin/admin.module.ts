@@ -6,6 +6,7 @@ import { FontAwesomeSharedModule } from "../shared/shared.module";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { ListCustomersComponent } from './components/customers/list-customers/list-customers.component';
+import { CreateCategoryComponent } from './components/categories/create-category/create-category.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
       {
         path: "customer",
         loadChildren:() => import("./modules/customers/customers.module").then(m => m.CustomersModule),
+      },
+      {
+        path: "category",
+        loadChildren:() => import("./modules/categories/categories.module").then(m => m.CategoriesModule),
       }
     ]
   }
@@ -31,6 +36,7 @@ const routes: Routes = [
     DashboardComponent,
     NavigationComponent,
     ListCustomersComponent,
+    CreateCategoryComponent,
   ],
   imports: [
     CommonModule,

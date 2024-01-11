@@ -1,6 +1,7 @@
-import { faChartPie,faCircleDot, faUsers, faShoppingCart, faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import { faChartPie, faCircleDot, faCircleNotch, faUsers, faShoppingCart, faDollarSign } from '@fortawesome/free-solid-svg-icons';
 
 interface sideMenu {
+    id?: string | number;
     icon?: any;
     title: string;
     route?: string;
@@ -11,29 +12,56 @@ interface sideMenu {
 
 export const Side_Navbar: sideMenu[] = [
     {
+        id: 'dashboard',
         icon: faChartPie,
         title: "Dashboard",
         route: "/admin",
         exact: true
     },
     {
+        id: 'catalog',
         icon: faShoppingCart,
         title: "Catalog",
         isToggle: false,
         subMenu: [
             {
+                id: 'categories',
                 icon: faCircleDot,
                 title: "Categories",
-                route: "/admin/categories",
+                subMenu: [
+                    {
+                        icon: faCircleNotch,
+                        title: "List",
+                        route: "/admin/category/list"
+                    },
+                    {
+                        icon: faCircleNotch,
+                        title: "Create",
+                        route: "/admin/category/create"
+                    }
+                ]
             },
             {
+                id: 'products',
                 icon: faCircleDot,
                 title: "Products",
-                route: "/admin/products",
+                subMenu: [
+                    {
+                        icon: faCircleNotch,
+                        title: "List",
+                        route: "/admin/category/list"
+                    },
+                    {
+                        icon: faCircleNotch,
+                        title: "Create",
+                        route: "/admin/category/create"
+                    }
+                ]
             }
         ]
     },
     {
+        id: 'sales',
         icon: faDollarSign,
         title: "Sales",
         isToggle: false,
@@ -46,6 +74,7 @@ export const Side_Navbar: sideMenu[] = [
         ]
     },
     {
+        id: 'customers',
         icon: faUsers,
         title: "Customers",
         isToggle: false,

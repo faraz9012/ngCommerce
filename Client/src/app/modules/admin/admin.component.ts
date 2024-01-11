@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import { initFlowbite } from "flowbite";
 
 @Component({
   selector: 'app-admin-root',
@@ -6,7 +7,10 @@ import {Component} from '@angular/core';
   styleUrls: ['admin.component.css']
 })
 
-export class AdminComponent {
+export class AdminComponent implements OnInit{
+  ngOnInit(): void {
+    initFlowbite();
+  }
 
 }
 
