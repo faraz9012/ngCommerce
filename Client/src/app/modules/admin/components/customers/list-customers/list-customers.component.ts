@@ -4,6 +4,7 @@ import { faSave, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { CustomersService } from "../../../../../services/customers.service";
 import { Customer } from "../../../models/customers";
+import { initFlowbite } from "flowbite";
 
 @Component({
   selector: 'app-list-customers',
@@ -17,7 +18,6 @@ export class ListCustomersComponent implements OnInit {
   user$: Observable<Customer> | undefined;
   selectedUser: Customer | undefined;
   editUser:any;
-
   
   faSave = faSave;
   faSearch = faSearch;
@@ -25,12 +25,8 @@ export class ListCustomersComponent implements OnInit {
   constructor(private customerService: CustomersService) {}
 
   ngOnInit(): void {
+    initFlowbite();
     this.fetchAllCustomers();
-  }
-
-  clickedOutSide():void {
-    this.toggleDropdown = false;
-    console.log('Clicked outside');
   }
 
   fetchAllCustomers(): void {
