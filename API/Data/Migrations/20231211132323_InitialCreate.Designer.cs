@@ -33,17 +33,22 @@ namespace API.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.HasKey("Id");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("CustomerGuid")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("CreatedOnUtc")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CustomerGuid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastLoginDateUtc")
                         .HasColumnType("datetime2");
@@ -53,11 +58,6 @@ namespace API.Data.Migrations
 
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
 
                     b.ToTable("Customers");
                 });
