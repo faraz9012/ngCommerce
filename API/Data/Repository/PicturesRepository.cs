@@ -5,7 +5,7 @@ using API.Interfaces;
 
 namespace API.Data.Repository
 {
-    public class PicturesRepository: IPictureRepository
+    public class PicturesRepository : IPictureRepository
     {
         #region Fields
         private readonly DataContext _context;
@@ -122,7 +122,7 @@ namespace API.Data.Repository
                 MimeType = contentType,
                 SrcAttribute = filePath,
             };
-            
+
             _context.Pictures.Add(picture);
             await _context.SaveChangesAsync();
 
@@ -133,6 +133,23 @@ namespace API.Data.Repository
                 SrcAttribute = picture.SrcAttribute
             };
 
+            return pictureDto;
+
+        }
+
+        public virtual async Task<PictureDto> GetPictureByIdAsync(int pictureId)
+        {
+            var picture = await _context.Pictures.FindAsync(pictureId);
+
+            if (picture == null)
+                return null;
+
+            var pictureDto = new PictureDto
+            {
+                Id = picture.Id,
+                MimeType = picture.MimeType,
+                SrcAttribute = picture.SrcAttribute
+            };
             return pictureDto;
 
         }

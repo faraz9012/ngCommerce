@@ -5,8 +5,8 @@ namespace API.Controllers
 {
     public class PictureController : BaseApiController
     {
-        private readonly IPictureRepository _pictureRepository;
         #region Fields
+        private readonly IPictureRepository _pictureRepository;
 
         #endregion
 
@@ -15,6 +15,7 @@ namespace API.Controllers
         {
             _pictureRepository = pictureRepository;
         }
+        #endregion
 
         #region Methods
 
@@ -36,9 +37,20 @@ namespace API.Controllers
             return Ok(picture);
         }
 
-        #endregion
+        [HttpDelete("delete-picture/{pictureId}")]
+        public async Task<IActionResult> DeletePhoto(int pictureId)
+        {
+            var picture = await _pictureRepository.GetPictureByIdAsync(pictureId);
+
+            if (picture == null) return NotFound("Picture not found");
+
+            var result = await _pictureRepository.DeletePhotoAsync(pictureId);
+
+            if (!result) return BadRequest("Failed to delete picture");
+
+            return Ok();
+        }
 
         #endregion
-
     }
 }
