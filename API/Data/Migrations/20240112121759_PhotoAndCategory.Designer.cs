@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240112064424_PhotoAndCategoryEntity")]
-    partial class PhotoAndCategoryEntity
+    [Migration("20240112121759_PhotoAndCategory")]
+    partial class PhotoAndCategory
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,9 +35,6 @@ namespace API.Data.Migrations
 
                     b.Property<DateTime>("CreatedOnUtc")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -64,8 +61,6 @@ namespace API.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PictureId");
 
                     b.ToTable("Category");
                 });
@@ -130,17 +125,6 @@ namespace API.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Picture");
-                });
-
-            modelBuilder.Entity("API.Entities.Category", b =>
-                {
-                    b.HasOne("API.Entities.Picture", "Picture")
-                        .WithMany()
-                        .HasForeignKey("PictureId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Picture");
                 });
 #pragma warning restore 612, 618
         }

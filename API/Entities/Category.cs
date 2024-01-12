@@ -27,7 +27,6 @@ namespace API.Entities
         /// Gets or sets the picture identifier
         /// </summary>
         public int PictureId { get; set; }
-        public Picture Picture { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to show the category on home page
@@ -43,11 +42,6 @@ namespace API.Entities
         /// Gets or sets a value indicating whether the entity is published
         /// </summary>
         public bool Published { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the entity has been deleted
-        /// </summary>
-        public bool Deleted { get; set; }
 
         /// <summary>
         /// Gets or sets the date and time of instance creation

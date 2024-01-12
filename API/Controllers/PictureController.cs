@@ -38,7 +38,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("delete-picture/{pictureId}")]
-        public async Task<IActionResult> DeletePhoto(int pictureId)
+        public async Task<IActionResult> DeleteAsync(int pictureId)
         {
             var picture = await _pictureRepository.GetPictureByIdAsync(pictureId);
 
