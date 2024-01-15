@@ -1,9 +1,7 @@
-using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -57,8 +55,8 @@ namespace API.Controllers
             return await _categoryRepository.GetAllCategoriesAsync();
         }
 
-        [HttpDelete("delete-category/{id}")]
-        public virtual async Task<ActionResult<CategoryDto>> Delete(int categoryId)
+        [HttpDelete("delete-category/{categoryId}")]
+        public virtual async Task<ActionResult> Delete(int categoryId)
         {
             var category = await _categoryRepository.GetCategoryByIdAsync(categoryId);
 

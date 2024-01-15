@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { Side_Navbar } from "../../constants/sidenav";
 import { AccountService } from "../../../../services/account.service";
 
-
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
