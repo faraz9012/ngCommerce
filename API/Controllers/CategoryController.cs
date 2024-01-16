@@ -28,6 +28,12 @@ namespace API.Controllers
 
         #region Methods
 
+        [HttpGet]
+        public virtual async Task<ActionResult<IList<Category>>> GetAllAsync()
+        {
+            return await _categoryRepository.GetAllCategoriesAsync();
+        }
+
         [HttpPost("create")]
         public virtual async Task<ActionResult<CategoryDto>> Create(CategoryDto categoryDto)
         {
@@ -49,10 +55,19 @@ namespace API.Controllers
             return newCategory;
         }
 
-        [HttpGet]
-        public virtual async Task<ActionResult<IEnumerable<Category>>> GetAllAsync()
+        [HttpPut]
+        public virtual async Task<ActionResult<CategoryDto>> Update(CategoryDto categoryDto)
         {
-            return await _categoryRepository.GetAllCategoriesAsync();
+            if (categoryDto == null) return BadRequest("Category was not found");
+
+            if (await AlreadyExistsAsync(categoryDto.Name)) return BadRequest("A category by this name already exists");
+
+            var updatedCategory = await _categoryRepository.UpdateCategoryAsync(categoryDto);
+
+            if (updatedCategory == null) return BadRequest("Something went wrong, failed to update category");
+
+            return updatedCategory;
+
         }
 
         [HttpDelete("delete-category/{categoryId}")]
@@ -68,6 +83,7 @@ namespace API.Controllers
 
             return Ok();
         }
+        
         #endregion
     }
 }

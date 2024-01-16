@@ -10,7 +10,8 @@ namespace API.Helpers
         public AutoMapperProfile()
         {
             CreateMap<Customer, CustomerDto>();
-                
+            CreateMap<CategoryDto, Category>();
+            CreateMap<Category, CategoryDto>();
         }
     }
 }

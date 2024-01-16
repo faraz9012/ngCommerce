@@ -1,6 +1,7 @@
 using API.DTOs;
 using API.Entities;
 using API.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,20 +11,22 @@ namespace API.Data.Repository
     {
         #region Fields
         private readonly DataContext _context;
+        private readonly IMapper _mapper;
 
         #endregion
 
         #region Ctor
 
-        public CategoryRepository(DataContext context)
+        public CategoryRepository(DataContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         #endregion
 
         #region Method
 
-        public virtual async Task<ActionResult<IEnumerable<Category>>> GetAllCategoriesAsync()
+        public virtual async Task<ActionResult<IList<Category>>> GetAllCategoriesAsync()
         {
             return await _context.Categories.ToListAsync();
         }
@@ -66,7 +69,23 @@ namespace API.Data.Repository
 
             return categoryDto;
         }
-        
+
+        public virtual async Task<ActionResult<CategoryDto>> UpdateCategoryAsync(CategoryDto categoryDto)
+        {
+            if (categoryDto == null)
+                return null;
+
+            var category = await _context.Categories.FindAsync(categoryDto.Id);
+
+            if (category == null) return null;
+
+            _mapper.Map(categoryDto, category);
+
+            _context.Categories.Update(category);
+            await _context.SaveChangesAsync();
+
+            return categoryDto;
+        }
         public virtual async Task<bool> DeleteCategoryAsync(int categoryId)
         {
             var category = await _context.Categories.FindAsync(categoryId);
@@ -79,7 +98,7 @@ namespace API.Data.Repository
 
             return true;
         }
-        
+
         #endregion
     }
 }
