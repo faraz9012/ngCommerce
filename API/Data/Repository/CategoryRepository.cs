@@ -79,9 +79,13 @@ namespace API.Data.Repository
 
             if (category == null) return null;
 
+            //add the updated time
+            categoryDto.UpdatedOnUtc = DateTime.UtcNow;
             _mapper.Map(categoryDto, category);
 
             _context.Categories.Update(category);
+
+            //save changes in db
             await _context.SaveChangesAsync();
 
             return categoryDto;
