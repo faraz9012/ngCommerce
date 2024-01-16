@@ -61,6 +61,7 @@ namespace API.Data.Repository
 
             var categoryDto = new CategoryDto
             {
+                Id = category.Id,
                 Name = category.Name,
                 Description = category.Description,
                 ParentCategoryId = category.ParentCategoryId,
