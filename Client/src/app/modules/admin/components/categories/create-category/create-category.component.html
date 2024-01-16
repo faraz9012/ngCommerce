@@ -1,1 +1,379 @@
-<h3 class="font-medium text-2xl">Create category</h3>
+<form>
+    <div class="flex justify-between items-center mb-3">
+        <h3 class="font-medium text-2xl mb-3">Create category</h3>
+
+        <button type="submit"
+            class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg focus:ring-4 focus:ring-indigo-200 hover:bg-indigo-800">
+            Create category
+        </button>
+    </div>
+    <div class="lg:flex gap-7">
+        <!-- left side -->
+        <div class="flex-none lg:w-[300px] w-full">
+            <div class="flex flex-col lg:flex-col lg:w-[300px]">
+                <!-- Image upload -->
+                <div class="mb-7 bg-white rounded-md shadow-md p-5">
+                    <h4 class="font-medium tracking-wide text-[#071437] mb-2">Thumbnail</h4>
+                    <div class="flex items-center justify-center w-full">
+                        <label for="dropzone-file"
+                            class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 ">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <svg class="w-8 h-8 mb-4 text-gray-500 " aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                </svg>
+                                <p class="mb-2 text-sm text-gray-500 "><span
+                                        class="font-semibold">Click
+                                        to
+                                        upload</span> or drag and drop</p>
+                                <p class="text-xs text-gray-500 ">SVG, PNG, JPG or GIF (MAX.
+                                    800x400px)
+                                </p>
+                            </div>
+                            <input id="dropzone-file" type="file" class="hidden" />
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Status -->
+                <div class="mb-7 bg-white rounded-md shadow-md p-5">
+
+                    <!-- Category Status -->
+                    <div class="mb-3">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-medium tracking-wide text-[#071437]">Status</h4>
+                            <div class="size-3 bg-green-400 shadow-lg shadow-green-500 rounded-full"></div>
+                        </div>
+
+                        <button id="dropdownRadioHelperButton" data-dropdown-toggle="dropdownRadioHelper"
+                            class="text-gray-700 border mt-3 w-full focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex  justify-between items-center"
+                            type="button">Published <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+
+                        <!-- Dropdown menu -->
+                        <div id="dropdownRadioHelper"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-60 ">
+                            <ul class="p-3 space-y-1 text-sm text-gray-700 "
+                                aria-labelledby="dropdownRadioHelperButton">
+                                <li>
+                                    <div class="flex p-2 rounded hover:bg-gray-100 ">
+                                        <div class="flex items-center h-5">
+                                            <input id="helper-radio-5" name="helper-radio" type="radio" value=""
+                                                class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 focus:ring-indigo-500 "
+                                                checked />
+                                        </div>
+                                        <div class="ms-2 text-sm">
+                                            <label for="helper-radio-5"
+                                                class="font-medium text-gray-900 ">
+                                                <div>Published</div>
+                                                <p id="helper-radio-text-5"
+                                                    class="text-xs font-normal text-gray-500 ">
+                                                    Category will be visible to customers.</p>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="flex p-2 rounded hover:bg-gray-100 ">
+                                        <div class="flex items-center h-5">
+                                            <input id="helper-radio-6" name="helper-radio" type="radio" value=""
+                                                class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 focus:ring-indigo-500 " />
+                                        </div>
+                                        <div class="ms-2 text-sm">
+                                            <label for="helper-radio-6"
+                                                class="font-medium text-gray-900 ">
+                                                <div>Un-Published</div>
+                                                <p id="helper-radio-text-6"
+                                                    class="text-xs font-normal text-gray-500 ">
+                                                    Category will be hidden to customers.</p>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <small class="text-gray-400 text-xs">Set the category status.</small>
+                    </div>
+
+                    <!-- Public store -->
+                    <div class="mb-3">
+
+                        <h4 class="font-medium tracking-wide text-[#071437] mb-2">Miscellaneous</h4>
+
+                        <div class="md:flex items-center gap-2 lg:block">
+                            <div class="flex items-center ps-4 border border-gray-200 rounded lg:w-full sm:w-1/2 my-2">
+                                <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 ">
+                                <label for="bordered-checkbox-1"
+                                    class="w-full py-4 ms-2 text-sm font-medium text-gray-700 ">Add to
+                                    navigation</label>
+                            </div>
+                            <div class="flex items-center ps-4 border border-gray-200 rounded lg:w-full sm:w-1/2 my-2">
+                                <input checked id="bordered-checkbox-2" type="checkbox" value=""
+                                    name="bordered-checkbox"
+                                    class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 ">
+                                <label for="bordered-checkbox-2"
+                                    class="w-full py-4 ms-2 text-sm font-medium text-gray-700 ">Show
+                                    on homepage</label>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- right side -->
+        <div class="lg:grow ">
+            <!-- General -->
+            <div class="mb-7 bg-white rounded-md shadow-md p-5">
+                <h4 class="font-medium tracking-wide text-[#071437] mb-2">General</h4>
+
+                <!-- Name -->
+                <div class="mb-3">
+                    <label class="text-sm text-gray-700">Name&nbsp;<span class="text-red-500">*</span></label>
+                    <input type="text" id="first_name"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mt-1"
+                        placeholder="T-Shirts" required>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <label class="text-sm text-gray-700">Description</label>
+
+                    <textarea id="message" rows="4"
+                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Details about the category..."></textarea>
+                </div>
+
+            </div>
+
+            <!-- SEO -->
+            <div class="mb-7 bg-white rounded-md shadow-md p-5">
+                <h4 class="font-medium tracking-wide text-[#071437] mb-2">S.E.O</h4>
+
+                <!-- Meta name -->
+                <div class="mb-3">
+                    <label class="text-sm text-gray-700">Meta Tag Title</label>
+                    <input type="text"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mt-1"
+                        placeholder="Meta tag name" />
+
+                    <small class="text-gray-400 text-xs">Set a meta tag title. Recommended to be simple and precise
+                        keywords.</small>
+                </div>
+
+                <!-- Meta Description -->
+                <div class="mb-3">
+                    <label class="text-sm text-gray-700">Meta Tag Description</label>
+
+                    <textarea id="message" rows="4"
+                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Meta description here..."></textarea>
+
+                    <small class="text-gray-400 text-xs">Set a meta tag description to the category for increased SEO
+                        ranking.</small>
+                </div>
+
+                <!-- Meta tags -->
+                <div class="mb-3">
+                    <label class="text-sm text-gray-700">Meta Tag Title</label>
+                    <input type="text"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mt-1"
+                        placeholder="" />
+
+                    <small class="text-gray-400 text-xs">Set a list of keywords that the category is related to.
+                        Separate the keywords by adding a comma , between each keyword.</small>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Products in category -->
+
+<div class="mb-7 bg-white rounded-md shadow-md p-5">
+    <h4 class="font-medium tracking-wide text-[#071437] mb-2">Products in category</h4>
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-200 ">
+                <tr>
+                    <th scope="col" class="p-4">
+                        <div class="flex items-center">
+                            <input id="checkbox-all-search" type="checkbox"
+                                class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 ">
+                            <label for="checkbox-all-search" class="sr-only">checkbox</label>
+                        </div>
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Product name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Color
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Category
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Price
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    class="bg-white border-b  hover:bg-gray-50 ">
+                    <td class="w-4 p-4">
+                        <div class="flex items-center">
+                            <input id="checkbox-table-search-1" type="checkbox"
+                                class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 ">
+                            <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                        </div>
+                    </td>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                        Apple MacBook Pro 17"
+                    </th>
+                    <td class="px-6 py-4">
+                        Silver
+                    </td>
+                    <td class="px-6 py-4">
+                        Laptop
+                    </td>
+                    <td class="px-6 py-4">
+                        $2999
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="#" class="font-medium text-indigo-600 ">Edit</a>
+                    </td>
+                </tr>
+                <tr
+                    class="bg-white border-b  hover:bg-gray-50 ">
+                    <td class="w-4 p-4">
+                        <div class="flex items-center">
+                            <input id="checkbox-table-search-2" type="checkbox"
+                                class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 ">
+                            <label for="checkbox-table-search-2" class="sr-only">checkbox</label>
+                        </div>
+                    </td>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                        Microsoft Surface Pro
+                    </th>
+                    <td class="px-6 py-4">
+                        White
+                    </td>
+                    <td class="px-6 py-4">
+                        Laptop PC
+                    </td>
+                    <td class="px-6 py-4">
+                        $1999
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="#" class="font-medium text-indigo-600 ">Edit</a>
+                    </td>
+                </tr>
+                <tr
+                    class="bg-white border-b  hover:bg-gray-50 ">
+                    <td class="w-4 p-4">
+                        <div class="flex items-center">
+                            <input id="checkbox-table-search-3" type="checkbox"
+                                class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 ">
+                            <label for="checkbox-table-search-3" class="sr-only">checkbox</label>
+                        </div>
+                    </td>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                        Magic Mouse 2
+                    </th>
+                    <td class="px-6 py-4">
+                        Black
+                    </td>
+                    <td class="px-6 py-4">
+                        Accessories
+                    </td>
+                    <td class="px-6 py-4">
+                        $99
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="#" class="font-medium text-indigo-600 ">Edit</a>
+                    </td>
+                </tr>
+                <tr
+                    class="bg-white border-b  hover:bg-gray-50 ">
+                    <td class="w-4 p-4">
+                        <div class="flex items-center">
+                            <input id="checkbox-table-search-3" type="checkbox"
+                                class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 ">
+                            <label for="checkbox-table-search-3" class="sr-only">checkbox</label>
+                        </div>
+                    </td>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                        Apple Watch
+                    </th>
+                    <td class="px-6 py-4">
+                        Black
+                    </td>
+                    <td class="px-6 py-4">
+                        Watches
+                    </td>
+                    <td class="px-6 py-4">
+                        $199
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="#" class="font-medium text-indigo-600 ">Edit</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4"
+            aria-label="Table navigation">
+            <span
+                class="text-sm font-normal text-gray-500  mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing
+                <span class="font-semibold text-gray-900 ">1-10</span> of <span
+                    class="font-semibold text-gray-900 ">1000</span></span>
+            <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 ">Previous</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">1</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">2</a>
+                </li>
+                <li>
+                    <a href="#" aria-current="page"
+                        class="flex items-center justify-center px-3 h-8 text-indigo-600 border border-gray-300 bg-indigo-50 hover:bg-indigo-100 hover:text-indigo-700 ">3</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">4</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">5</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 ">Next</a>
+                </li>
+            </ul>
+        </nav>
+
+</div>

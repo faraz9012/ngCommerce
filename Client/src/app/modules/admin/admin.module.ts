@@ -7,6 +7,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { ListCustomersComponent } from './components/customers/list-customers/list-customers.component';
 import { CreateCategoryComponent } from './components/categories/create-category/create-category.component';
+import { ListCategoriesComponent } from './components/categories/list-categories/list-categories.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
     NavigationComponent,
     ListCustomersComponent,
     CreateCategoryComponent,
+    ListCategoriesComponent,
   ],
   imports: [
     CommonModule,
