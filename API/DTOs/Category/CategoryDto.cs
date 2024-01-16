@@ -10,6 +10,6 @@ namespace API.DTOs
         public bool ShowOnHomepage { get; set; }
         public bool IncludeInTopMenu { get; set; }
         public bool Published { get; set; }
-        public DateTime UpdatedOnUtc { get; set; }
+        public string UpdatedOnUtc { get; set; }
     }
 }

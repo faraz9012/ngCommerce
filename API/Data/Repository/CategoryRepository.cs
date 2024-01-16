@@ -80,7 +80,7 @@ namespace API.Data.Repository
             if (category == null) return null;
 
             //add the updated time
-            categoryDto.UpdatedOnUtc = DateTime.UtcNow;
+            categoryDto.UpdatedOnUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
             _mapper.Map(categoryDto, category);
 
             _context.Categories.Update(category);
