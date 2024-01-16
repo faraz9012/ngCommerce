@@ -52,6 +52,9 @@ namespace API.Data.Repository
         {
             if (category == null)
                 return null;
+                
+            //add the created on time
+            category.CreatedOnUtc = DateTime.UtcNow;
 
             _context.Categories.Add(category);
             await _context.SaveChangesAsync();
@@ -80,7 +83,7 @@ namespace API.Data.Repository
             if (category == null) return null;
 
             //add the updated time
-            categoryDto.UpdatedOnUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+            categoryDto.UpdatedOnUtc = DateTime.UtcNow;
             _mapper.Map(categoryDto, category);
 
             _context.Categories.Update(category);
