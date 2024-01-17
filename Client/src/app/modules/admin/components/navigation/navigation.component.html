@@ -74,7 +74,8 @@
     aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
-            @for(menu of sideMenu; track menu){
+            @if(sideMenu$ | async){
+            @for(menu of sideMenu$ | async; track menu){
             @if(menu.subMenu && menu.subMenu.length > 0){
             <li>
                 <button type="button"
@@ -114,7 +115,8 @@
                                     class="flex items-center justify-between w-full pl-8 p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                                     routerLink="{{list.route}}" [class]="rla.isActive ?'text-indigo-600' : ''">
                                     <div class="flex items-center text-center">
-                                        <fa-icon [icon]="list.icon" class=" w-10 text-gray-600" [class]="rla.isActive ?'text-indigo-600' : ''"></fa-icon>
+                                        <fa-icon [icon]="list.icon" class=" w-10 text-gray-600"
+                                            [class]="rla.isActive ?'text-indigo-600' : ''"></fa-icon>
                                         <span
                                             class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">{{list.title}}</span>
                                     </div>
@@ -131,7 +133,8 @@
                             class="flex items-center justify-between w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                             routerLink="{{subMenu.route}}" [class]="rla.isActive ?'text-indigo-600' : ''">
                             <div class="flex items-center text-center">
-                                <fa-icon [icon]="subMenu.icon" class=" w-10 text-gray-600" [class]="rla.isActive ?'text-indigo-600' : ''"></fa-icon>
+                                <fa-icon [icon]="subMenu.icon" class=" w-10 text-gray-600"
+                                    [class]="rla.isActive ?'text-indigo-600' : ''"></fa-icon>
                                 <span
                                     class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">{{subMenu.title}}</span>
                             </div>
@@ -142,17 +145,21 @@
                 </ul>
             </li>
             }
+
             @else {
             <li>
-                <a type="button" routerLinkActive="bg-gray-100" #rla="routerLinkActive" [routerLinkActiveOptions]="{exact: !!menu.exact}"
+                <a type="button" routerLinkActive="bg-gray-100" #rla="routerLinkActive"
+                    [routerLinkActiveOptions]="{exact: !!menu.exact}"
                     class="flex items-center justify-between w-full pl-0 p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                     routerLink="{{menu.route}}" [class]="rla.isActive ?'text-indigo-600' : ''">
                     <div class="flex items-center text-center">
-                        <fa-icon [icon]="menu.icon" class="w-10 text-gray-600" [class]="rla.isActive ?'text-indigo-600' : ''"></fa-icon>
+                        <fa-icon [icon]="menu.icon" class="w-10 text-gray-600"
+                            [class]="rla.isActive ?'text-indigo-600' : ''"></fa-icon>
                         <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">{{menu.title}}</span>
                     </div>
                 </a>
             </li>
+            }
             }
             }
 

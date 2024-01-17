@@ -1,6 +1,6 @@
 import { faChartPie, faCircleDot, faCircleNotch, faUsers, faShoppingCart, faDollarSign } from '@fortawesome/free-solid-svg-icons';
 
-interface sideMenu {
+export interface sideMenu {
     id?: string | number;
     icon?: any;
     title: string;

@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { FileUploadComponent } from './components/shared/file-upload/file-upload.component';
 import { GeneralFormComponent } from './components/shared/general-form/general-form.component';
 import { SeoGeneralFormComponent } from './components/shared/seo-general-form/seo-general-form.component';
+import { MultiSelectComponent } from './components/shared/multi-select/multi-select.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,7 @@ const routes: Routes = [
     FileUploadComponent,
     GeneralFormComponent,
     SeoGeneralFormComponent,
+    MultiSelectComponent,
   ],
   imports: [
     CommonModule,

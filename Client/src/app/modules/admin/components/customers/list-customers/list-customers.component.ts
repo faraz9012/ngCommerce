@@ -12,6 +12,7 @@ import { initFlowbite } from "flowbite";
   styleUrls: ['./list-customers.component.css']
 })
 export class ListCustomersComponent implements OnInit {
+  //variables
   showModal: boolean = false;
   toggleDropdown: boolean = false;
   customers$: Observable<Customer[]> | undefined;
@@ -19,6 +20,7 @@ export class ListCustomersComponent implements OnInit {
   selectedUser: Customer | undefined;
   editUser:any;
   
+  //Constants
   faSave = faSave;
   faSearch = faSearch;
 

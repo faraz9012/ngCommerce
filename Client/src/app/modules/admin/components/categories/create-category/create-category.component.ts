@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { initFlowbite } from 'flowbite';
+import { Category } from '../../../models/category';
+import { Observable } from 'rxjs';
+import { CategoryService } from '../../../../../services/category.service';
 
 @Component({
   selector: 'app-create-category',
@@ -9,11 +12,21 @@ import { initFlowbite } from 'flowbite';
 })
 export class CreateCategoryComponent implements OnInit {
 
+  //Variables
+  categories$: Observable<Category[]> | undefined;
+
+  //Services
+  _categoryService = inject(CategoryService);
 
   @ViewChild('createCategoryForm') createCategoryForm: NgForm | undefined;
 
   ngOnInit(): void {
     initFlowbite();
+    this.fetchAllCategories();
+  }
+
+  fetchAllCategories(): void {
+    this.categories$ = this._categoryService.getAllCategories();
   }
 
   createCategory() {

@@ -22,103 +22,50 @@
                 
                     <!-- Parent category -->
                     <div class="mb-3">
-                        <h4 class="font-medium tracking-wide text-[#071437]">Parent category(s)</h4>
-                
-                        <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch" data-dropdown-placement="bottom"
+                        <h4 class="font-medium tracking-wide text-[#071437]">Parent category</h4>
+
+                        <button id="parentCategoryButton" data-dropdown-toggle="parentCategory"
                             class="text-gray-700 border mt-3 w-full focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex justify-between items-center"
-                            type="button">Search categories<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                            type="button">Parent category <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m1 1 4 4 4-4" />
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
                             </svg>
                         </button>
-                
+
                         <!-- Dropdown menu -->
-                        <div id="dropdownSearch" class="z-10 hidden bg-white rounded-lg shadow w-60 ">
-                            <div class="p-3">
-                                <label for="input-group-search" class="sr-only">Search</label>
-                                <div class="relative">
-                                    <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                                        <svg class="w-4 h-4 text-gray-500 " aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                        </svg>
-                                    </div>
-                                    <input type="text" id="input-group-search"
-                                        class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
-                                        placeholder="Search for category">
-                                </div>
-                            </div>
-                            <ul class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 "
-                                aria-labelledby="dropdownSearchButton">
-                                <li>
-                                    <div class="flex items-center ps-2 rounded hover:bg-gray-100 ">
-                                        <input id="checkbox-item-11" type="checkbox" value=""
-                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
-                                        <label for="checkbox-item-11"
-                                            class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded ">Bonnie
-                                            Green</label>
-                                    </div>
+                        <div id="parentCategory"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-60 ">
+                            <ul class="p-3 space-y-1 text-sm text-gray-700 "
+                                aria-labelledby="parentCategoryButton">
+                                @if((categories$ | async)){
+                                    @for(item of (categories$ | async); track item){
+                                        <li>
+                                            <div class="flex p-2 rounded hover:bg-gray-100 ">
+                                                <div class="flex items-center h-5">
+                                                    <input id="{{item.id}}" name="{{item.name}}" type="radio" value="{{item.name}}"
+                                                        class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 focus:ring-indigo-500"/>
+                                                </div>
+                                                <div class="ms-2 text-sm">
+                                                    <label for="helper-radio-5" class="font-medium text-gray-900 ">
+                                                        <div>{{item.name}}</div>
+                                                        <p id="helper-radio-text-5" class="text-xs font-normal text-gray-500 ">
+                                                            {{item.description}}</p>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                }
+                                @else {
+                                <li class="flex justify-center items-center">
+                                    <label class="w-full py-2 text-sm font-medium text-gray-500 text-center">No results found</label>
                                 </li>
-                                <li>
-                                    <div class="flex items-center ps-2 rounded hover:bg-gray-100 ">
-                                        <input checked id="checkbox-item-12" type="checkbox" value=""
-                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
-                                        <label for="checkbox-item-12"
-                                            class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded ">Jese
-                                            Leos</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flex items-center ps-2 rounded hover:bg-gray-100 ">
-                                        <input id="checkbox-item-13" type="checkbox" value=""
-                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
-                                        <label for="checkbox-item-13"
-                                            class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded ">Michael
-                                            Gough</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flex items-center ps-2 rounded hover:bg-gray-100 ">
-                                        <input id="checkbox-item-14" type="checkbox" value=""
-                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
-                                        <label for="checkbox-item-14"
-                                            class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded ">Robert
-                                            Wall</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flex items-center ps-2 rounded hover:bg-gray-100 ">
-                                        <input id="checkbox-item-15" type="checkbox" value=""
-                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
-                                        <label for="checkbox-item-15"
-                                            class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded ">Joseph
-                                            Mcfall</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flex items-center ps-2 rounded hover:bg-gray-100 ">
-                                        <input id="checkbox-item-16" type="checkbox" value=""
-                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
-                                        <label for="checkbox-item-16"
-                                            class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded ">Leslie
-                                            Livingston</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flex items-center ps-2 rounded hover:bg-gray-100 ">
-                                        <input id="checkbox-item-17" type="checkbox" value=""
-                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
-                                        <label for="checkbox-item-17"
-                                            class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded ">Roberta
-                                            Casas</label>
-                                    </div>
-                                </li>
+                                }
                             </ul>
                         </div>
-                
-                        <small class="text-gray-400 text-xs">Set parent category(s).</small>
+
+                        <small class="text-gray-400 text-xs">Set parent category.</small>
                     </div>
                 </div>
 
