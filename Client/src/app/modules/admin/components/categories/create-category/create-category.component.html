@@ -43,13 +43,14 @@
                                         <li>
                                             <div class="flex p-2 rounded hover:bg-gray-100 ">
                                                 <div class="flex items-center h-5">
-                                                    <input id="{{item.id}}" name="{{item.name}}" type="radio" value="{{item.name}}"
-                                                        class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 focus:ring-indigo-500"/>
+                                                    <input id="parent-Category-{{item.id}}" name="parent-Category" type="radio" value="{{item.name}}"
+                                                        class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 focus:ring-indigo-500 "
+                                                         />
                                                 </div>
                                                 <div class="ms-2 text-sm">
-                                                    <label for="helper-radio-5" class="font-medium text-gray-900 ">
+                                                    <label for="parent-Category-{{item.id}}" class="font-medium text-gray-900 ">
                                                         <div>{{item.name}}</div>
-                                                        <p id="helper-radio-text-5" class="text-xs font-normal text-gray-500 ">
+                                                        <p id="parent-Category-{{item.id}}-text" class="text-xs font-normal text-gray-500 ">
                                                             {{item.description}}</p>
                                                     </label>
                                                 </div>
