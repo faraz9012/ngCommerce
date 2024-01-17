@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { initFlowbite } from 'flowbite';
 
 @Component({
@@ -7,10 +8,22 @@ import { initFlowbite } from 'flowbite';
   styleUrl: './create-category.component.css'
 })
 export class CreateCategoryComponent implements OnInit {
-  imagePlaceholder = "assets/blank-image.svg"
+
+
+  @ViewChild('createCategoryForm') createCategoryForm: NgForm | undefined;
 
   ngOnInit(): void {
     initFlowbite();
   }
 
+  createCategory() {
+
+  }
+
+  onGeneralFormValues($event: { name: string; description: string; }) {
+    throw new Error('Method not implemented.');
+  }
+  onSeoGeneralFormValues($event: { name: string; description: string;tags:string }) {
+    throw new Error('Method not implemented.');
+  }
 }

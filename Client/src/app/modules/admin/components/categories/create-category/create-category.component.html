@@ -1,5 +1,5 @@
-<form>
-    <div class="flex justify-between items-center mb-3">
+<form #createCategoryForm="ngForm" (submit)="createCategory()">
+    <div class="sm:flex justify-between items-center mb-3">
         <h3 class="font-medium text-2xl mb-3">Create category</h3>
 
         <button type="submit"
@@ -14,26 +14,111 @@
                 <!-- Image upload -->
                 <div class="mb-7 bg-white rounded-md shadow-md p-5">
                     <h4 class="font-medium tracking-wide text-[#071437] mb-2">Thumbnail</h4>
-                    <div class="flex items-center justify-center w-full">
-                        <label for="dropzone-file"
-                            class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 ">
-                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                <svg class="w-8 h-8 mb-4 text-gray-500 " aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-                                </svg>
-                                <p class="mb-2 text-sm text-gray-500 "><span
-                                        class="font-semibold">Click
-                                        to
-                                        upload</span> or drag and drop</p>
-                                <p class="text-xs text-gray-500 ">SVG, PNG, JPG or GIF (MAX.
-                                    800x400px)
-                                </p>
+                    <app-file-upload></app-file-upload>
+                </div>
+
+                <!-- Status -->
+                <div class="mb-7 bg-white rounded-md shadow-md p-5">
+                
+                    <!-- Parent category -->
+                    <div class="mb-3">
+                        <h4 class="font-medium tracking-wide text-[#071437]">Parent category(s)</h4>
+                
+                        <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch" data-dropdown-placement="bottom"
+                            class="text-gray-700 border mt-3 w-full focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex justify-between items-center"
+                            type="button">Search categories<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+                
+                        <!-- Dropdown menu -->
+                        <div id="dropdownSearch" class="z-10 hidden bg-white rounded-lg shadow w-60 ">
+                            <div class="p-3">
+                                <label for="input-group-search" class="sr-only">Search</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                        <svg class="w-4 h-4 text-gray-500 " aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                        </svg>
+                                    </div>
+                                    <input type="text" id="input-group-search"
+                                        class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
+                                        placeholder="Search for category">
+                                </div>
                             </div>
-                            <input id="dropzone-file" type="file" class="hidden" />
-                        </label>
+                            <ul class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 "
+                                aria-labelledby="dropdownSearchButton">
+                                <li>
+                                    <div class="flex items-center ps-2 rounded hover:bg-gray-100 ">
+                                        <input id="checkbox-item-11" type="checkbox" value=""
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                                        <label for="checkbox-item-11"
+                                            class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded ">Bonnie
+                                            Green</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="flex items-center ps-2 rounded hover:bg-gray-100 ">
+                                        <input checked id="checkbox-item-12" type="checkbox" value=""
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                                        <label for="checkbox-item-12"
+                                            class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded ">Jese
+                                            Leos</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="flex items-center ps-2 rounded hover:bg-gray-100 ">
+                                        <input id="checkbox-item-13" type="checkbox" value=""
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                                        <label for="checkbox-item-13"
+                                            class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded ">Michael
+                                            Gough</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="flex items-center ps-2 rounded hover:bg-gray-100 ">
+                                        <input id="checkbox-item-14" type="checkbox" value=""
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                                        <label for="checkbox-item-14"
+                                            class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded ">Robert
+                                            Wall</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="flex items-center ps-2 rounded hover:bg-gray-100 ">
+                                        <input id="checkbox-item-15" type="checkbox" value=""
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                                        <label for="checkbox-item-15"
+                                            class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded ">Joseph
+                                            Mcfall</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="flex items-center ps-2 rounded hover:bg-gray-100 ">
+                                        <input id="checkbox-item-16" type="checkbox" value=""
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                                        <label for="checkbox-item-16"
+                                            class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded ">Leslie
+                                            Livingston</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="flex items-center ps-2 rounded hover:bg-gray-100 ">
+                                        <input id="checkbox-item-17" type="checkbox" value=""
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                                        <label for="checkbox-item-17"
+                                            class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded ">Roberta
+                                            Casas</label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                
+                        <small class="text-gray-400 text-xs">Set parent category(s).</small>
                     </div>
                 </div>
 
@@ -47,8 +132,8 @@
                             <div class="size-3 bg-green-400 shadow-lg shadow-green-500 rounded-full"></div>
                         </div>
 
-                        <button id="dropdownRadioHelperButton" data-dropdown-toggle="dropdownRadioHelper"
-                            class="text-gray-700 border mt-3 w-full focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex  justify-between items-center"
+                        <button id="categoryStatusButton" data-dropdown-toggle="categoryStatus"
+                            class="text-gray-700 border mt-3 w-full focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex justify-between items-center"
                             type="button">Published <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -57,10 +142,10 @@
                         </button>
 
                         <!-- Dropdown menu -->
-                        <div id="dropdownRadioHelper"
+                        <div id="categoryStatus"
                             class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-60 ">
                             <ul class="p-3 space-y-1 text-sm text-gray-700 "
-                                aria-labelledby="dropdownRadioHelperButton">
+                                aria-labelledby="categoryStatusButton">
                                 <li>
                                     <div class="flex p-2 rounded hover:bg-gray-100 ">
                                         <div class="flex items-center h-5">
@@ -69,11 +154,9 @@
                                                 checked />
                                         </div>
                                         <div class="ms-2 text-sm">
-                                            <label for="helper-radio-5"
-                                                class="font-medium text-gray-900 ">
+                                            <label for="helper-radio-5" class="font-medium text-gray-900 ">
                                                 <div>Published</div>
-                                                <p id="helper-radio-text-5"
-                                                    class="text-xs font-normal text-gray-500 ">
+                                                <p id="helper-radio-text-5" class="text-xs font-normal text-gray-500 ">
                                                     Category will be visible to customers.</p>
                                             </label>
                                         </div>
@@ -86,11 +169,9 @@
                                                 class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 focus:ring-indigo-500 " />
                                         </div>
                                         <div class="ms-2 text-sm">
-                                            <label for="helper-radio-6"
-                                                class="font-medium text-gray-900 ">
+                                            <label for="helper-radio-6" class="font-medium text-gray-900 ">
                                                 <div>Un-Published</div>
-                                                <p id="helper-radio-text-6"
-                                                    class="text-xs font-normal text-gray-500 ">
+                                                <p id="helper-radio-text-6" class="text-xs font-normal text-gray-500 ">
                                                     Category will be hidden to customers.</p>
                                             </label>
                                         </div>
@@ -137,63 +218,35 @@
             <!-- General -->
             <div class="mb-7 bg-white rounded-md shadow-md p-5">
                 <h4 class="font-medium tracking-wide text-[#071437] mb-2">General</h4>
-
-                <!-- Name -->
-                <div class="mb-3">
-                    <label class="text-sm text-gray-700">Name&nbsp;<span class="text-red-500">*</span></label>
-                    <input type="text" id="first_name"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mt-1"
-                        placeholder="T-Shirts" required>
-                </div>
-
-                <!-- Description -->
-                <div class="mb-3">
-                    <label class="text-sm text-gray-700">Description</label>
-
-                    <textarea id="message" rows="4"
-                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-                        placeholder="Details about the category..."></textarea>
-                </div>
-
+                <app-general-form
+                 [nameLabel]="'Product Name'" 
+                 [namePlaceholder]="'Enter product name'" 
+                 [nameIsRequired]="true"
+                 [nameHelpfulText]="''"
+                 [descriptionLabel]="'Product Description'" 
+                 [descriptionPlaceholder]="'Enter product description'"
+                 [descriptionIsRequired]="false"
+                 [descriptionHelpfulText]="''"
+                 (generalFormValues)="onGeneralFormValues($event)"
+                 ></app-general-form>
             </div>
 
             <!-- SEO -->
             <div class="mb-7 bg-white rounded-md shadow-md p-5">
                 <h4 class="font-medium tracking-wide text-[#071437] mb-2">S.E.O</h4>
+                <app-seo-general-form
+                 [nameLabel]="'Meta Tag Title'" 
+                 [namePlaceholder]="'Meta tag name'" 
+                 [nameHelpfulText]="'Set a meta tag title. Recommended to be simple and precise keywords.'"
+                 [descriptionLabel]="'Meta Tag Description'" 
+                 [descriptionPlaceholder]="'Enter meta description here...'"
+                 [descriptionHelpfulText]="'Set a meta tag title. Recommended to be simple and precise keywords.'"
+                 [tagsLabel]="'Meta Tags'" 
+                 [tagsPlaceholder]="'Enter tags here...'" 
+                 [tagsHelpfulText]="'Set a list of keywords that the category is related to. Separate the keywords by adding a comma , between each keyword.'"
 
-                <!-- Meta name -->
-                <div class="mb-3">
-                    <label class="text-sm text-gray-700">Meta Tag Title</label>
-                    <input type="text"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mt-1"
-                        placeholder="Meta tag name" />
-
-                    <small class="text-gray-400 text-xs">Set a meta tag title. Recommended to be simple and precise
-                        keywords.</small>
-                </div>
-
-                <!-- Meta Description -->
-                <div class="mb-3">
-                    <label class="text-sm text-gray-700">Meta Tag Description</label>
-
-                    <textarea id="message" rows="4"
-                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-                        placeholder="Meta description here..."></textarea>
-
-                    <small class="text-gray-400 text-xs">Set a meta tag description to the category for increased SEO
-                        ranking.</small>
-                </div>
-
-                <!-- Meta tags -->
-                <div class="mb-3">
-                    <label class="text-sm text-gray-700">Meta Tag Title</label>
-                    <input type="text"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mt-1"
-                        placeholder="" />
-
-                    <small class="text-gray-400 text-xs">Set a list of keywords that the category is related to.
-                        Separate the keywords by adding a comma , between each keyword.</small>
-                </div>
+                 (seoGeneralFormValues)="onSeoGeneralFormValues($event)"
+                 ></app-seo-general-form>
 
             </div>
         </div>
@@ -234,8 +287,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr
-                    class="bg-white border-b  hover:bg-gray-50 ">
+                <tr class="bg-white border-b  hover:bg-gray-50 ">
                     <td class="w-4 p-4">
                         <div class="flex items-center">
                             <input id="checkbox-table-search-1" type="checkbox"
@@ -259,8 +311,7 @@
                         <a href="#" class="font-medium text-indigo-600 ">Edit</a>
                     </td>
                 </tr>
-                <tr
-                    class="bg-white border-b  hover:bg-gray-50 ">
+                <tr class="bg-white border-b  hover:bg-gray-50 ">
                     <td class="w-4 p-4">
                         <div class="flex items-center">
                             <input id="checkbox-table-search-2" type="checkbox"
@@ -284,8 +335,7 @@
                         <a href="#" class="font-medium text-indigo-600 ">Edit</a>
                     </td>
                 </tr>
-                <tr
-                    class="bg-white border-b  hover:bg-gray-50 ">
+                <tr class="bg-white border-b  hover:bg-gray-50 ">
                     <td class="w-4 p-4">
                         <div class="flex items-center">
                             <input id="checkbox-table-search-3" type="checkbox"
@@ -309,8 +359,7 @@
                         <a href="#" class="font-medium text-indigo-600 ">Edit</a>
                     </td>
                 </tr>
-                <tr
-                    class="bg-white border-b  hover:bg-gray-50 ">
+                <tr class="bg-white border-b  hover:bg-gray-50 ">
                     <td class="w-4 p-4">
                         <div class="flex items-center">
                             <input id="checkbox-table-search-3" type="checkbox"
@@ -338,42 +387,40 @@
         </table>
     </div>
 
-        <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4"
-            aria-label="Table navigation">
-            <span
-                class="text-sm font-normal text-gray-500  mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing
-                <span class="font-semibold text-gray-900 ">1-10</span> of <span
-                    class="font-semibold text-gray-900 ">1000</span></span>
-            <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
-                <li>
-                    <a href="#"
-                        class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 ">Previous</a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">1</a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">2</a>
-                </li>
-                <li>
-                    <a href="#" aria-current="page"
-                        class="flex items-center justify-center px-3 h-8 text-indigo-600 border border-gray-300 bg-indigo-50 hover:bg-indigo-100 hover:text-indigo-700 ">3</a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">4</a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">5</a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 ">Next</a>
-                </li>
-            </ul>
-        </nav>
+    <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
+        <span class="text-sm font-normal text-gray-500  mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing
+            <span class="font-semibold text-gray-900 ">1-10</span> of <span
+                class="font-semibold text-gray-900 ">1000</span></span>
+        <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
+            <li>
+                <a href="#"
+                    class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 ">Previous</a>
+            </li>
+            <li>
+                <a href="#"
+                    class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">1</a>
+            </li>
+            <li>
+                <a href="#"
+                    class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">2</a>
+            </li>
+            <li>
+                <a href="#" aria-current="page"
+                    class="flex items-center justify-center px-3 h-8 text-indigo-600 border border-gray-300 bg-indigo-50 hover:bg-indigo-100 hover:text-indigo-700 ">3</a>
+            </li>
+            <li>
+                <a href="#"
+                    class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">4</a>
+            </li>
+            <li>
+                <a href="#"
+                    class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">5</a>
+            </li>
+            <li>
+                <a href="#"
+                    class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 ">Next</a>
+            </li>
+        </ul>
+    </nav>
 
 </div>

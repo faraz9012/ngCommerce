@@ -2,12 +2,13 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { map, of } from "rxjs";
 import { Customer } from "../modules/admin/models/customers";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomersService {
-  baseUrl = 'https://localhost:5001/api/'
+  baseUrl = environment.apiUrl;
   customers:Customer[] = [];
 
   constructor(private http:HttpClient) { }

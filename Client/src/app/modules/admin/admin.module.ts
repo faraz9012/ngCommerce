@@ -8,6 +8,10 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { ListCustomersComponent } from './components/customers/list-customers/list-customers.component';
 import { CreateCategoryComponent } from './components/categories/create-category/create-category.component';
 import { ListCategoriesComponent } from './components/categories/list-categories/list-categories.component';
+import { FormsModule } from '@angular/forms';
+import { FileUploadComponent } from './components/shared/file-upload/file-upload.component';
+import { GeneralFormComponent } from './components/shared/general-form/general-form.component';
+import { SeoGeneralFormComponent } from './components/shared/seo-general-form/seo-general-form.component';
 
 const routes: Routes = [
   {
@@ -39,9 +43,13 @@ const routes: Routes = [
     ListCustomersComponent,
     CreateCategoryComponent,
     ListCategoriesComponent,
+    FileUploadComponent,
+    GeneralFormComponent,
+    SeoGeneralFormComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
     FontAwesomeSharedModule,
     RouterModule.forChild(routes),
   ]

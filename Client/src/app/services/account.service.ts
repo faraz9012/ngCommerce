@@ -5,12 +5,13 @@ import { BehaviorSubject, map } from "rxjs";
 
 import { User } from "../modules/public/models/user";
 import { jwtDecode } from "jwt-decode";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  baseUrl = 'https://localhost:5001/api/';
+  baseUrl = environment.apiUrl;
   private currentUserSource = new BehaviorSubject<User | null>(null);
   currentUser$ = this.currentUserSource.asObservable();
   private tokenExpirationTimer: any;
