@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { initFlowbite } from 'flowbite';
-import { Category } from '../../../models/category';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { initFlowbite } from 'flowbite';
+
+import { Category } from '../../../models/category';
+
 import { CategoryService } from '../../../../../services/category.service';
 
 @Component({
@@ -14,15 +16,36 @@ export class CreateCategoryComponent implements OnInit {
 
   //Variables
   categories$: Observable<Category[]> | undefined;
-
+  createCategoryForm: FormGroup = new FormGroup({});
+  publishStatus = ['true', 'false'];
+  statusSignal: boolean = true;
+  
   //Services
   _categoryService = inject(CategoryService);
+  _fb = inject(FormBuilder);
 
-  @ViewChild('createCategoryForm') createCategoryForm: NgForm | undefined;
+  initializeForm() {
+    this.createCategoryForm = this._fb.group({
+      formDetails: this._fb.group({
+        formName: ['', [Validators.required]],
+        formDesc: [''],
+      }),
+      parentCategory: [],
+      publishStatus: ['true'],
+      showOnHomepage: [],
+      showOnTopNavigation: [],
+    });
+  }
 
   ngOnInit(): void {
     initFlowbite();
     this.fetchAllCategories();
+    this.initializeForm();
+    
+    this.createCategoryForm.get('publishStatus')?.valueChanges.subscribe((status: string) => {
+      // Update statusSignal based on the selected option
+      this.statusSignal = status === 'true';
+    });
   }
 
   fetchAllCategories(): void {
@@ -30,13 +53,11 @@ export class CreateCategoryComponent implements OnInit {
   }
 
   createCategory() {
+    console.log(this.createCategoryForm.value);
 
   }
 
-  onGeneralFormValues($event: { name: string; description: string; }) {
-    throw new Error('Method not implemented.');
-  }
-  onSeoGeneralFormValues($event: { name: string; description: string;tags:string }) {
+  onSeoGeneralFormValues($event: { name: string; description: string; tags: string }) {
     throw new Error('Method not implemented.');
   }
 }
