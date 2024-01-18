@@ -35,7 +35,7 @@ namespace API.Controllers
         }
 
         [HttpPost("create")]
-        public virtual async Task<ActionResult<CategoryDto>> Create(CategoryDto categoryDto)
+        public virtual async Task<ActionResult<CategoryDto>> Create([FromBody]CategoryDto categoryDto)
         {
             if (await AlreadyExistsAsync(categoryDto.Name)) return BadRequest("A category by this name already exists");
 

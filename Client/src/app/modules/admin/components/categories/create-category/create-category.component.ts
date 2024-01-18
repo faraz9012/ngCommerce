@@ -2,10 +2,12 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { initFlowbite } from 'flowbite';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 import { Category } from '../../../models/category';
 
 import { CategoryService } from '../../../../../services/category.service';
+
 
 @Component({
   selector: 'app-create-category',
@@ -17,8 +19,14 @@ export class CreateCategoryComponent implements OnInit {
   //Variables
   categories$: Observable<Category[]> | undefined;
   createCategoryForm: FormGroup = new FormGroup({});
-  publishStatus = ['true', 'false'];
+  published = [true, false];
+  showOnHomepage = [true, false];
+  includeInTopMenu = [true, false];
   statusSignal: boolean = true;
+  model: any;
+
+  //Constants
+  faCircleInfo = faCircleInfo;
   
   //Services
   _categoryService = inject(CategoryService);
@@ -27,13 +35,13 @@ export class CreateCategoryComponent implements OnInit {
   initializeForm() {
     this.createCategoryForm = this._fb.group({
       formDetails: this._fb.group({
-        formName: ['', [Validators.required]],
-        formDesc: [''],
+        name: ['', [Validators.min(0.0001),Validators.max(0.9999),Validators.required]],
+        description: [''],
       }),
-      parentCategory: [],
-      publishStatus: ['true'],
-      showOnHomepage: [],
-      showOnTopNavigation: [],
+      parentCategoryId: [0],
+      published: [true],
+      showOnHomepage: [false],
+      includeInTopMenu: [false],
     });
   }
 
@@ -41,10 +49,10 @@ export class CreateCategoryComponent implements OnInit {
     initFlowbite();
     this.fetchAllCategories();
     this.initializeForm();
-    
-    this.createCategoryForm.get('publishStatus')?.valueChanges.subscribe((status: string) => {
+
+    this.createCategoryForm.get('published')?.valueChanges.subscribe((status: boolean) => {
       // Update statusSignal based on the selected option
-      this.statusSignal = status === 'true';
+      this.statusSignal = status;
     });
   }
 
@@ -53,7 +61,19 @@ export class CreateCategoryComponent implements OnInit {
   }
 
   createCategory() {
-    console.log(this.createCategoryForm.value);
+    const categoryFormValues = this.createCategoryForm.value;
+    const model = {
+      name: categoryFormValues.formDetails.name,
+      description: categoryFormValues.formDetails.description,
+      parentCategoryId: categoryFormValues.parentCategoryId,
+      published: categoryFormValues.published,
+      showOnHomepage: categoryFormValues.showOnHomepage,
+      includeInTopMenu: categoryFormValues.includeInTopMenu,
+    };
+
+    // this._categoryService.create(model);
+    console.log(model);
+    
 
   }
 

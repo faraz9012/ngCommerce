@@ -2,10 +2,21 @@
     <div class="sm:flex justify-between items-center mb-3">
         <h3 class="font-medium text-2xl mb-3">Create category</h3>
 
-        <button type="submit"
-            class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg focus:ring-4 focus:ring-indigo-200 hover:bg-indigo-800">
-            Create category
-        </button>
+        <div>
+            @if(!createCategoryForm.valid){
+                
+                <fa-icon [icon]="faCircleInfo" data-tooltip-target="tooltip-default" class=" w-10 text-gray-600"></fa-icon>&nbsp;
+                <div id="tooltip-default" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    Tooltip content
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+                }
+                <button type="submit"
+                    class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg focus:ring-4 focus:ring-indigo-200 hover:bg-indigo-800"
+                    [disabled]="!createCategoryForm.valid" [ngClass]="{'bg-[#ccc] hover:bg-[#ccc]': !createCategoryForm.valid}">
+                    Create category
+                </button>
+        </div>
     </div>
     <div class="lg:flex gap-7">
         <!-- left side -->
@@ -19,7 +30,7 @@
 
                 <!-- Status -->
                 <div class="mb-7 bg-white rounded-md shadow-md p-5">
-                
+
                     <!-- Parent category -->
                     <div class="mb-3">
                         <h4 class="font-medium tracking-wide text-[#071437]">Parent category</h4>
@@ -36,36 +47,32 @@
                         <!-- Dropdown menu -->
                         <div id="parentCategory"
                             class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-60 ">
-                            <ul class="p-3 space-y-1 text-sm text-gray-700 "
-                                aria-labelledby="parentCategoryButton">
+                            <ul class="p-3 space-y-1 text-sm text-gray-700 " aria-labelledby="parentCategoryButton">
                                 @if((categories$ | async)){
-                                    @for(item of (categories$ | async); track item){
-                                        <li>
-                                            <div class="flex p-2 rounded hover:bg-gray-100 ">
-                                                <div class="flex items-center h-5">
-                                                    <input
-                                                     id="parent-Category-{{item.id}}"
-                                                     class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 focus:ring-indigo-500 "
-                                                     type="radio" 
-                                                     formControlName="parentCategory"
-                                                     value="{{item.id}}" 
-                                                     
-                                                         />
-                                                </div>
-                                                <div class="ms-2 text-sm">
-                                                    <label for="parent-Category-{{item.id}}" class="font-medium text-gray-900 ">
-                                                        <div>{{item.name}}</div>
-                                                        <p id="parent-Category-{{item.id}}-text" class="text-xs font-normal text-gray-500 ">
-                                                            {{item.description}}</p>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    }
+                                @for(item of (categories$ | async); track item){
+                                <li>
+                                    <div class="flex p-2 rounded hover:bg-gray-100 ">
+                                        <div class="flex items-center h-5">
+                                            <input id="parent-Category-{{item.id}}"
+                                                class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 focus:ring-indigo-500 "
+                                                type="radio" formControlName="parentCategoryId" value="{{item.id}}" />
+                                        </div>
+                                        <div class="ms-2 text-sm">
+                                            <label for="parent-Category-{{item.id}}" class="font-medium text-gray-900 ">
+                                                <div>{{item.name}}</div>
+                                                <p id="parent-Category-{{item.id}}-text"
+                                                    class="text-xs font-normal text-gray-500 ">
+                                                    {{item.description}}</p>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </li>
+                                }
                                 }
                                 @else {
                                 <li class="flex justify-center items-center">
-                                    <label class="w-full py-2 text-sm font-medium text-gray-500 text-center">No results found</label>
+                                    <label class="w-full py-2 text-sm font-medium text-gray-500 text-center">No results
+                                        found</label>
                                 </li>
                                 }
                             </ul>
@@ -82,17 +89,17 @@
                     <div class="mb-3">
                         <div class="flex justify-between items-center">
                             <h4 class="font-medium tracking-wide text-[#071437]">Status</h4>
-                            <div
-                                [ngClass]="statusSignal ? 'bg-green-400 shadow-lg shadow-green-500' : 'bg-red-400 shadow-lg shadow-red-500'"
+                            <div [ngClass]="statusSignal ? 'bg-green-400 shadow-lg shadow-green-500' : 'bg-red-400 shadow-lg shadow-red-500'"
                                 class="size-3 rounded-full">
                             </div>
-                            
+
                         </div>
 
                         <button id="categoryStatusButton" data-dropdown-toggle="categoryStatus"
                             class="text-gray-700 border mt-3 w-full focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex justify-between items-center"
-                            type="button">{{ statusSignal ? 'Published' : 'Un-Published' }} <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            type="button">{{ statusSignal ? 'Published' : 'Un-Published' }} <svg
+                                class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m1 1 4 4 4-4" />
                             </svg>
@@ -101,29 +108,26 @@
                         <!-- Dropdown menu -->
                         <div id="categoryStatus"
                             class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-60 ">
-                            <ul class="p-3 space-y-1 text-sm text-gray-700 "
-                                aria-labelledby="categoryStatusButton">
-                                @for(status of publishStatus; track status){
-                                    <li>
-                                        <div class="flex p-2 rounded hover:bg-gray-100 ">
-                                            <div class="flex items-center h-5">
-                                                <input 
-                                                id="{{status}}" 
+                            <ul class="p-3 space-y-1 text-sm text-gray-700 " aria-labelledby="categoryStatusButton">
+                                @for(status of published; track status){
+                                <li>
+                                    <div class="flex p-2 rounded hover:bg-gray-100 ">
+                                        <div class="flex items-center h-5">
+                                            <input id="{{status}}"
                                                 class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 focus:ring-indigo-500"
-                                                type="radio" 
-                                                formControlName="publishStatus"
-                                                [value]="status"/>
-                                            </div>
-                                            <div class="ms-2 text-sm">
-                                                <label for="{{status}}" class="font-medium text-gray-900">
-                                                  <div>{{ status === 'true' ? 'Published' : 'Un-Published' }}</div>
-                                                  <p class="text-xs font-normal text-gray-500">
-                                                    {{ status === 'true' ? 'Category will be visible to customers.' : 'Category will be hidden from customers.' }}
-                                                  </p>
-                                                </label>
-                                              </div>
+                                                type="radio" formControlName="published" [value]="status" />
                                         </div>
-                                    </li>
+                                        <div class="ms-2 text-sm">
+                                            <label for="{{status}}" class="font-medium text-gray-900">
+                                                <div>{{ status ? 'Published' : 'Un-Published' }}</div>
+                                                <p class="text-xs font-normal text-gray-500">
+                                                    {{ status ? 'Category will be visible to customers.' : 'Category
+                                                    will be hidden from customers.' }}
+                                                </p>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </li>
                                 }
                             </ul>
                         </div>
@@ -136,26 +140,18 @@
                         <h4 class="font-medium tracking-wide text-[#071437] mb-2">Miscellaneous</h4>
                         <div class="md:flex items-center gap-2 lg:block">
                             <div class="flex items-center ps-4 border border-gray-200 rounded lg:w-full sm:w-1/2 my-2">
-                                <input
-                                    id="bordered-checkbox-1" 
+                                <input id="bordered-checkbox-1"
                                     class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 "
-                                    type="checkbox" 
-                                    value="" 
-                                    name=""
-                                    formControlName="showOnTopNavigation" >
-                                
+                                    type="checkbox" value="" name="" formControlName="includeInTopMenu">
+
                                 <label for="bordered-checkbox-1"
                                     class="w-full py-4 ms-2 text-sm font-medium text-gray-700 ">Add to
                                     navigation</label>
                             </div>
                             <div class="flex items-center ps-4 border border-gray-200 rounded lg:w-full sm:w-1/2 my-2">
-                                <input
-                                    id="bordered-checkbox-2" 
+                                <input id="bordered-checkbox-2"
                                     class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500"
-                                    type="checkbox" 
-                                    value=""
-                                    name="bordered-checkbox"
-                                    formControlName="showOnHomepage" >
+                                    type="checkbox" value="" name="" formControlName="showOnHomepage">
 
                                 <label for="bordered-checkbox-2"
                                     class="w-full py-4 ms-2 text-sm font-medium text-gray-700 ">Show
@@ -175,35 +171,23 @@
             <!-- General -->
             <div class="mb-7 bg-white rounded-md shadow-md p-5">
                 <h4 class="font-medium tracking-wide text-[#071437] mb-2">General</h4>
-                <app-general-form
-                 [generalForm]="createCategoryForm"
-                 [nameLabel]="'Product Name'" 
-                 [namePlaceholder]="'Enter product name'" 
-                 [nameIsRequired]="true"
-                 [nameHelpfulText]="''"
-                 [descriptionLabel]="'Product Description'" 
-                 [descriptionPlaceholder]="'Enter product description'"
-                 [descriptionIsRequired]="false"
-                 [descriptionHelpfulText]="''"
-                 ></app-general-form>
+                <app-general-form [generalForm]="createCategoryForm" [nameLabel]="'Category Name'"
+                    [namePlaceholder]="'Enter category name'" [nameIsRequired]="true" [nameHelpfulText]="''"
+                    [descriptionLabel]="'Category Description'" [descriptionPlaceholder]="'Enter category description'"
+                    [descriptionIsRequired]="false" [descriptionHelpfulText]="''"></app-general-form>
             </div>
 
             <!-- SEO -->
             <div class="mb-7 bg-white rounded-md shadow-md p-5">
                 <h4 class="font-medium tracking-wide text-[#071437] mb-2">S.E.O</h4>
-                <app-seo-general-form
-                 [nameLabel]="'Meta Tag Title'" 
-                 [namePlaceholder]="'Meta tag name'" 
-                 [nameHelpfulText]="'Set a meta tag title. Recommended to be simple and precise keywords.'"
-                 [descriptionLabel]="'Meta Tag Description'" 
-                 [descriptionPlaceholder]="'Enter meta description here...'"
-                 [descriptionHelpfulText]="'Set a meta tag title. Recommended to be simple and precise keywords.'"
-                 [tagsLabel]="'Meta Tags'" 
-                 [tagsPlaceholder]="'Enter tags here...'" 
-                 [tagsHelpfulText]="'Set a list of keywords that the category is related to. Separate the keywords by adding a comma , between each keyword.'"
-
-                 (seoGeneralFormValues)="onSeoGeneralFormValues($event)"
-                 ></app-seo-general-form>
+                <app-seo-general-form [nameLabel]="'Meta Tag Title'" [namePlaceholder]="'Meta tag name'"
+                    [nameHelpfulText]="'Set a meta tag title. Recommended to be simple and precise keywords.'"
+                    [descriptionLabel]="'Meta Tag Description'"
+                    [descriptionPlaceholder]="'Enter meta description here...'"
+                    [descriptionHelpfulText]="'Set a meta tag title. Recommended to be simple and precise keywords.'"
+                    [tagsLabel]="'Meta Tags'" [tagsPlaceholder]="'Enter tags here...'"
+                    [tagsHelpfulText]="'Set a list of keywords that the category is related to. Separate the keywords by adding a comma , between each keyword.'"
+                    (seoGeneralFormValues)="onSeoGeneralFormValues($event)"></app-seo-general-form>
 
             </div>
         </div>
