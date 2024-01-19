@@ -6,14 +6,20 @@
             @if(!createCategoryForm.valid){
                 
                 <fa-icon [icon]="faCircleInfo" data-tooltip-target="tooltip-default" class=" w-10 text-gray-600"></fa-icon>&nbsp;
-                <div id="tooltip-default" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Tooltip content
+                <div 
+                    id="tooltip-default" 
+                    role="tooltip" 
+                    class="absolute z-[50] invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    Enter required fields to enable the button
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
                 }
-                <button type="submit"
+
+                <button
+                    type="submit"
                     class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg focus:ring-4 focus:ring-indigo-200 hover:bg-indigo-800"
-                    [disabled]="!createCategoryForm.valid" [ngClass]="{'bg-[#ccc] hover:bg-[#ccc]': !createCategoryForm.valid}">
+                    [ngClass]="{'bg-gray-400 hover:bg-gray-400': !createCategoryForm.valid}"
+                    [disabled]="!createCategoryForm.valid">
                     Create category
                 </button>
         </div>
