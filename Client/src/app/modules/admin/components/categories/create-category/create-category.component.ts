@@ -1,13 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, UntypedFormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { initFlowbite } from 'flowbite';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
-import { Category } from '../../../models/category';
+import { Category, CreateCategory } from '../../../models/category';
 
 import { CategoryService } from '../../../../../services/category.service';
-
 
 @Component({
   selector: 'app-create-category',
@@ -19,6 +18,7 @@ export class CreateCategoryComponent implements OnInit {
   //Variables
   categories$: Observable<Category[]> | undefined;
   createCategoryForm: FormGroup = new FormGroup({});
+  imageUploadForm: FormGroup = new FormGroup({});
   published = [true, false];
   showOnHomepage = [true, false];
   includeInTopMenu = [true, false];
@@ -27,7 +27,7 @@ export class CreateCategoryComponent implements OnInit {
 
   //Constants
   faCircleInfo = faCircleInfo;
-  
+
   //Services
   _categoryService = inject(CategoryService);
   _fb = inject(FormBuilder);
@@ -35,20 +35,20 @@ export class CreateCategoryComponent implements OnInit {
   initializeForm() {
     this.createCategoryForm = this._fb.group({
       formDetails: this._fb.group({
-        name: ['', [Validators.min(0.0001),Validators.max(0.9999),Validators.required]],
+        name: ['', [Validators.min(0.0001), Validators.max(0.9999), Validators.required]],
         description: [''],
       }),
       imageUpload: this._fb.group({
-        srcAttribute: [],
-        altAttribute: [],
-        titleAttribute: [],
-        file: [null, Validators.required]
+        pictureId: [0],
+        file: [null]
       }),
       parentCategoryId: [0],
       published: [true],
       showOnHomepage: [false],
       includeInTopMenu: [false],
     });
+
+    this.imageUploadForm = this.createCategoryForm.get('imageUpload') as UntypedFormGroup;
   }
 
   ngOnInit(): void {
@@ -71,21 +71,31 @@ export class CreateCategoryComponent implements OnInit {
   }
 
   createCategory() {
-    const formValue = this.createCategoryForm.value;
-    const categoryFormValues = this.createCategoryForm.value;
-    const model = {
-      name: categoryFormValues.formDetails.name,
-      description: categoryFormValues.formDetails.description,
-      parentCategoryId: categoryFormValues.parentCategoryId,
-      published: categoryFormValues.published,
-      showOnHomepage: categoryFormValues.showOnHomepage,
-      includeInTopMenu: categoryFormValues.includeInTopMenu,
+    Object.values(this.createCategoryForm.controls).forEach(control => {
+      if (control.invalid) {
+        control.markAsDirty();
+        control.markAsTouched();
+        control.updateValueAndValidity({ onlySelf: true });
+      }
+    });
+
+    const { formDetails, parentCategoryId, imageUpload, published, showOnHomepage, includeInTopMenu } = this.createCategoryForm.value;
+
+    if (this.createCategoryForm.invalid) {
+      return;
+    }
+
+    const model: CreateCategory = {
+      name: formDetails.name,
+      description: formDetails.description,
+      parentCategoryId,
+      pictureId: imageUpload.pictureId,
+      published,
+      showOnHomepage,
+      includeInTopMenu,
     };
 
-    // this._categoryService.create(model);
-    console.log(formValue);
-    
-
+    this._categoryService.create(model);
   }
 
   onSeoGeneralFormValues($event: { name: string; description: string; tags: string }) {

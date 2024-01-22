@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Category } from '../modules/admin/models/category';
+import { Category, CreateCategory } from '../modules/admin/models/category';
 import { map, of } from 'rxjs';
 
 @Injectable({
@@ -23,7 +23,7 @@ export class CategoryService {
     );
   }
 
-  create(model: Category){
-    return this.http.post<Category>(this.baseUrl + 'category/create', model);
+  create(model: CreateCategory){
+    return this.http.post<CreateCategory>(this.baseUrl + 'category/create', model);
   }
 }

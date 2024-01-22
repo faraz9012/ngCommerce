@@ -1,4 +1,5 @@
 using API.DTOs;
+using API.DTOs.Category;
 using API.Entities;
 using API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -35,19 +36,19 @@ namespace API.Controllers
         }
 
         [HttpPost("create")]
-        public virtual async Task<ActionResult<CategoryDto>> Create([FromBody]CategoryDto categoryDto)
+        public virtual async Task<ActionResult<CategoryDto>> Create([FromBody]CreateCategoryDto CreateCategoryDto)
         {
-            if (await AlreadyExistsAsync(categoryDto.Name)) return BadRequest("A category by this name already exists");
+            if (await AlreadyExistsAsync(CreateCategoryDto.Name)) return BadRequest("A category by this name already exists");
 
             var category = new Category
             {
-                Name = categoryDto.Name,
-                Description = categoryDto.Description,
-                ParentCategoryId = categoryDto.ParentCategoryId,
-                PictureId = categoryDto.PictureId,
-                ShowOnHomepage = categoryDto.ShowOnHomepage,
-                IncludeInTopMenu = categoryDto.IncludeInTopMenu,
-                Published = categoryDto.Published,
+                Name = CreateCategoryDto.Name,
+                Description = CreateCategoryDto.Description,
+                ParentCategoryId = CreateCategoryDto.ParentCategoryId,
+                PictureId = CreateCategoryDto.PictureId,
+                ShowOnHomepage = CreateCategoryDto.ShowOnHomepage,
+                IncludeInTopMenu = CreateCategoryDto.IncludeInTopMenu,
+                Published = CreateCategoryDto.Published,
             };
 
             var newCategory = await _categoryRepository.InsertIntoCategoriesAsync(category);

@@ -1,27 +1,12 @@
 <form [formGroup]="createCategoryForm" (submit)="createCategory()">
     <div class="sm:flex justify-between items-center mb-3">
         <h3 class="font-medium text-2xl mb-3">Create category</h3>
-
-        <div>
-                @if(!createCategoryForm.valid){
-                    <fa-icon [icon]="faCircleInfo" data-tooltip-target="tooltip-default" class=" w-10 text-gray-600"></fa-icon>&nbsp;
-                    <div 
-                        id="tooltip-default" 
-                        role="tooltip" 
-                        class="absolute z-[50] invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Enter required fields to enable the button
-                        <div class="tooltip-arrow" data-popper-arrow></div>
-                    </div>
-                }
-
-                <button
-                    type="submit"
-                    class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg focus:ring-4 focus:ring-indigo-200 hover:bg-indigo-800"
-                    [ngClass]="{'bg-gray-400 hover:bg-gray-400': !createCategoryForm.valid}"
-                    [disabled]="!createCategoryForm.valid">
-                    Create category
-                </button>
-        </div>
+        
+        <button
+            type="submit"
+            class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg focus:ring-4 focus:ring-indigo-200 hover:bg-indigo-800">
+            Create category
+        </button>
     </div>
     <div class="lg:flex gap-7">
         <!-- left side -->
@@ -31,12 +16,13 @@
                 <div class="mb-7 bg-white rounded-md shadow-md p-5">
                     <h4 class="font-medium tracking-wide text-[#071437] mb-2">Thumbnail</h4>
                     <app-file-upload
+                        [imageUpload]="imageUploadForm" 
                         [altAttribute]="'Category main image'"
                         [titleAttribute]="'Category main image'"
                         (fileSelected)="onFileSelected($event)"></app-file-upload>
                 </div>
 
-                <!-- Status -->
+                <!-- Parent category -->
                 <div class="mb-7 bg-white rounded-md shadow-md p-5">
 
                     <!-- Parent category -->
@@ -56,7 +42,7 @@
                         <div id="parentCategory"
                             class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-60 ">
                             <ul class="p-3 space-y-1 text-sm text-gray-700 " aria-labelledby="parentCategoryButton">
-                                @if((categories$ | async)){
+                                @if((categories$ | async)?.length){
                                 @for(item of (categories$ | async); track item){
                                 <li>
                                     <div class="flex p-2 rounded hover:bg-gray-100 ">
@@ -336,5 +322,3 @@
         </table>
     </div>
 </div>
-
-<pre>Form Values: {{createCategoryForm.value | json}}</pre>
