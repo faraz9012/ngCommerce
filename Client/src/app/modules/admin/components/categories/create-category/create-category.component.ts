@@ -2,7 +2,6 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, UntypedFormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { initFlowbite } from 'flowbite';
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 import { Category, CreateCategory } from '../../../models/category';
 
@@ -24,9 +23,6 @@ export class CreateCategoryComponent implements OnInit {
   includeInTopMenu = [true, false];
   statusSignal: boolean = true;
   model: any;
-
-  //Constants
-  faCircleInfo = faCircleInfo;
 
   //Services
   _categoryService = inject(CategoryService);
@@ -95,7 +91,9 @@ export class CreateCategoryComponent implements OnInit {
       includeInTopMenu,
     };
 
-    this._categoryService.create(model);
+    this._categoryService.create(model).subscribe(
+      (res) => console.log(res)
+    );
   }
 
   onSeoGeneralFormValues($event: { name: string; description: string; tags: string }) {
