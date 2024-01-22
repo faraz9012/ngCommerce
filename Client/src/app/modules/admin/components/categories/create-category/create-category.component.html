@@ -3,16 +3,15 @@
         <h3 class="font-medium text-2xl mb-3">Create category</h3>
 
         <div>
-            @if(!createCategoryForm.valid){
-                
-                <fa-icon [icon]="faCircleInfo" data-tooltip-target="tooltip-default" class=" w-10 text-gray-600"></fa-icon>&nbsp;
-                <div 
-                    id="tooltip-default" 
-                    role="tooltip" 
-                    class="absolute z-[50] invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Enter required fields to enable the button
-                    <div class="tooltip-arrow" data-popper-arrow></div>
-                </div>
+                @if(!createCategoryForm.valid){
+                    <fa-icon [icon]="faCircleInfo" data-tooltip-target="tooltip-default" class=" w-10 text-gray-600"></fa-icon>&nbsp;
+                    <div 
+                        id="tooltip-default" 
+                        role="tooltip" 
+                        class="absolute z-[50] invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                        Enter required fields to enable the button
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
                 }
 
                 <button
@@ -31,7 +30,10 @@
                 <!-- Image upload -->
                 <div class="mb-7 bg-white rounded-md shadow-md p-5">
                     <h4 class="font-medium tracking-wide text-[#071437] mb-2">Thumbnail</h4>
-                    <app-file-upload></app-file-upload>
+                    <app-file-upload
+                        [altAttribute]="'Category main image'"
+                        [titleAttribute]="'Category main image'"
+                        (fileSelected)="onFileSelected($event)"></app-file-upload>
                 </div>
 
                 <!-- Status -->
@@ -127,8 +129,7 @@
                                             <label for="{{status}}" class="font-medium text-gray-900">
                                                 <div>{{ status ? 'Published' : 'Un-Published' }}</div>
                                                 <p class="text-xs font-normal text-gray-500">
-                                                    {{ status ? 'Category will be visible to customers.' : 'Category
-                                                    will be hidden from customers.' }}
+                                                    {{ status ? 'Category will be visible to customers.' : 'Category will be hidden from customers.' }}
                                                 </p>
                                             </label>
                                         </div>
@@ -164,8 +165,6 @@
                                     on homepage</label>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
 
@@ -177,8 +176,11 @@
             <!-- General -->
             <div class="mb-7 bg-white rounded-md shadow-md p-5">
                 <h4 class="font-medium tracking-wide text-[#071437] mb-2">General</h4>
-                <app-general-form [generalForm]="createCategoryForm" [nameLabel]="'Category Name'"
-                    [namePlaceholder]="'Enter category name'" [nameIsRequired]="true" [nameHelpfulText]="''"
+                <app-general-form 
+                    [generalForm]="createCategoryForm" 
+                    [nameLabel]="'Category Name'"
+                    [namePlaceholder]="'Enter category name'" 
+                    [nameIsRequired]="true" [nameHelpfulText]="''"
                     [descriptionLabel]="'Category Description'" [descriptionPlaceholder]="'Enter category description'"
                     [descriptionIsRequired]="false" [descriptionHelpfulText]="''"></app-general-form>
             </div>
@@ -197,7 +199,8 @@
 
             </div>
         </div>
-    </div>
+    
+        </div>
 </form>
 
 <!-- Products in category -->

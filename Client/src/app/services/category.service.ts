@@ -23,11 +23,7 @@ export class CategoryService {
     );
   }
 
-  create(model: any){
-    return this.http.post<Category>(this.baseUrl + 'category/create', model).subscribe(
-      (response) => console.log(response)
-      
-    );
-    
+  create(model: Category){
+    return this.http.post<Category>(this.baseUrl + 'category/create', model);
   }
 }

@@ -38,6 +38,12 @@ export class CreateCategoryComponent implements OnInit {
         name: ['', [Validators.min(0.0001),Validators.max(0.9999),Validators.required]],
         description: [''],
       }),
+      imageUpload: this._fb.group({
+        srcAttribute: [],
+        altAttribute: [],
+        titleAttribute: [],
+        file: [null, Validators.required]
+      }),
       parentCategoryId: [0],
       published: [true],
       showOnHomepage: [false],
@@ -56,11 +62,16 @@ export class CreateCategoryComponent implements OnInit {
     });
   }
 
+  onFileSelected(file: File): void {
+    this.createCategoryForm.get('imageUpload.file')?.setValue(file);
+  }
+
   fetchAllCategories(): void {
     this.categories$ = this._categoryService.getAllCategories();
   }
 
   createCategory() {
+    const formValue = this.createCategoryForm.value;
     const categoryFormValues = this.createCategoryForm.value;
     const model = {
       name: categoryFormValues.formDetails.name,
@@ -72,7 +83,7 @@ export class CreateCategoryComponent implements OnInit {
     };
 
     // this._categoryService.create(model);
-    console.log(model);
+    console.log(formValue);
     
 
   }

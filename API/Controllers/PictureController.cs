@@ -1,3 +1,4 @@
+using API.DTOs;
 using API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,7 +35,24 @@ namespace API.Controllers
             if (picture == null)
                 return BadRequest("Failed to add picture");
 
-            return Ok(picture);
+            var PictureDto = new PictureDto
+            {
+                Id = picture.Id,
+                SrcAttribute = picture.SrcAttribute,
+            };
+
+            return Ok(PictureDto);
+        }
+
+        [HttpGet("{id}")]
+        public virtual async Task<IActionResult> GetPictureAsync(int id)
+        {
+            var picture = await _pictureRepository.GetPictureByIdAsync(id);
+
+            if (picture == null)
+                return BadRequest("No picture found");
+
+           return Ok(picture);
         }
 
         [HttpDelete("delete-picture/{pictureId}")]

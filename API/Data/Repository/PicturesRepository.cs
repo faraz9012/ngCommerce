@@ -115,7 +115,6 @@ namespace API.Data.Repository
 
             filePath = filePath.Replace("wwwroot/", "https://localhost:5001/");
 
-
             // Save image reference in the database
             var picture = new Picture
             {
