@@ -12,8 +12,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
   template: `
   <app-navigation></app-navigation>
 
-  <div class="p-4 lg:ml-64" style="padding: 1rem; margin-left: 16rem">
-      <div class="p-4 mt-12" style="padding: 1rem; margin-top: 3rem">
+  <div class="p-4 lg:ml-64">
+      <div class="p-4 mt-12">
           <router-outlet></router-outlet>
       </div>
   </div>
