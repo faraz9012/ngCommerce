@@ -7,7 +7,7 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterOutlet],
   templateUrl: './list-categories.component.html',
-  styleUrl: './list-categories.component.css'
+  styles: ``
 })
 export class ListCategoriesComponent {
 

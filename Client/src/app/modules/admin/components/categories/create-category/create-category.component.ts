@@ -17,7 +17,7 @@ import { SeoGeneralFormComponent } from '../../shared/seo-general-form/seo-gener
   standalone: true,
   imports: [CommonModule, RouterOutlet, FileUploadComponent, GeneralFormComponent, SeoGeneralFormComponent, ReactiveFormsModule],
   templateUrl: './create-category.component.html',
-  styleUrl: './create-category.component.css'
+  styles: ``
 })
 export class CreateCategoryComponent implements OnInit {
 

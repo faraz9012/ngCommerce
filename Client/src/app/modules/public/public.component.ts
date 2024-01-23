@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
@@ -10,7 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 @Component({
   selector: 'app-public-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavigationComponent, FooterComponent],
+  imports: [RouterOutlet, NavigationComponent, FooterComponent],
   template:  `
     <app-navigation></app-navigation>
     <router-outlet></router-outlet>

@@ -14,7 +14,7 @@ import { Social_Links } from "../../constants/footer";
   standalone: true,
   imports: [CommonModule, RouterOutlet, FontAwesomeModule, RouterModule ],
   templateUrl: './navigation.component.html',
-  styleUrl: './navigation.component.css',
+  styles: ``,
   animations: [
     trigger('dropdownInOut', [
       state('in', style({ opacity: 1, transform: 'translateY(0)' })),

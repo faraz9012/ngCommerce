@@ -14,7 +14,7 @@ import { initFlowbite } from "flowbite";
   standalone: true,
   imports: [CommonModule, RouterOutlet, FontAwesomeModule],
   templateUrl: './list-customers.component.html',
-  styleUrls: ['./list-customers.component.css']
+  styles: ``
 })
 export class ListCustomersComponent implements OnInit {
   //variables

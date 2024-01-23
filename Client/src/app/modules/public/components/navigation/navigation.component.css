@@ -1,8 +1,0 @@
-.count{position: relative;}
-.count-item{ position: absolute; top: 0; right: .5em; font-size: .5em; color: #FFF; background-color: red; width: 18px; height: 18px; border-radius: 30px; display: flex; align-items: center; justify-content: center;}
-
-.p-inputtext {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  border-radius: 2rem;
-}

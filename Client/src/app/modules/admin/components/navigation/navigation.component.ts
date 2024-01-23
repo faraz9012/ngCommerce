@@ -16,7 +16,7 @@ const sideMenuObservable: Observable<sideMenu[]> = of(Side_Navbar).pipe(delay(0)
   standalone: true,
   imports: [CommonModule, RouterOutlet, FontAwesomeModule, RouterModule ],
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css'],
+  styles: ``,
 })
 
 export class NavigationComponent implements OnInit {

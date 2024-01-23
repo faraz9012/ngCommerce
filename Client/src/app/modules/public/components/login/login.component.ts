@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from "@angular/router";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Observable, of } from "rxjs";
-import { CommonModule } from '@angular/common';
 
 import { AccountService } from "../../../../services/account.service";
 import { User } from "../../models/user";
@@ -10,9 +9,9 @@ import { User } from "../../models/user";
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, ReactiveFormsModule],
+  imports: [RouterOutlet, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styles: ``
 })
 export class LoginComponent implements OnInit {
   model: any = {}
