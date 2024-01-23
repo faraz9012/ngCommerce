@@ -1,12 +1,18 @@
 import { Component, HostBinding, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AccountService } from "../../../../services/account.service";
+
 import { Navbar } from "../../constants/navbar";
 import { Social_Links } from "../../constants/footer";
 
 @Component({
   selector: 'app-navigation',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, FontAwesomeModule, RouterModule ],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.css',
   animations: [
@@ -22,7 +28,9 @@ import { Social_Links } from "../../constants/footer";
     ])
   ]
 })
+
 export class NavigationComponent {
+
   logo = '../../../../../favicon.ico';
   isToggle = false;
   showMiniCart = false;

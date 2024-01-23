@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Observable, map, of, shareReplay } from "rxjs";
+import { Router, RouterOutlet } from "@angular/router";
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Observable, of } from "rxjs";
+import { CommonModule } from '@angular/common';
 
 import { AccountService } from "../../../../services/account.service";
 import { User } from "../../models/user";
 
 @Component({
   selector: 'app-login',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -25,7 +28,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.initializeForm();
   }
-
 
   initializeForm() {
     this.loginForm = this.fb.group({
