@@ -1,14 +1,21 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, UntypedFormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
 import { initFlowbite } from 'flowbite';
 
 import { Category, CreateCategory } from '../../../models/category';
 
 import { CategoryService } from '../../../../../services/category.service';
+import { FileUploadComponent } from '../../shared/file-upload/file-upload.component';
+import { GeneralFormComponent } from '../../shared/general-form/general-form.component';
+import { SeoGeneralFormComponent } from '../../shared/seo-general-form/seo-general-form.component';
 
 @Component({
   selector: 'app-create-category',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, FileUploadComponent, GeneralFormComponent, SeoGeneralFormComponent, ReactiveFormsModule],
   templateUrl: './create-category.component.html',
   styleUrl: './create-category.component.css'
 })
@@ -96,7 +103,4 @@ export class CreateCategoryComponent implements OnInit {
     );
   }
 
-  onSeoGeneralFormValues($event: { name: string; description: string; tags: string }) {
-    throw new Error('Method not implemented.');
-  }
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 import { Observable, of } from "rxjs";
 import { faSave, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CustomersService } from "../../../../../services/customers.service";
 import { Customer } from "../../../models/customers";
@@ -8,6 +11,8 @@ import { initFlowbite } from "flowbite";
 
 @Component({
   selector: 'app-list-customers',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, FontAwesomeModule],
   templateUrl: './list-customers.component.html',
   styleUrls: ['./list-customers.component.css']
 })

@@ -1,10 +1,15 @@
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+
 import { PictureService } from '../../../../../services/picture.service';
 import { FileUpload } from '../../../models/fileUpload';
-import { UntypedFormGroup } from '@angular/forms';
+import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-file-upload',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, ReactiveFormsModule],
   template: `
   <div [formGroup]="imageUpload">
     <div class="flex items-center justify-center w-full">

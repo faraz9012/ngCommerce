@@ -1,7 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-seo-general-form',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, FormsModule],
   template: `
                 <!-- Name -->
                 <div class="mb-3">
@@ -66,8 +71,6 @@ export class SeoGeneralFormComponent {
   @Input() tagsLabel: string = '';
   @Input() tagsPlaceholder: string = '';
   @Input() tagsHelpfulText: string = '';
-
-  @Output() seoGeneralFormValues = new EventEmitter<{ name: string, description: string, tags: string }>();
 
   name: string = '';
   description: string = '';
