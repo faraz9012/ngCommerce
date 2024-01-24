@@ -91,6 +91,7 @@ namespace API.Data.Repository
                     ".bmp", ".gif", ".webp", ".jpeg", ".jpg", ".jpe", ".jfif", ".pjpeg", ".pjp", ".png", ".tiff", ".tif", ".svg"
                 } as IReadOnlyCollection<string>;
 
+
             var fileName = formFile.FileName;
             if (string.IsNullOrEmpty(fileName) && !string.IsNullOrEmpty(defaultFileName))
                 fileName = defaultFileName;
@@ -107,19 +108,28 @@ namespace API.Data.Repository
             if (string.IsNullOrEmpty(contentType))
                 contentType = GetPhotoContentTypeByFileExtension(fileExtension);
 
+            // Make each picture unique so that it can be saved on server
+            var pictureGuid = Guid.NewGuid(); 
+            var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
+            
+            var newFileName = $"{fileNameWithoutExtension}_{pictureGuid}{fileExtension}";
+            var newFilePath = Path.Combine(folderPath, newFileName);
+                newFilePath = newFilePath.Replace("\\", "/");
+
             // Save the file to the specified location
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            using (var fileStream = new FileStream(newFilePath, FileMode.Create))
             {
                 await formFile.CopyToAsync(fileStream);
             }
 
-            filePath = filePath.Replace("wwwroot/", "https://localhost:5001/");
+            // Replace the dafault location with server domain
+            newFilePath = newFilePath.Replace("wwwroot/", "https://localhost:5001/");
 
             // Save image reference in the database
             var picture = new Picture
             {
                 MimeType = contentType,
-                SrcAttribute = filePath,
+                SrcAttribute = newFilePath,
             };
 
             _context.Pictures.Add(picture);
@@ -135,7 +145,6 @@ namespace API.Data.Repository
             return pictureDto;
 
         }
-
         public virtual async Task<PictureDto> GetPictureByIdAsync(int pictureId)
         {
             var picture = await _context.Pictures.FindAsync(pictureId);
