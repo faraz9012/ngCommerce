@@ -4,8 +4,10 @@ import { Router } from "@angular/router";
 import { BehaviorSubject, map } from "rxjs";
 
 import { User } from "../modules/public/models/user";
-import { jwtDecode } from "jwt-decode";
 import { environment } from "../../environments/environment";
+
+import { ToastrService } from "ngx-toastr";
+import { jwtDecode } from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,7 @@ export class AccountService {
   constructor(
     private http:HttpClient,
     private router:Router, 
+    private toastr: ToastrService
   ) { 
     this.checkCurrentUser()
   }
@@ -63,6 +66,7 @@ export class AccountService {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
     this.router.navigateByUrl("/login");
+    this.toastr.error("Session completed! You've been successfully logged out.")
 
     if(this.tokenExpirationTimer){
       clearTimeout(this.tokenExpirationTimer);

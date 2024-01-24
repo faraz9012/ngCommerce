@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [],
   template: `
-    <div class="flex h-[calc(100vh-80px)] items-center justify-center p-5 w-full bg-white">
+    <div class="flex h-[100dvh] items-center justify-center p-5 w-full bg-white">
       <div class="text-center">
         <div class="inline-flex rounded-full bg-red-100 p-4">
           <div class="rounded-full stroke-red-600 bg-red-200 p-4">

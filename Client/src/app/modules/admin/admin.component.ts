@@ -4,26 +4,38 @@ import { RouterOutlet } from '@angular/router';
 import { initFlowbite } from "flowbite";
 
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 
 @Component({
   selector: 'app-admin-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavigationComponent],
+  imports: [CommonModule, RouterOutlet, NavigationComponent, SpinnerComponent],
   template: `
-  <app-navigation></app-navigation>
+  @if(isLoading){
+    <app-spinner></app-spinner>
+  }
+  @if(!isLoading){
+    <app-navigation></app-navigation>
 
-  <div class="p-4 lg:ml-64">
-      <div class="p-4 mt-12">
-          <router-outlet></router-outlet>
-      </div>
-  </div>
+    <div class="p-4 lg:ml-64">
+        <div class="p-4 mt-12">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+  }
 `,
   styles: ``
 })
 
 export class AdminComponent implements OnInit{
+  
+  isLoading: boolean = true;
+
   ngOnInit(): void {
     initFlowbite();
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000);
   }
 
 }
