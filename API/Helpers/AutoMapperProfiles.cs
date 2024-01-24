@@ -12,6 +12,8 @@ namespace API.Helpers
             CreateMap<Customer, CustomerDto>();
             CreateMap<CategoryDto, Category>();
             CreateMap<Category, CategoryDto>();
+            CreateMap<ProductDto, Product>();
+            CreateMap<ProductDto, CategoryDto>();
         }
     }
 }

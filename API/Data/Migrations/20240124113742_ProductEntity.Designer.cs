@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240112121759_PhotoAndCategory")]
-    partial class PhotoAndCategory
+    [Migration("20240124113742_ProductEntity")]
+    partial class ProductEntity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -125,6 +125,64 @@ namespace API.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Picture");
+                });
+
+            modelBuilder.Entity("API.Entities.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOnUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FeaturedImageId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IncludeInTopMenu")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("MarkAsNew")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("MarkAsNewEndDateTimeUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("MarkAsNewStartDateTimeUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("OldPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("Published")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ShowOnHomepage")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ThumbnailPictures")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedOnUtc")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Products");
                 });
 #pragma warning restore 612, 618
         }

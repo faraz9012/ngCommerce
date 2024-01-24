@@ -66,7 +66,7 @@ namespace API.Controllers
 
             if (!result) return BadRequest("Failed to delete picture");
 
-            return Ok();
+            return Ok("Picture successfully deleted");
         }
 
         #endregion

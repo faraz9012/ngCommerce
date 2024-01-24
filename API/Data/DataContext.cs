@@ -11,4 +11,5 @@ public class DataContext : DbContext
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Picture> Pictures  { get; set; }
     public DbSet<Category> Categories  { get; set; }
+    public DbSet<Product> Products  { get; set; }
 }

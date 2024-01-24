@@ -82,7 +82,7 @@ namespace API.Controllers
 
             if (!result) return BadRequest("Failed to delete category");
 
-            return Ok();
+            return Ok("Category successfully deleted");
         }
         
         #endregion
