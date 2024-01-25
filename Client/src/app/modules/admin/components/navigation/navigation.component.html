@@ -73,96 +73,69 @@
     class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 lg:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
     aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
-        <ul class="space-y-2 font-medium">
-            @if(sideMenu$ | async){
-            @for(menu of sideMenu$ | async; track menu){
-            @if(menu.subMenu && menu.subMenu.length > 0){
-            <li>
-                <button type="button"
-                    class="flex items-center justify-between w-full pl-0 p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                    [attr.aria-controls]="'dropdown-'+menu.id" [attr.data-collapse-toggle]="'dropdown-' + menu.id">
-                    <div class="flex items-center">
-                        <fa-icon [icon]="menu.icon" class=" w-10 text-gray-600"></fa-icon>
-                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">{{menu.title}}</span>
-                    </div>
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
-                <ul id="dropdown-{{menu.id}}" class="hidden py-2 space-y-2">
-                    @for(subMenu of menu.subMenu; track subMenu){
-                    @if(subMenu.subMenu && subMenu.subMenu.length > 0){
-                    <li>
+
+        <div class="flow-root">
+            <div class="-my-6 divide-y divide-gray-500/10">
+                <div class="space-y-2 py-6">
+                    @for(menu of sideMenu$ | async; track menu){
+                    @if(menu.subMenu){
+                    <div class="-mx-3">
                         <button type="button"
-                            class="flex items-center w-full pl-6 p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                            [attr.aria-controls]="'dropdown-'+subMenu.id"
-                            [attr.data-collapse-toggle]="'dropdown-' + subMenu.id">
-                            <fa-icon [icon]="subMenu.icon" class="text-gray-600 mr-2"></fa-icon>
-                            <span
-                                class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">{{subMenu.title}}</span>
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 1 4 4 4-4" />
-                            </svg>
-                        </button>
-                        <ul id="dropdown-{{subMenu.id}}" class="hidden py-2 space-y-2">
-                            @for(list of subMenu.subMenu; track list){
-                            <li>
-                                <a type="button" routerLinkActive="bg-gray-100" #rla="routerLinkActive"
-                                    class="flex items-center justify-between w-full pl-8 p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                                    routerLink="{{list.route}}" [class]="rla.isActive ?'text-indigo-600' : ''">
-                                    <div class="flex items-center text-center">
-                                        <fa-icon [icon]="list.icon" class=" w-10 text-gray-600"
-                                            [class]="rla.isActive ?'text-indigo-600' : ''"></fa-icon>
-                                        <span
-                                            class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">{{list.title}}</span>
-                                    </div>
-                                </a>
-                            </li>
-
-                            }
-                        </ul>
-                    </li>
-                    }
-                    @else{
-                    <li>
-                        <a type="button" routerLinkActive="bg-gray-100" #rla="routerLinkActive"
-                            class="flex items-center justify-between w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                            routerLink="{{subMenu.route}}" [class]="rla.isActive ?'text-indigo-600' : ''">
+                            class="flex justify-between items-center w-full pl-6 p-2 text-base font-medium leading-7 text-gray-900 transition duration-75 group hover:bg-gray-100"
+                            aria-controls="disclosure-1"
+                            aria-expanded="false" 
+                            (click)="toggleSubMenu(menu)">
                             <div class="flex items-center text-center">
-                                <fa-icon [icon]="subMenu.icon" class=" w-10 text-gray-600"
-                                    [class]="rla.isActive ?'text-indigo-600' : ''"></fa-icon>
-                                <span
-                                    class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">{{subMenu.title}}</span>
+                                <fa-icon [icon]="menu.icon" class="text-gray-600 mr-2 w-5 h-5 flex items-center"></fa-icon>
+                                <span class="flex-1 ms-3 text-left whitespace-nowrap">{{menu.title}}</span>
                             </div>
-                        </a>
-                    </li>
-                    }
-                    }
-                </ul>
-            </li>
-            }
 
-            @else {
-            <li>
-                <a type="button" routerLinkActive="bg-gray-100" #rla="routerLinkActive"
-                    [routerLinkActiveOptions]="{exact: !!menu.exact}"
-                    class="flex items-center justify-between w-full pl-0 p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                    routerLink="{{menu.route}}" [class]="rla.isActive ?'text-indigo-600' : ''">
-                    <div class="flex items-center text-center">
-                        <fa-icon [icon]="menu.icon" class="w-10 text-gray-600"
-                            [class]="rla.isActive ?'text-indigo-600' : ''"></fa-icon>
-                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">{{menu.title}}</span>
+                            <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true" [ngClass]="{'rotate-180': menu.isToggle, '': !menu.isToggle}">
+                                <path fill-rule="evenodd"
+                                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                    clip-rule="evenodd" />
+                            </svg>
+
+                        </button>
+                        <!-- 'Product' sub-menu, show/hide based on menu state. -->
+                        <div class="mt-2 space-y-2" id="disclosure-1" [style]="(menu.isToggle) ? '' : 'display:none;'">
+                            @for(subMenu of menu.subMenu; track subMenu){
+                            <a 
+                            routerLink="{{subMenu.route}}"
+                            class="block px-3 py-2 text-base  text-gray-600 hover:bg-gray-100"
+                            routerLinkActive="bg-gray-100" #rla="routerLinkActive"
+                            [class]="rla.isActive ?'text-indigo-600' : ''">
+                                <div class="flex justify-between items-center text-center ms-5">
+                                    <fa-icon [icon]="subMenu.icon" class="text-gray-600  w-5 h-5"
+                                        [class]="rla.isActive ?'text-indigo-600' : ''"></fa-icon>
+                                    <span class="flex-1 ms-3 text-left whitespace-nowrap">{{subMenu.title}}</span>
+                                </div>
+                            </a>
+                            }
+                        </div>
                     </div>
-                </a>
-            </li>
-            }
-            }
-            }
+                    }
+                    @else {
+                    <a 
+                        routerLink="{{menu.route}}"
+                        class="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-900 hover:bg-gray-100"
+                        routerLinkActive="bg-gray-100" #rla="routerLinkActive"
+                        [class]="rla.isActive ?'text-indigo-600' : ''"
+                        [routerLinkActiveOptions]="{exact: !!menu.exact}"
+                    >
+                    
+                        <div class="flex items-center text-center">
+                            <fa-icon [icon]="menu.icon" class="w-10 text-gray-600"
+                                [class]="rla.isActive ?'text-indigo-600' : ''"></fa-icon>
+                            <span class="flex-1 ms-3 text-left whitespace-nowrap">{{menu.title}}</span>
+                        </div>
+                    </a>
+                    }
+                    }
+                </div>
+            </div>
+        </div>
 
-        </ul>
     </div>
 </aside>

@@ -4,17 +4,12 @@ import { RouterOutlet } from '@angular/router';
 import { initFlowbite } from "flowbite";
 
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 
 @Component({
   selector: 'app-admin-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavigationComponent, SpinnerComponent],
+  imports: [CommonModule, RouterOutlet, NavigationComponent],
   template: `
-  @if(isLoading){
-    <app-spinner></app-spinner>
-  }
-  @if(!isLoading){
     <app-navigation></app-navigation>
 
     <div class="p-4 lg:ml-64">
@@ -22,20 +17,16 @@ import { SpinnerComponent } from '../../shared/spinner/spinner.component';
             <router-outlet></router-outlet>
         </div>
     </div>
-  }
 `,
   styles: ``
 })
 
 export class AdminComponent implements OnInit{
   
-  isLoading: boolean = true;
+  isLoading: boolean = false;
 
   ngOnInit(): void {
     initFlowbite();
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 1000);
   }
 
 }

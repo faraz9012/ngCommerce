@@ -1,4 +1,4 @@
-import { faChartPie, faCircleDot, faCircleNotch, faUsers, faShoppingCart, faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import { faChartPie, faCircleDot, faCircleNotch, faUsers, faShoppingCart, faDollarSign, faPhotoFilm } from '@fortawesome/free-solid-svg-icons';
 
 export interface sideMenu {
     id?: string | number;
@@ -28,35 +28,13 @@ export const Side_Navbar: sideMenu[] = [
                 id: 'categories',
                 icon: faCircleDot,
                 title: "Categories",
-                subMenu: [
-                    {
-                        icon: faCircleNotch,
-                        title: "List",
-                        route: "/admin/category/list"
-                    },
-                    {
-                        icon: faCircleNotch,
-                        title: "Create",
-                        route: "/admin/category/create"
-                    }
-                ]
+                route: "/admin/category/list"
             },
             {
                 id: 'products',
                 icon: faCircleDot,
                 title: "Products",
-                subMenu: [
-                    {
-                        icon: faCircleNotch,
-                        title: "List",
-                        route: "/admin/category/list"
-                    },
-                    {
-                        icon: faCircleNotch,
-                        title: "Create",
-                        route: "/admin/category/create"
-                    }
-                ]
+                route: "/admin/product/list"
             }
         ]
     },
@@ -70,7 +48,12 @@ export const Side_Navbar: sideMenu[] = [
                 icon: faCircleDot,
                 title: "Orders",
                 route: "/admin/orders",
-            }
+            },
+            {
+                icon: faCircleDot,
+                title: "Shipments",
+                route: "/admin/shipments",
+            },
         ]
     },
     {
@@ -78,17 +61,12 @@ export const Side_Navbar: sideMenu[] = [
         icon: faUsers,
         title: "Customers",
         isToggle: false,
-        subMenu: [
-            {
-                icon: faCircleDot,
-                title: "List customers",
-                route: "/admin/customer/list",
-            },
-            {
-                icon: faCircleDot,
-                title: "Add customer",
-                route: "/admin/add-customer",
-            }
-        ]
+        route: "/admin/customer/list",
+    },
+    {
+        id: 'Media',
+        icon: faPhotoFilm,
+        title: "Media",
+        route: "/media",
     },
 ];

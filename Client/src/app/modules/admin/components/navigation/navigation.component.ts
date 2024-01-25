@@ -3,7 +3,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { of, Observable } from 'rxjs';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { delay } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 
 import { AccountService } from "../../../../services/account.service";
 
@@ -30,6 +30,18 @@ export class NavigationComponent implements OnInit {
   
   ngOnInit(): void {
     this.sideMenu$ = sideMenuObservable;
+  }
+
+  toggleSubMenu(menu: sideMenu) {
+    const updatedMenu = { ...menu, isToggle: !menu.isToggle };
+  
+    const updatedMenus = this.sideMenu$.pipe(
+      map(menus => menus.map(item => (item === menu ? updatedMenu : { ...item, isToggle: false })))
+    );
+  
+    updatedMenus.subscribe(newMenus => {
+      this.sideMenu$ = of(newMenus);
+    });
   }
   
   logout(){
