@@ -1,7 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, UntypedFormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
 import { initFlowbite } from 'flowbite';
 
@@ -15,7 +14,7 @@ import { SeoGeneralFormComponent } from '../../shared/seo-general-form/seo-gener
 @Component({
   selector: 'app-create-category',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, FileUploadComponent, GeneralFormComponent, SeoGeneralFormComponent, ReactiveFormsModule],
+  imports: [CommonModule, FileUploadComponent, GeneralFormComponent, SeoGeneralFormComponent, ReactiveFormsModule],
   templateUrl: './create-category.component.html',
   styles: ``
 })
