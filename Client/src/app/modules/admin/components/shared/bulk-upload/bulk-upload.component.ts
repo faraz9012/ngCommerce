@@ -1,25 +1,24 @@
-import { Component, Input, inject } from '@angular/core';
-import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { PictureService } from '../../../../../services/picture.service';
-import { FileUpload } from '../../../models/fileUpload';
 import { SpinnerComponent } from '../../../../../shared/spinner/spinner.component';
 
 @Component({
-  selector: 'app-file-upload',
+  selector: 'app-bulk-upload',
   standalone: true,
   imports: [ReactiveFormsModule, SpinnerComponent],
   template: `
+    
    @if(isPictureLoading){
     <app-spinner></app-spinner>
   }
   @if(!isPictureLoading){
     
-  <div [formGroup]="imageUpload">
+  <!-- <div [formGroup]="imageUpload"> -->
     <div class="flex items-center justify-center w-full">
     @if(srcAttribute.length <= 0){
       <label for="dropzone-file"
-          class="flex flex-col items-center justify-center w-full h-54 max-h-52 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 ">
+          class="flex flex-col items-center justify-center w-full h-26 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 ">
           <div class="flex flex-col items-center justify-center pt-5 pb-6">
               <svg class="w-8 h-8 mb-4 text-gray-500 " aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
@@ -31,9 +30,12 @@ import { SpinnerComponent } from '../../../../../shared/spinner/spinner.componen
                       class="font-semibold">Click
                       to
                       upload</span></p>
-              <p class="text-xs text-gray-500 text-center">{{uploadHelpfulText}}</p>
+              <p class="text-xs text-gray-500 text-center">SVG, PNG, JPG or GIF (MAX.
+                  800x400px)
+              </p>
           </div>
-          <input id="dropzone-file" type="file" class="hidden" (change)="onFileSelected($event)" accept="{{fileType}}" />
+          <!-- <input id="dropzone-file" type="file" class="hidden" alt="{{altAttribute}}" title="{{titleAttribute}}" (change)="onFileSelected($event)" accept="{{fileType}}" /> -->
+          <input id="dropzone-file" type="file" class="hidden" />
       </label>
         }
         @else {
@@ -47,56 +49,16 @@ import { SpinnerComponent } from '../../../../../shared/spinner/spinner.componen
         </div>
         }
     </div>
-  </div>
+  <!-- </div> -->
   }
-`,
+
+  `,
   styles: ``
 })
-export class FileUploadComponent {
-
-  //Name
-  @Input() imageUpload: UntypedFormGroup = new UntypedFormGroup({});
-  @Input() fileType: string = '';
-  @Input() uploadHelpfulText: string = '';
+export class BulkUploadComponent {
 
   srcAttribute: string = '';
   imageId: number = 0;
   isPictureLoading: boolean = false;
-
-  _pictureService = inject(PictureService);
-
-  async onFileSelected(event: any): Promise<void> {
-    this.isPictureLoading = true;
-    const files: FileList = event.target.files;
-    if (files.length > 0) {
-      const selectedFile: File = files[0];
-
-      if (selectedFile.type.startsWith('image/')) {
-        await this.uploadPicture(files[0])
-
-        if (!files[0]) return;
-      }
-    }
-  }
-
-  async uploadPicture(picture: any) {
-    if (picture) {
-      this._pictureService.uploadPicture(picture).subscribe(
-        (response: FileUpload) => {
-          if (response && response.srcAttribute)
-            this.srcAttribute = response.srcAttribute
-            this.imageId = response.id
-            this.imageUpload.patchValue({
-              pictureId: this.imageId
-            })
-
-            setTimeout(() => {
-            this.isPictureLoading = false;
-            }, 1000);
-
-        }
-      );
-    }
-  }
-
+  
 }

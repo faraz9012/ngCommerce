@@ -1,12 +1,10 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-general-form',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   template: `
                 <div [formGroup]="generalForm">
                   <!-- Name -->
