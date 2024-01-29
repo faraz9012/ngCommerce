@@ -24,7 +24,6 @@ export class CategoryService {
   }
 
   create(model: CreateCategory){
-    
     return this.http.post<CreateCategory>(this.baseUrl + 'category/create', model);
   }
 }

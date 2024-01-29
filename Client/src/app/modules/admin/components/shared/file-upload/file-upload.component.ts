@@ -15,7 +15,7 @@ import { SpinnerComponent } from '../../../../../shared/spinner/spinner.componen
   }
   @if(!isPictureLoading){
     
-  <div [formGroup]="imageUpload">
+  <div [formGroup]="fileUpload">
     <div class="flex items-center justify-center w-full">
     @if(srcAttribute.length <= 0){
       <label for="dropzone-file"
@@ -55,7 +55,7 @@ import { SpinnerComponent } from '../../../../../shared/spinner/spinner.componen
 export class FileUploadComponent {
 
   //Name
-  @Input() imageUpload: UntypedFormGroup = new UntypedFormGroup({});
+  @Input() fileUpload: UntypedFormGroup = new UntypedFormGroup({});
   @Input() fileType: string = '';
   @Input() uploadHelpfulText: string = '';
 
@@ -86,7 +86,7 @@ export class FileUploadComponent {
           if (response && response.srcAttribute)
             this.srcAttribute = response.srcAttribute
             this.imageId = response.id
-            this.imageUpload.patchValue({
+            this.fileUpload.patchValue({
               pictureId: this.imageId
             })
 

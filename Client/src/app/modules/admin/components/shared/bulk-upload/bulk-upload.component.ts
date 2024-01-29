@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, Input, inject } from '@angular/core';
+import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 
 import { SpinnerComponent } from '../../../../../shared/spinner/spinner.component';
+import { FileUpload } from '../../../models/fileUpload';
+import { PictureService } from '../../../../../services/picture.service';
 
 @Component({
   selector: 'app-bulk-upload',
@@ -14,7 +16,7 @@ import { SpinnerComponent } from '../../../../../shared/spinner/spinner.componen
   }
   @if(!isPictureLoading){
     
-  <!-- <div [formGroup]="imageUpload"> -->
+  <div [formGroup]="bulkFileUpload">
     <div class="flex items-center justify-center w-full">
     @if(srcAttribute.length <= 0){
       <label for="dropzone-file"
@@ -35,7 +37,7 @@ import { SpinnerComponent } from '../../../../../shared/spinner/spinner.componen
               </p>
           </div>
           <!-- <input id="dropzone-file" type="file" class="hidden" alt="{{altAttribute}}" title="{{titleAttribute}}" (change)="onFileSelected($event)" accept="{{fileType}}" /> -->
-          <input id="dropzone-file" type="file" class="hidden" />
+          <input id="dropzone-file" type="file" class="hidden" multiple />
       </label>
         }
         @else {
@@ -49,7 +51,7 @@ import { SpinnerComponent } from '../../../../../shared/spinner/spinner.componen
         </div>
         }
     </div>
-  <!-- </div> -->
+  </div>
   }
 
   `,
@@ -57,8 +59,46 @@ import { SpinnerComponent } from '../../../../../shared/spinner/spinner.componen
 })
 export class BulkUploadComponent {
 
+  @Input() bulkFileUpload: UntypedFormGroup = new UntypedFormGroup({});
   srcAttribute: string = '';
   imageId: number = 0;
   isPictureLoading: boolean = false;
+  
+  _pictureService = inject(PictureService);
+
+  async onFileSelected(event: any): Promise<void> {
+    this.isPictureLoading = true;
+    const files: FileList = event.target.files;
+    if (files.length > 0) {
+      const selectedFile: File = files[0];
+
+      if (selectedFile.type.startsWith('image/')) {
+        await this.uploadPicture(files[0])
+
+        if (!files[0]) return;
+      }
+    }
+  }
+
+  async uploadPicture(picture: any) {
+    if (picture) {
+      this._pictureService.uploadPicture(picture).subscribe(
+        (response: FileUpload) => {
+          if (response && response.srcAttribute)
+            this.srcAttribute = response.srcAttribute
+            this.imageId = response.id
+            this.bulkFileUpload.patchValue({
+              pictureId: this.imageId
+            })
+
+            setTimeout(() => {
+            this.isPictureLoading = false;
+            }, 1000);
+
+        }
+      );
+    }
+  }
+
   
 }

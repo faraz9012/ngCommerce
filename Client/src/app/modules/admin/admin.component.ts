@@ -12,11 +12,16 @@ import { NavigationComponent } from './components/navigation/navigation.componen
   template: `
     <app-navigation></app-navigation>
 
-    <div class="p-4 lg:ml-64">
+    <div class="lg:ml-64">
         <div class="p-4 mt-12">
+          <div class="min-h-dvh">
             <router-outlet></router-outlet>
+           </div>
         </div>
-    </div>
+        <div class="bg-white text-center w-full py-1">
+          Copyright © 2024 ngCommerce
+        </div>
+      </div>
 `,
   styles: ``
 })

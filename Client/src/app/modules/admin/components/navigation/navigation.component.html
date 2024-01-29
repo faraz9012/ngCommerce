@@ -1,10 +1,10 @@
-<nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+<nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
             <div class="flex items-center justify-start rtl:justify-end">
                 <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
                     type="button"
-                    class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                    class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 ">
                     <span class="sr-only">Open sidebar</span>
                     <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
@@ -16,49 +16,49 @@
                 <a href="https://flowbite.com" class="flex ms-2 md:me-24">
                     <img src="../../../../../favicon.ico" class="h-8 me-3" alt="FlowBite Logo" />
                     <span
-                        class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">ngCommerce</span>
+                        class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap ">ngCommerce</span>
                 </a>
             </div>
             <div class="flex items-center">
                 <div class="flex items-center ms-3">
                     <div>
                         <button type="button"
-                            class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                            class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 "
                             aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Open user menu</span>
                             <img class="w-8 h-8 rounded-full"
                                 src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
                         </button>
                     </div>
-                    <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+                    <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow "
                         id="dropdown-user">
                         <div class="px-4 py-3" role="none">
-                            <p class="text-sm text-gray-900 dark:text-white" role="none">
+                            <p class="text-sm text-gray-900 " role="none">
                                 Neil Sims
                             </p>
-                            <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+                            <p class="text-sm font-medium text-gray-900 truncate" role="none">
                                 neil.sims&commat;flowbite.com
                             </p>
                         </div>
                         <ul class="py-1" role="none">
                             <li>
                                 <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
                                     role="menuitem">Dashboard</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
                                     role="menuitem">Settings</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
                                     role="menuitem">Earnings</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
                                     role="menuitem">Sign out</a>
                             </li>
                         </ul>
@@ -70,9 +70,9 @@
 </nav>
 
 <aside id="logo-sidebar"
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 lg:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-[#0d0e12] border-r border-gray-200 lg:translate-x-0  "
     aria-label="Sidebar">
-    <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+    <div class="h-full px-3 pb-4 overflow-y-auto bg-[#0d0e12]">
 
         <div class="flow-root">
             <div class="-my-6 divide-y divide-gray-500/10">
@@ -81,16 +81,16 @@
                     @if(menu.subMenu){
                     <div class="-mx-3">
                         <button type="button"
-                            class="flex justify-between items-center w-full pl-6 p-2 text-base font-medium leading-7 text-gray-900 transition duration-75 group hover:bg-gray-100"
+                            class="flex justify-between items-center w-full pl-6 p-2 text-base font-medium leading-7 text-gray-400 transition duration-75 group hover:text-white"
                             aria-controls="disclosure-1"
                             aria-expanded="false" 
                             (click)="toggleSubMenu(menu)">
                             <div class="flex items-center text-center">
-                                <fa-icon [icon]="menu.icon" class="text-gray-600 mr-2 w-5 h-5 flex items-center"></fa-icon>
+                                <fa-icon [icon]="menu.icon" class="text-gray-600 mr-2 w-5 h-5 flex items-center group-hover:text-white"></fa-icon>
                                 <span class="flex-1 ms-3 text-left whitespace-nowrap">{{menu.title}}</span>
                             </div>
 
-                            <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                            <svg class="h-5 w-5 flex-none text-gray-400 group-hover:text-white" viewBox="0 0 20 20" fill="currentColor"
                                 aria-hidden="true" [ngClass]="{'rotate-180': menu.isToggle, '': !menu.isToggle}">
                                 <path fill-rule="evenodd"
                                     d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
@@ -103,12 +103,12 @@
                             @for(subMenu of menu.subMenu; track subMenu){
                             <a 
                             routerLink="{{subMenu.route}}"
-                            class="block px-3 py-2 text-base  text-gray-600 hover:bg-gray-100"
-                            routerLinkActive="bg-gray-100" #rla="routerLinkActive"
-                            [class]="rla.isActive ?'text-indigo-600' : ''">
+                            class="block px-3 py-2 text-base text-gray-400 hover:text-white hover:bg-[#1c1c21] mx-3 hover:rounded-lg"
+                            routerLinkActive="bg-[#1c1c21] text-white" #rla="routerLinkActive"
+                            [class]="rla.isActive ?'text-white rounded-lg' : ''">
                                 <div class="flex justify-between items-center text-center ms-5">
                                     <fa-icon [icon]="subMenu.icon" class="text-gray-600  w-5 h-5"
-                                        [class]="rla.isActive ?'text-indigo-600' : ''"></fa-icon>
+                                        [class]="rla.isActive ?'text-white' : ''"></fa-icon>
                                     <span class="flex-1 ms-3 text-left whitespace-nowrap">{{subMenu.title}}</span>
                                 </div>
                             </a>
@@ -119,15 +119,15 @@
                     @else {
                     <a 
                         routerLink="{{menu.route}}"
-                        class="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-900 hover:bg-gray-100"
-                        routerLinkActive="bg-gray-100" #rla="routerLinkActive"
-                        [class]="rla.isActive ?'text-indigo-600' : ''"
+                        class="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-400 hover:text-white group"
+                        routerLinkActive="" #rla="routerLinkActive"
+                        [class]="rla.isActive ?'text-white' : ''"
                         [routerLinkActiveOptions]="{exact: !!menu.exact}"
                     >
                     
                         <div class="flex items-center text-center">
-                            <fa-icon [icon]="menu.icon" class="w-10 text-gray-600"
-                                [class]="rla.isActive ?'text-indigo-600' : ''"></fa-icon>
+                            <fa-icon [icon]="menu.icon" class="w-10 text-gray-600 group-hover:text-white"
+                                [class]="rla.isActive ?'text-white' : ''"></fa-icon>
                             <span class="flex-1 ms-3 text-left whitespace-nowrap">{{menu.title}}</span>
                         </div>
                     </a>

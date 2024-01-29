@@ -14,16 +14,18 @@ import { GeneralFormComponent } from '../../shared/general-form/general-form.com
 import { SeoGeneralFormComponent } from '../../shared/seo-general-form/seo-general-form.component';
 import { MultiSelectComponent } from '../../shared/multi-select/multi-select.component';
 import { BulkUploadComponent } from '../../shared/bulk-upload/bulk-upload.component';
+import { ProductService } from '../../../../../services/product.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-products',
   standalone: true,
   imports: [
-    CommonModule, 
-    FileUploadComponent, 
-    GeneralFormComponent, 
-    SeoGeneralFormComponent, 
-    ReactiveFormsModule, 
+    CommonModule,
+    FileUploadComponent,
+    GeneralFormComponent,
+    SeoGeneralFormComponent,
+    ReactiveFormsModule,
     MultiSelectComponent,
     BulkUploadComponent,
     FormsModule
@@ -31,22 +33,27 @@ import { BulkUploadComponent } from '../../shared/bulk-upload/bulk-upload.compon
   templateUrl: './create-products.component.html',
   styles: ``
 })
-export class CreateProductsComponent implements OnInit{
+export class CreateProductsComponent implements OnInit {
 
   //Variables
   categories$: Observable<Category[]> | undefined;
   createProductyForm: FormGroup = new FormGroup({});
   imageUploadForm: FormGroup = new FormGroup({});
+  bulkUploadForm: FormGroup = new FormGroup({});
   published = [true, false];
   showOnHomepage = [true, false];
   includeInTopMenu = [true, false];
   statusSignal: boolean = true;
-  selectedCategoryIds: string[] = []
+  selectedCategoryIds: string = ''
+  selectedTab: string = 'pricing'; // Default to the 'pricing' tab
+
 
   //Services
+  _productService = inject(ProductService);
   _categoryService = inject(CategoryService);
+  _toastr = inject(ToastrService);
   _fb = inject(FormBuilder);
-  
+
   initializeForm() {
     this.createProductyForm = this._fb.group({
       formDetails: this._fb.group({
@@ -55,6 +62,10 @@ export class CreateProductsComponent implements OnInit{
       }),
       imageUpload: this._fb.group({
         pictureId: [0],
+        file: [null]
+      }),
+      bulkUpload: this._fb.group({
+        thumbnailPictureId: [0],
         file: [null]
       }),
       productCategories: this._fb.group({
@@ -66,6 +77,7 @@ export class CreateProductsComponent implements OnInit{
     });
 
     this.imageUploadForm = this.createProductyForm.get('imageUpload') as UntypedFormGroup;
+    this.bulkUploadForm = this.createProductyForm.get('bulkUpload') as UntypedFormGroup;
   }
 
   ngOnInit(): void {
@@ -74,7 +86,6 @@ export class CreateProductsComponent implements OnInit{
     this.initializeForm();
 
     this.createProductyForm.get('published')?.valueChanges.subscribe((status: boolean) => {
-      // Update statusSignal based on the selected option
       this.statusSignal = status;
     });
   }
@@ -88,61 +99,75 @@ export class CreateProductsComponent implements OnInit{
   }
 
   createProduct() {
-  // Mark controls as dirty, touched, and update validity
-  Object.values(this.createProductyForm.controls).forEach((control) => {
-    if (control.invalid) {
-      control.markAsDirty();
-      control.markAsTouched();
-      control.updateValueAndValidity({ onlySelf: true });
-    }
-  });
+    // Mark controls as dirty, touched, and update validity
+    Object.values(this.createProductyForm.controls).forEach((control) => {
+      if (control.invalid) {
+        control.markAsDirty();
+        control.markAsTouched();
+        control.updateValueAndValidity({ onlySelf: true });
+      }
+    });
 
-  if (this.createProductyForm.invalid) {
-    return;
+    if (this.createProductyForm.invalid) {
+      return;
+    }
+
+    const {
+      formDetails,
+      imageUpload,
+      thumbnailPictures,
+      price,
+      published,
+      oldPrice,
+      markAsNew,
+      showOnHomepage,
+      includeInTopMenu,
+    } = this.createProductyForm.value;
+
+    const model: CreateProduct = {
+      // name: formDetails.name,
+      // description: formDetails.description,
+      // category: [...categoryIds],
+      // featuredImageId: imageUpload.pictureId,
+      // thumbnailPictures: ["0"],
+      // price: 20,
+      // oldPrice: 0,
+      // markAsNew: false,
+      // showOnHomepage,
+      // includeInTopMenu,
+      // published,
+
+      // Working example below
+      name: formDetails.name,
+      description: formDetails.name,
+      category: this.selectedCategoryIds || '0',
+      featuredImageId: imageUpload.pictureId,
+      thumbnailPictures: "2, 24, 25",
+      price: 25.00,
+      oldPrice: 0,
+      markAsNew: false,
+      showOnHomepage,
+      includeInTopMenu,
+      published
+    };
+
+    console.log(model);
+
+    this._productService.create(model).subscribe({
+      next: () => this._toastr.success("Product created successfully"),
+      error: (error) => this._toastr.error(error.error.message)
+    });
+
   }
 
-  const {
-    formDetails,
-    productCategories,
-    category,
-    imageUpload,
-    featuredImageId,
-    thumbnailPictures,
-    price,
-    published,
-    oldPrice,
-    markAsNew,
-    showOnHomepage,
-    includeInTopMenu,
-  } = this.createProductyForm.value;
+  onSelectedCategoryIds(selectedCategoryIds: string[]) {
+    const categoryIdsString = selectedCategoryIds.join(', ');
 
-  // Ensure selectedCategoryIds is an array
-  const categoryIds = Array.isArray(this.selectedCategoryIds) ? this.selectedCategoryIds : [];
+    this.selectedCategoryIds = categoryIdsString;
+  }
 
-  const model: CreateProduct = {
-    name: formDetails.name,
-    description: formDetails.description,
-    category: [...categoryIds], // Spread the array to create a new instance
-    featuredImageId: imageUpload.pictureId,
-    thumbnailPictures,
-    price,
-    oldPrice,
-    markAsNew,
-    showOnHomepage,
-    includeInTopMenu,
-    published,
-  };
 
-  console.log(model);
-
-  // Call a service method to save the product or perform further actions
-  // productService.createProduct(model).subscribe(/* handle response or errors */);
-}
-
-  onSelectedCategoryIds(selectedCategoryIds: string[])  {
-    this.selectedCategoryIds.length = 0;
-  this.selectedCategoryIds.push(...selectedCategoryIds);
-
-  console.log('CategoryIds:', this.selectedCategoryIds);
+  selectTab(tab: string): void {
+    this.selectedTab = tab;
   }
 }

@@ -16,16 +16,18 @@
                 <div class="mb-7 bg-white rounded-md shadow-md p-5">
                     <h4 class="font-medium tracking-wide text-[#071437] mb-2">Featured image</h4>
                     <app-file-upload
-                        [imageUpload]="imageUploadForm"
+                        [fileUpload]="imageUploadForm"
                         [uploadHelpfulText]="'SVG, PNG, JPG or GIF (Ideal size 500x500px)'">
                     </app-file-upload>
                 </div>
 
                 <!-- Bulk image upload -->
-                <div class="mb-7 bg-white rounded-md shadow-md p-5">
+                <!-- <div class="mb-7 bg-white rounded-md shadow-md p-5">
                     <h4 class="font-medium tracking-wide text-[#071437] mb-2">Thumbnail images</h4>
-                    <app-bulk-upload></app-bulk-upload>
-                </div>
+                    <app-bulk-upload
+                        [bulkFileUpload]="bulkUploadForm"
+                    ></app-bulk-upload>
+                </div> -->
 
                 <!-- Parent category -->
                 <div class="mb-7 bg-white rounded-md shadow-md p-5">
@@ -160,5 +162,101 @@
     
     </div>
 
-        
+    <!-- Inventory -->
+    <div class="md:flex">
+        <ul class="flex-column space-y space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400 md:me-4 mb-4 md:mb-0">
+            <li>
+                <a
+                    (click)="selectTab('pricing')" 
+                    [class.active]="selectedTab === 'pricing'"
+                    [ngClass]="(selectedTab === 'pricing') ? 'text-white bg-indigo-700 rounded-lg dark:bg-indigo-600' : 'bg-gray-50 hover:bg-gray-100 hover:text-gray-900'"
+                    class="inline-flex items-center px-4 py-3 rounded-lg cursor-pointer w-full" 
+                    aria-current="page">
+                    <svg 
+                        class="w-4 h-4 me-2 "
+                        [ngClass]="(selectedTab === 'pricing') ? 'text-white' : 'text-gray-500'"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                    </svg>
+                    Pricing
+                </a>
+            </li>        
+            <li>
+                <a
+                    (click)="selectTab('inventory')" 
+                    [class.active]="selectedTab === 'inventory'"
+                    [ngClass]="(selectedTab === 'inventory') ? 'text-white bg-indigo-700 rounded-lg dark:bg-indigo-600' : 'bg-gray-50 hover:bg-gray-100 hover:text-gray-900'"
+                    class="inline-flex items-center px-4 py-3 rounded-lg cursor-pointer w-full" 
+                    aria-current="page">
+                    <svg 
+                    class="w-4 h-4 me-2 "
+                    [ngClass]="(selectedTab === 'inventory') ? 'text-white' : 'text-gray-500'"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path d="M50.7 58.5L0 160H208V32H93.7C75.5 32 58.9 42.3 50.7 58.5zM240 160H448L397.3 58.5C389.1 42.3 372.5 32 354.3 32H240V160zm208 32H0V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192z"/></svg>
+                    Inventory
+                </a>
+            </li>        
+            <li>
+                <a
+                    (click)="selectTab('shipping')" 
+                    [class.active]="selectedTab === 'shipping'"
+                    [ngClass]="(selectedTab === 'shipping') ? 'text-white bg-indigo-700 rounded-lg dark:bg-indigo-600' : 'bg-gray-50 hover:bg-gray-100 hover:text-gray-900'"
+                    class="inline-flex items-center px-4 py-3 rounded-lg cursor-pointer w-full" 
+                    aria-current="page">
+                    <svg 
+                    class="w-4 h-4 me-2 "
+                    [ngClass]="(selectedTab === 'shipping') ? 'text-white' : 'text-gray-500'"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                        <path d="M112 0C85.5 0 64 21.5 64 48V96H16c-8.8 0-16 7.2-16 16s7.2 16 16 16H64 272c8.8 0 16 7.2 16 16s-7.2 16-16 16H64 48c-8.8 0-16 7.2-16 16s7.2 16 16 16H64 240c8.8 0 16 7.2 16 16s-7.2 16-16 16H64 16c-8.8 0-16 7.2-16 16s7.2 16 16 16H64 208c8.8 0 16 7.2 16 16s-7.2 16-16 16H64V416c0 53 43 96 96 96s96-43 96-96H384c0 53 43 96 96 96s96-43 96-96h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V288 256 237.3c0-17-6.7-33.3-18.7-45.3L512 114.7c-12-12-28.3-18.7-45.3-18.7H416V48c0-26.5-21.5-48-48-48H112zM544 237.3V256H416V160h50.7L544 237.3zM160 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm272 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0z"/></svg>
+                    
+                    Shipping
+                </a>
+            </li>        
+            <li>
+                <a
+                    (click)="selectTab('attributes')" 
+                    [class.active]="selectedTab === 'attributes'"
+                    [ngClass]="(selectedTab === 'attributes') ? 'text-white bg-indigo-700 rounded-lg dark:bg-indigo-600' : 'bg-gray-50 hover:bg-gray-100 hover:text-gray-900'"
+                    class="inline-flex items-center px-4 py-3 rounded-lg cursor-pointer w-full" 
+                    aria-current="page">
+                    <svg 
+                    class="w-4 h-4 me-2 "
+                    [ngClass]="(selectedTab === 'attributes') ? 'text-white' : 'text-gray-500'"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M0 416c0 17.7 14.3 32 32 32l54.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 448c17.7 0 32-14.3 32-32s-14.3-32-32-32l-246.7 0c-12.3-28.3-40.5-48-73.3-48s-61 19.7-73.3 48L32 384c-17.7 0-32 14.3-32 32zm128 0a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM320 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm32-80c-32.8 0-61 19.7-73.3 48L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l246.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48l54.7 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-54.7 0c-12.3-28.3-40.5-48-73.3-48zM192 128a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm73.3-64C253 35.7 224.8 16 192 16s-61 19.7-73.3 48L32 64C14.3 64 0 78.3 0 96s14.3 32 32 32l86.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 128c17.7 0 32-14.3 32-32s-14.3-32-32-32L265.3 64z"/></svg>                
+                    Attributes
+                </a>
+            </li>
+        </ul>
+        <div class="p-6 bg-gray-50 text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg w-full">
+            @if(selectedTab === 'pricing') {
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Profile Tab</h3>
+                <p class="mb-2">This is some placeholder content the Profile tab's associated content, clicking another tab will toggle the visibility of this one for the next.</p>
+                <p>The tab JavaScript swaps classes to control the content visibility and styling.</p> 
+
+            }
+            @if(selectedTab === 'inventory') {
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Inventory Tab</h3>
+                <p class="mb-2">This is some placeholder content the Profile tab's associated content, clicking another tab will toggle the visibility of this one for the next.</p>
+                <p>The tab JavaScript swaps classes to control the content visibility and styling.</p> 
+
+            }
+            @if(selectedTab === 'shipping') {
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Shipping Tab</h3>
+                <p class="mb-2">This is some placeholder content the Profile tab's associated content, clicking another tab will toggle the visibility of this one for the next.</p>
+                <p>The tab JavaScript swaps classes to control the content visibility and styling.</p> 
+
+            }
+            @if(selectedTab === 'attributes') {
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Attributes Tab</h3>
+                <p class="mb-2">This is some placeholder content the Profile tab's associated content, clicking another tab will toggle the visibility of this one for the next.</p>
+                <p>The tab JavaScript swaps classes to control the content visibility and styling.</p> 
+
+            }
+        </div>
+    </div>
 </form>

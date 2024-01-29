@@ -1,7 +1,7 @@
 export interface CreateProduct {
     name: string
     description: string
-    category: string[]
+    category: string
     featuredImageId: number
     thumbnailPictures: string
     price: number
