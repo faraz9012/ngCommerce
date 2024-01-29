@@ -47,7 +47,6 @@ export class CreateProductsComponent implements OnInit {
   selectedCategoryIds: string = ''
   selectedTab: string = 'pricing'; // Default to the 'pricing' tab
 
-
   //Services
   _productService = inject(ProductService);
   _categoryService = inject(CategoryService);
