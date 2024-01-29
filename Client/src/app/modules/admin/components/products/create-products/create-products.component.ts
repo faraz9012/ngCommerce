@@ -46,7 +46,7 @@ export class CreateProductsComponent implements OnInit {
   statusSignal: boolean = true;
   selectedCategoryIds: string = ''
   selectedTab: string = 'pricing'; // Default to the 'pricing' tab
-  basePrice: number = 0;
+  price: number = 0;
   oldPrice: number = 0;
   markAsNew = [true, false];
 
@@ -76,7 +76,7 @@ export class CreateProductsComponent implements OnInit {
       published: [true],
       showOnHomepage: [false],
       includeInTopMenu: [false],
-      basePrice: [0],
+      price: [0],
       oldPrice: [0],
       markAsNew: [false]
     });
@@ -121,8 +121,8 @@ export class CreateProductsComponent implements OnInit {
       formDetails,
       imageUpload,
       thumbnailPictures,
-      price,
       published,
+      price,
       oldPrice,
       markAsNew,
       showOnHomepage,
@@ -130,27 +130,14 @@ export class CreateProductsComponent implements OnInit {
     } = this.createProductyForm.value;
 
     const model: CreateProduct = {
-      // name: formDetails.name,
-      // description: formDetails.description,
-      // category: [...categoryIds],
-      // featuredImageId: imageUpload.pictureId,
-      // thumbnailPictures: ["0"],
-      // price: 20,
-      // oldPrice: 0,
-      // markAsNew: false,
-      // showOnHomepage,
-      // includeInTopMenu,
-      // published,
-
-      // Working example below
       name: formDetails.name,
       description: formDetails.name,
       category: this.selectedCategoryIds || '0',
       featuredImageId: imageUpload.pictureId,
       thumbnailPictures: "2, 24, 25",
-      price: 25.00,
-      oldPrice: 0,
-      markAsNew: false,
+      price,
+      oldPrice,
+      markAsNew,
       showOnHomepage,
       includeInTopMenu,
       published
