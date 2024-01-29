@@ -49,6 +49,8 @@ export class CreateProductsComponent implements OnInit {
   price: number = 0;
   oldPrice: number = 0;
   markAsNew = [true, false];
+  markAsNewStartDateTimeUtc: string = '';
+  markAsNewEndDateTimeUtc: string = '';
 
   //Services
   _productService = inject(ProductService);
@@ -78,7 +80,9 @@ export class CreateProductsComponent implements OnInit {
       includeInTopMenu: [false],
       price: [0],
       oldPrice: [0],
-      markAsNew: [false]
+      markAsNew: [false],
+      markAsNewStartDateTimeUtc: [],
+      markAsNewEndDateTimeUtc:[]
     });
 
     this.imageUploadForm = this.createProductyForm.get('imageUpload') as UntypedFormGroup;
@@ -125,6 +129,8 @@ export class CreateProductsComponent implements OnInit {
       price,
       oldPrice,
       markAsNew,
+      markAsNewStartDateTimeUtc,
+      markAsNewEndDateTimeUtc,
       showOnHomepage,
       includeInTopMenu,
     } = this.createProductyForm.value;
@@ -138,6 +144,8 @@ export class CreateProductsComponent implements OnInit {
       price,
       oldPrice,
       markAsNew,
+      markAsNewStartDateTimeUtc,
+      markAsNewEndDateTimeUtc,
       showOnHomepage,
       includeInTopMenu,
       published
