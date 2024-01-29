@@ -57,14 +57,15 @@ import { NavigationComponent } from './components/navigation/navigation.componen
                   </button>
                       <div>
                           <button type="button"
-                              class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 "
+                              class="flex"
                               aria-expanded="false" data-dropdown-toggle="dropdown-user">
                               <span class="sr-only">Open user menu</span>
-                              <img class="w-8 h-8 rounded-full"
-                                  src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                              <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512">
+                                <path d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z"/>
+                              </svg>
                           </button>
                       </div>
-                      <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow "
+                      <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 shadow rounded-lg"
                           id="dropdown-user">
                           <div class="px-4 py-3" role="none">
                               <p class="text-sm text-gray-900 " role="none">
@@ -76,22 +77,33 @@ import { NavigationComponent } from './components/navigation/navigation.componen
                           </div>
                           <ul class="py-1" role="none">
                               <li>
-                                  <a href="#"
+                                  <a 
                                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
                                       role="menuitem">Dashboard</a>
                               </li>
                               <li>
-                                  <a href="#"
+                                  <a 
                                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
                                       role="menuitem">Settings</a>
                               </li>
                               <li>
-                                  <a href="#"
+                                  <a 
                                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
                                       role="menuitem">Earnings</a>
                               </li>
                               <li>
-                                  <a href="#"
+                    
+                    <button 
+                          routerLink="/"
+                          class="sm:hidden block px-3 py-1 text-sm font-medium leading-7 bg-slate-200 text-gray-700 hover:text-white hover:bg-[#1c1c21] mx-3 rounded-lg cursor-pointer transition ease-in-out"
+                      >
+                          <div class="flex items-center text-center">
+                              <span class="">Public store</span>
+                          </div>
+                    </button>
+                              </li>
+                              <li>
+                                  <a 
                                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
                                       role="menuitem">Sign out</a>
                               </li>

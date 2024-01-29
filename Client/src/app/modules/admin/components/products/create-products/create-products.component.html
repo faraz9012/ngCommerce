@@ -234,25 +234,114 @@
         </ul>
         <div class="p-6 bg-gray-50 text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg w-full">
             @if(selectedTab === 'pricing') {
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Profile Tab</h3>
-                <p class="mb-2">This is some placeholder content the Profile tab's associated content, clicking another tab will toggle the visibility of this one for the next.</p>
-                <p>The tab JavaScript swaps classes to control the content visibility and styling.</p> 
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Pricing</h3>
+                
+                <div class="md:flex">
+                    <div class="md:w-1/3 w-full flex-none">
+                        <!-- Base price -->
+                        <div class="mb-3">
+                            <label class="text-sm text-gray-700">Base price</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" fill="currentColor"><path d="M160 0c17.7 0 32 14.3 32 32V67.7c1.6 .2 3.1 .4 4.7 .7c.4 .1 .7 .1 1.1 .2l48 8.8c17.4 3.2 28.9 19.9 25.7 37.2s-19.9 28.9-37.2 25.7l-47.5-8.7c-31.3-4.6-58.9-1.5-78.3 6.2s-27.2 18.3-29 28.1c-2 10.7-.5 16.7 1.2 20.4c1.8 3.9 5.5 8.3 12.8 13.2c16.3 10.7 41.3 17.7 73.7 26.3l2.9 .8c28.6 7.6 63.6 16.8 89.6 33.8c14.2 9.3 27.6 21.9 35.9 39.5c8.5 17.9 10.3 37.9 6.4 59.2c-6.9 38-33.1 63.4-65.6 76.7c-13.7 5.6-28.6 9.2-44.4 11V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V445.1c-.4-.1-.9-.1-1.3-.2l-.2 0 0 0c-24.4-3.8-64.5-14.3-91.5-26.3c-16.1-7.2-23.4-26.1-16.2-42.2s26.1-23.4 42.2-16.2c20.9 9.3 55.3 18.5 75.2 21.6c31.9 4.7 58.2 2 76-5.3c16.9-6.9 24.6-16.9 26.8-28.9c1.9-10.6 .4-16.7-1.3-20.4c-1.9-4-5.6-8.4-13-13.3c-16.4-10.7-41.5-17.7-74-26.3l-2.8-.7 0 0C119.4 279.3 84.4 270 58.4 253c-14.2-9.3-27.5-22-35.8-39.6c-8.4-17.9-10.1-37.9-6.1-59.2C23.7 116 52.3 91.2 84.8 78.3c13.3-5.3 27.9-8.9 43.2-11V32c0-17.7 14.3-32 32-32z" /></svg>
+                                </div>
+                                <input
+                                    type="number"
+                                    id="basePrice"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 p-2.5"
+                                    placeholder="0"
+                                    formControlName="basePrice" />
+                                </div>
+                                <small class="text-gray-400 text-xs">Set price for product</small>
+                        </div>
+                
+                        <!-- Old price -->
+                        <div class="mb-3">
+                            <label class="text-sm text-gray-700">Old price</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" fill="currentColor"><path d="M160 0c17.7 0 32 14.3 32 32V67.7c1.6 .2 3.1 .4 4.7 .7c.4 .1 .7 .1 1.1 .2l48 8.8c17.4 3.2 28.9 19.9 25.7 37.2s-19.9 28.9-37.2 25.7l-47.5-8.7c-31.3-4.6-58.9-1.5-78.3 6.2s-27.2 18.3-29 28.1c-2 10.7-.5 16.7 1.2 20.4c1.8 3.9 5.5 8.3 12.8 13.2c16.3 10.7 41.3 17.7 73.7 26.3l2.9 .8c28.6 7.6 63.6 16.8 89.6 33.8c14.2 9.3 27.6 21.9 35.9 39.5c8.5 17.9 10.3 37.9 6.4 59.2c-6.9 38-33.1 63.4-65.6 76.7c-13.7 5.6-28.6 9.2-44.4 11V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V445.1c-.4-.1-.9-.1-1.3-.2l-.2 0 0 0c-24.4-3.8-64.5-14.3-91.5-26.3c-16.1-7.2-23.4-26.1-16.2-42.2s26.1-23.4 42.2-16.2c20.9 9.3 55.3 18.5 75.2 21.6c31.9 4.7 58.2 2 76-5.3c16.9-6.9 24.6-16.9 26.8-28.9c1.9-10.6 .4-16.7-1.3-20.4c-1.9-4-5.6-8.4-13-13.3c-16.4-10.7-41.5-17.7-74-26.3l-2.8-.7 0 0C119.4 279.3 84.4 270 58.4 253c-14.2-9.3-27.5-22-35.8-39.6c-8.4-17.9-10.1-37.9-6.1-59.2C23.7 116 52.3 91.2 84.8 78.3c13.3-5.3 27.9-8.9 43.2-11V32c0-17.7 14.3-32 32-32z" /></svg>
+                                </div>
+                                <input
+                                    type="number"
+                                    id="oldPrice"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 p-2.5"
+                                    placeholder="0"
+                                    formControlName="oldPrice" />
+                                </div>
+                                <small class="text-gray-400 text-xs">Used when we want to show a discounted price on the frontend</small>
+                        </div>
+                    </div>
+                
+                    <div class="md:flex-grow md:pl-9 md:ml-9 md:border-l-2 border-gray-300">
+                        <!-- Mark as new check -->
+                        <div class="mb-3">
+                            <input id="markAsNewCheck"
+                            class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 "
+                            type="checkbox" value="" name="" formControlName="markAsNew">
 
+                            <label for="markAsNewCheck"
+                                class="w-full py-4 ms-2 text-sm font-medium text-gray-700 ">
+                                Mark as new
+                            </label>&nbsp;
+                            <small class="text-gray-400 text-xs">(Show a "New" badge on product)</small>
+                        </div>
+                        @if(createProductyForm.get('markAsNew')?.value){
+
+                            <!-- Mark as new date time  -->
+                            <div class="mb-3">
+                                <label for="markAsNewCheck"
+                                    class="w-full py-4 ms-2 text-sm font-medium text-gray-700 ">
+                                    Start date
+                                </label>
+                                <div class="relative max-w-sm">
+                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                    </svg>
+                                    </div>
+                                    <input type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full ps-10 p-2.5 " placeholder="Select date">
+                                </div>
+                                <small class="text-gray-400 text-xs">Show "New" badge from</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="markAsNewCheck"
+                                    class="w-full py-4 ms-2 text-sm font-medium text-gray-700 ">
+                                    End date
+                                </label>
+                                <div class="relative max-w-sm">
+                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                    </svg>
+                                    </div>
+                                    <input type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full ps-10 p-2.5 " placeholder="Select date">
+                                </div>
+                                <small class="text-gray-400 text-xs">Show "New" badge to</small>
+                            </div>
+  
+                        }
+                        @else{
+                            <h6>Check mark as new to show date parameters</h6>
+                        }
+                    </div>
+                </div>
             }
             @if(selectedTab === 'inventory') {
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Inventory Tab</h3>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Inventory</h3>
                 <p class="mb-2">This is some placeholder content the Profile tab's associated content, clicking another tab will toggle the visibility of this one for the next.</p>
                 <p>The tab JavaScript swaps classes to control the content visibility and styling.</p> 
 
             }
             @if(selectedTab === 'shipping') {
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Shipping Tab</h3>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Shipping</h3>
                 <p class="mb-2">This is some placeholder content the Profile tab's associated content, clicking another tab will toggle the visibility of this one for the next.</p>
                 <p>The tab JavaScript swaps classes to control the content visibility and styling.</p> 
 
             }
             @if(selectedTab === 'attributes') {
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Attributes Tab</h3>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Attributes</h3>
                 <p class="mb-2">This is some placeholder content the Profile tab's associated content, clicking another tab will toggle the visibility of this one for the next.</p>
                 <p>The tab JavaScript swaps classes to control the content visibility and styling.</p> 
 

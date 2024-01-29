@@ -46,6 +46,9 @@ export class CreateProductsComponent implements OnInit {
   statusSignal: boolean = true;
   selectedCategoryIds: string = ''
   selectedTab: string = 'pricing'; // Default to the 'pricing' tab
+  basePrice: number = 0;
+  oldPrice: number = 0;
+  markAsNew = [true, false];
 
   //Services
   _productService = inject(ProductService);
@@ -73,6 +76,9 @@ export class CreateProductsComponent implements OnInit {
       published: [true],
       showOnHomepage: [false],
       includeInTopMenu: [false],
+      basePrice: [0],
+      oldPrice: [0],
+      markAsNew: [false]
     });
 
     this.imageUploadForm = this.createProductyForm.get('imageUpload') as UntypedFormGroup;
@@ -164,7 +170,6 @@ export class CreateProductsComponent implements OnInit {
 
     this.selectedCategoryIds = categoryIdsString;
   }
-
 
   selectTab(tab: string): void {
     this.selectedTab = tab;
