@@ -1,0 +1,58 @@
+/*
+  Based on TailwindCSS recommendations,
+  consider using classes instead of the `@apply` directive
+  @see https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+*/
+* {
+    @apply box-border m-0 p-0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .wrapper {
+    @apply w-full h-screen flex items-center justify-center;
+  }
+  .container {
+    @apply h-[400px] flex flex-nowrap;
+    justify-content: start;
+  }
+  .card {
+    @apply w-20 bg-cover cursor-pointer overflow-hidden flex items-end transition-[0.6s] duration-[cubic-bezier(.28,-0.03,0,0.99)] shadow-[0px_10px_30px_-5px_rgba(0,0,0,0.8)] mx-2.5 my-0 rounded-xl rounded-[2rem];
+  }
+  .card > .row {
+    @apply text-[white] flex flex-nowrap;
+  }
+  .card > .row > .icon {
+    @apply text-[white] w-[50px] flex justify-center items-center m-[15px] rounded-[50%];
+    background: #223;
+  }
+  .card > .row > .description {
+    @apply flex justify-center flex-col overflow-hidden h-20 w-[520px] opacity-0 translate-y-[30px] delay-[0.3s] transition-all duration-[0.3s] ease-[ease];
+  }
+  .description p {
+    @apply text-[#b0b0ba] pt-[5px];
+  }
+  .description h4 {
+    @apply uppercase;
+  }
+  input {
+    @apply hidden;
+  }
+  input:checked + label {
+    @apply w-[600px];
+  }
+  input:checked + label .description {
+    @apply opacity-100 translate-y-0;
+  }
+  .card[for="c1"] {
+    @apply bg-[url('https://images.unsplash.com/photo-1517866184231-7ef94c2ea930?q=80&w=1894&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')];
+  }
+  .card[for="c2"] {
+    @apply bg-[url('https://images.unsplash.com/photo-1614026480209-cd9934144671?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')];
+  }
+  .card[for="c3"] {
+    @apply bg-[url('https://images.unsplash.com/photo-1635048424329-a9bfb146d7aa?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')];
+  }
+  .card[for="c4"] {
+    @apply bg-[url('https://images.unsplash.com/photo-1538370965046-79c0d6907d47?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')];
+  }
+  

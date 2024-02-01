@@ -26,4 +26,10 @@ export class CategoryService {
   create(model: CreateCategory){
     return this.http.post<CreateCategory>(this.baseUrl + 'category/create', model);
   }
+
+  getCategoryById(id:number){
+    const category = this.categories.find(x => x.id == id)
+    if(category) return of(category);
+    return this.http.get<Category>(this.baseUrl + 'customer/' + id);
+  }
 }

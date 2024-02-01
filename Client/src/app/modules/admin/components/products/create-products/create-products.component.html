@@ -17,17 +17,11 @@
                     <h4 class="font-medium tracking-wide text-[#071437] mb-2">Featured image</h4>
                     <app-file-upload
                         [fileUpload]="imageUploadForm"
+                        [allowMultipleUploads]="false"
+                        patchValue="pictureId"
                         [uploadHelpfulText]="'SVG, PNG, JPG or GIF (Ideal size 500x500px)'">
                     </app-file-upload>
                 </div>
-
-                <!-- Bulk image upload -->
-                <!-- <div class="mb-7 bg-white rounded-md shadow-md p-5">
-                    <h4 class="font-medium tracking-wide text-[#071437] mb-2">Thumbnail images</h4>
-                    <app-bulk-upload
-                        [bulkFileUpload]="bulkUploadForm"
-                    ></app-bulk-upload>
-                </div> -->
 
                 <!-- Parent category -->
                 <div class="mb-7 bg-white rounded-md shadow-md p-5">
@@ -181,6 +175,23 @@
                     </svg>
                     Pricing
                 </a>
+            </li>
+            <li>
+                <a
+                    (click)="selectTab('media')" 
+                    [class.active]="selectedTab === 'media'"
+                    [ngClass]="(selectedTab === 'media') ? 'text-white bg-indigo-700 rounded-lg dark:bg-indigo-600' : 'bg-gray-50 hover:bg-gray-100 hover:text-gray-900'"
+                    class="inline-flex items-center px-4 py-3 rounded-lg cursor-pointer w-full" 
+                    aria-current="page">
+                    <svg 
+                        class="w-4 h-4 me-2 "
+                        [ngClass]="(selectedTab === 'media') ? 'text-white' : 'text-gray-500'"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                    </svg>
+                    Media
+                </a>
             </li>        
             <li>
                 <a
@@ -232,7 +243,7 @@
                 </a>
             </li>
         </ul>
-        <div class="p-6 bg-gray-50 text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg w-full">
+        <div class="p-6 bg-white text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg w-full">
             @if(selectedTab === 'pricing') {
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Pricing</h3>
                 
@@ -333,6 +344,17 @@
                         }
                     </div>
                 </div>
+            }
+            @if(selectedTab === 'media') {
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Media</h3>
+
+                <!-- Bulk image upload -->                
+                <app-file-upload
+                    [fileUpload]="bulkUploadForm"
+                    [allowMultipleUploads]="true"
+                    patchValue="thumbnailPictureId"
+                    [uploadHelpfulText]="'SVG, PNG, JPG or GIF (Ideal size 500x500px)'">
+                </app-file-upload>
             }
             @if(selectedTab === 'inventory') {
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Inventory</h3>

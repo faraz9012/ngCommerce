@@ -21,7 +21,7 @@ export class PictureService {
     return this.http.post<FileUpload>(this.baseUrl + 'picture/upload-picture', formData);
   }
 
-  async getPictureById(id: number) {
+  getPictureById(id: number) {
     return this.http.get(this.baseUrl + 'picture/' + id);
   }
 

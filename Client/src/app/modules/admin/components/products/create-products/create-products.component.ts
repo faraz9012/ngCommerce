@@ -13,7 +13,6 @@ import { FileUploadComponent } from '../../shared/file-upload/file-upload.compon
 import { GeneralFormComponent } from '../../shared/general-form/general-form.component';
 import { SeoGeneralFormComponent } from '../../shared/seo-general-form/seo-general-form.component';
 import { MultiSelectComponent } from '../../shared/multi-select/multi-select.component';
-import { BulkUploadComponent } from '../../shared/bulk-upload/bulk-upload.component';
 import { ProductService } from '../../../../../services/product.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -27,7 +26,6 @@ import { ToastrService } from 'ngx-toastr';
     SeoGeneralFormComponent,
     ReactiveFormsModule,
     MultiSelectComponent,
-    BulkUploadComponent,
     FormsModule
   ],
   templateUrl: './create-products.component.html',
@@ -101,6 +99,7 @@ export class CreateProductsComponent implements OnInit {
 
   onFileSelected(file: File): void {
     this.createProductyForm.get('imageUpload.file')?.setValue(file);
+    this.createProductyForm.get('bulkUpload.file')?.setValue(file);
   }
 
   fetchAllCategories(): void {
@@ -124,7 +123,7 @@ export class CreateProductsComponent implements OnInit {
     const {
       formDetails,
       imageUpload,
-      thumbnailPictures,
+      bulkUpload,
       published,
       price,
       oldPrice,
@@ -140,7 +139,7 @@ export class CreateProductsComponent implements OnInit {
       description: formDetails.name,
       category: this.selectedCategoryIds || '0',
       featuredImageId: imageUpload.pictureId,
-      thumbnailPictures: "2, 24, 25",
+      thumbnailPictures: bulkUpload.thumbnailPictureId,
       price,
       oldPrice,
       markAsNew,
@@ -152,17 +151,17 @@ export class CreateProductsComponent implements OnInit {
     };
 
     console.log(model);
+    
 
-    this._productService.create(model).subscribe({
-      next: () => this._toastr.success("Product created successfully"),
-      error: (error) => this._toastr.error(error.error.message)
-    });
+    // this._productService.create(model).subscribe({
+    //   next: () => this._toastr.success("Product created successfully"),
+    //   error: (error) => this._toastr.error(error.error.message)
+    // });
 
   }
 
   onSelectedCategoryIds(selectedCategoryIds: string[]) {
     const categoryIdsString = selectedCategoryIds.join(', ');
-
     this.selectedCategoryIds = categoryIdsString;
   }
 

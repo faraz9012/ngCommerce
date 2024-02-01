@@ -10,6 +10,7 @@ import { CategoryService } from '../../../../../services/category.service';
 import { FileUploadComponent } from '../../shared/file-upload/file-upload.component';
 import { GeneralFormComponent } from '../../shared/general-form/general-form.component';
 import { SeoGeneralFormComponent } from '../../shared/seo-general-form/seo-general-form.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-category',
@@ -33,6 +34,7 @@ export class CreateCategoryComponent implements OnInit {
   //Services
   _categoryService = inject(CategoryService);
   _fb = inject(FormBuilder);
+  _toastr = inject(ToastrService);
 
   initializeForm() {
     this.createCategoryForm = this._fb.group({
@@ -98,7 +100,7 @@ export class CreateCategoryComponent implements OnInit {
     };
 
     this._categoryService.create(model).subscribe(
-      (res) => console.log(res)
+      () => this._toastr.success('Category created successfully'),
     );
   }
 
