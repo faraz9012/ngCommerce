@@ -20,6 +20,7 @@ public static class ApplicationServiceExtensions
         services.AddScoped<IPictureRepository, PicturesRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IPageRepository, PageRepository>();
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
         return services;

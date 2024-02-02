@@ -3,6 +3,7 @@ using API.Entities;
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -24,5 +25,11 @@ namespace API.Data
                 .Where(x => x.Username == username)
                 .FirstOrDefaultAsync();
         }
+
+        public virtual async Task<Customer> GetCustomerById(int Id)
+        {
+            return await _context.Customers.FindAsync(Id);
+        }
+        
     }
 }

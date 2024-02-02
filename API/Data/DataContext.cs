@@ -12,4 +12,5 @@ public class DataContext : DbContext
     public DbSet<Picture> Pictures  { get; set; }
     public DbSet<Category> Categories  { get; set; }
     public DbSet<Product> Products  { get; set; }
+    public DbSet<Page> Pages  { get; set; }
 }

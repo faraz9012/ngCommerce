@@ -1,6 +1,5 @@
 using API.DTOs;
 using API.Entities;
-using API.Extensions;
 using AutoMapper;
 
 namespace API.Helpers
@@ -14,6 +13,8 @@ namespace API.Helpers
             CreateMap<Category, CategoryDto>();
             CreateMap<ProductDto, Product>();
             CreateMap<ProductDto, CategoryDto>();
+            CreateMap<PageDto, Page>();
+            CreateMap<Page, PageDto>();
         }
     }
 }

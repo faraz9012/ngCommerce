@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using API.DTOs;
 using API.Entities;
 
 namespace API.Interfaces
@@ -10,5 +5,6 @@ namespace API.Interfaces
     public interface ICustomerRepository
     {
         Task<Customer> GetCustomerByUsername(string username);
+        Task<Customer> GetCustomerById(int id);
     }
 }
