@@ -1,4 +1,4 @@
-import { faChartPie, faCircleDot, faCircleNotch, faUsers, faShoppingCart, faDollarSign, faPhotoFilm } from '@fortawesome/free-solid-svg-icons';
+import { faChartPie, faCircleDot, faCopy, faUsers, faShoppingCart, faDollarSign, faPhotoFilm } from '@fortawesome/free-solid-svg-icons';
 
 export interface sideMenu {
     id?: string | number;
@@ -17,6 +17,12 @@ export const Side_Navbar: sideMenu[] = [
         title: "Dashboard",
         route: "/admin",
         exact: true
+    },
+    {
+        id: 'pages',
+        icon: faCopy,
+        title: "Pages",
+        route: "/admin/page",
     },
     {
         id: 'catalog',
