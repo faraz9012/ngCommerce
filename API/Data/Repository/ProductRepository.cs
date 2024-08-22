@@ -38,8 +38,7 @@ namespace API.Data.Repository
 
         public virtual async Task<ActionResult<ProductDto>> InsertIntoProductsAsync(Product product)
         {
-            if (product == null)
-                return null;
+            if (product == null) return null;
 
             //add the created on time
             product.CreatedOnUtc = DateTime.UtcNow;
@@ -107,6 +106,19 @@ namespace API.Data.Repository
             await _context.SaveChangesAsync();
 
             return true;
+        }
+
+        
+        public virtual async Task<IList<Category>> GetCategoriesByProductIdAsync(int productId)
+        {
+            List<int> categoryIds = await _context.ProductCategoryMapping
+                .Where(x => x.ProductId == productId)
+                .Select(x => x.CategoryId)
+                .ToListAsync();
+
+            return await _context.Categories
+                .Where(x => categoryIds.Contains(x.Id))
+                .ToListAsync();
         }
         #endregion
     }

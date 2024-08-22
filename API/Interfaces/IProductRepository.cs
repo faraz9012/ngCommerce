@@ -12,5 +12,6 @@ namespace API.Interfaces
         Task<ActionResult<ProductDto>> UpdateProductAsync(ProductDto Product);
         Task<IEnumerable<Product>> SearchProductByNameAsync(string name);
         Task<bool> DeleteProductAsync(int productId);
+        Task<IList<Category>> GetCategoriesByProductIdAsync(int productId);
     }
 }

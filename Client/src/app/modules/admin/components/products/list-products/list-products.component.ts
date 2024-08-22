@@ -29,14 +29,14 @@ export class ListProductsComponent implements OnInit{
 
   ngOnInit(): void {
     initFlowbite();
-    this.fetchAllCustomers();
+    this.fetchAllProducts();
   }
 
-  fetchAllCustomers(): void {
+  fetchAllProducts(): void {
     this.products$ = this._productService.getAllProducts();
   }
 
-  async getProductImage(id: number) {
+  getProductImage(id: number) {
     if (id <= 0){
       this.productImageSrcAttribute = 'assets/img/product-image-placeholder.webp'
     }

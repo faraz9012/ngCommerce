@@ -19,23 +19,6 @@ namespace API.Entities
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the category identifiers
-        /// </summary>
-        [NotMapped]
-        public IEnumerable<int> InternalCategory
-        {
-            get
-            {
-                var tab = Category.Split(',');
-                return tab.Select(int.Parse).AsEnumerable();
-            }
-            set { Category = string.Join(",", value); }
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Category { get; set; }
-
-        /// <summary>
         /// Gets or sets the featured image 
         /// </summary>
         public int FeaturedImageId { get; set; }

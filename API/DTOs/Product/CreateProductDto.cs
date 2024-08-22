@@ -4,7 +4,7 @@ namespace API.DTOs
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Category { get; set; }
+        public IList<int> CategoryIds { get; set; }
         public int FeaturedImageId { get; set; }
         public string ThumbnailPictures { get; set; }
         public decimal Price { get; set; }

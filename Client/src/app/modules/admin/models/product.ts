@@ -1,7 +1,7 @@
 export interface CreateProduct {
     name: string;
     description: string;
-    category: string;
+    CategoryIds: number[];
     featuredImageId: number;
     thumbnailPictures: string;
     price: number;

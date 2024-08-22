@@ -8,11 +8,15 @@
 
 <div class="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4">
     <div>
-        <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5" type="button">
+        <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction"
+            class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5"
+            type="button">
             <span class="sr-only">Action button</span>
             Action to perform
-            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 4 4 4-4" />
             </svg>
         </button>
         <!-- Dropdown menu -->
@@ -35,11 +39,9 @@
     </div>
     <label for="table-search" class="sr-only">Search</label>
     <div class="relative">
-        <input 
-            type="text" 
-            id="table-search-users"
+        <input type="text" id="table-search-users"
             class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg lg:w-80 bg-gray-50 focus:outline-none py-2"
-            placeholder="Search product" value="" />            
+            placeholder="Search product" value="" />
         <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
             <svg class="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 20 20">
@@ -58,12 +60,13 @@
             <tr>
                 <th scope="col" class="p-4">
                     <div class="flex items-center">
-                        <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 ">
+                        <input id="checkbox-all-search" type="checkbox"
+                            class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 ">
                         <label for="checkbox-all-search" class="sr-only">checkbox</label>
                     </div>
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    
+
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Name
@@ -83,17 +86,26 @@
             </tr>
         </thead>
         <tbody>
+            @if(!products$) {
+                <tr>
+                    <td colspan="6">
+                        No products available
+                    </td>
+                </tr>
+            } @else {
             @for((product of products$ | async); track product.id){
             <tr class="bg-white border-b hover:bg-gray-50">
                 <td class="w-4 p-4">
                     <div class="flex items-center">
-                        <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 ">
+                        <input id="checkbox-table-search-1" type="checkbox"
+                            class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 ">
                         <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                     </div>
                 </td>
-                    <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap">
-                        <img class="size-20 rounded-lg shadow-lg" [src]="getProductImage(product.featuredImageId)" alt="{{product.name}}">
-                    </th>
+                <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap">
+                    <img class="size-20 rounded-lg shadow-lg" [src]="getProductImage(product.featuredImageId)"
+                        alt="{{product.name}}">
+                </th>
                 <td class="px-6 py-4">
                     <div class="text-sm font-medium text-gray-600">{{product.name}}</div>
                 </td>
@@ -108,18 +120,20 @@
                 <td class="px-6 py-4">
                     <div class="flex items-center">
                         <div [ngClass]="product.published ? 'bg-green-400 shadow-lg shadow-green-500' : 'bg-red-400 shadow-lg shadow-red-500'"
-                                class="size-3 rounded-full">
+                            class="size-3 rounded-full">
                         </div>&nbsp;
                         {{ product.published ? 'Published' : 'Un-Published' }}
                     </div>
                 </td>
                 <td class="px-6 py-4">
-                    <button type="button" class="font-medium text-indigo-600 hover:bg-indigo-100 hover:rounded-md cursor-pointer p-2 px-3">Edit
-                        
+                    <button type="button"
+                        class="font-medium text-indigo-600 hover:bg-indigo-100 hover:rounded-md cursor-pointer p-2 px-3">Edit
+
                     </button>
                 </td>
             </tr>
-        }
+            }
+            }
         </tbody>
     </table>
 </div>

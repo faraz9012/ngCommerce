@@ -9,28 +9,27 @@ namespace API.Controllers
     {
         #region Fields
         private readonly IProductRepository _productRepository;
+        private readonly IProductCategoryMappingRepository _productCategoryMappingRepository;
 
         #endregion
 
         #region Ctor
 
-        public ProductController(IProductRepository productRepository)
+        public ProductController(IProductRepository productRepository, IProductCategoryMappingRepository productCategoryMappingRepository)
         {
             _productRepository = productRepository;
+            _productCategoryMappingRepository = productCategoryMappingRepository;
         }
-        
+
         #endregion
 
         #region Methods
-        
+
         [HttpGet]
-        public virtual async Task<ActionResult<IList<Product>>> GetAllAsync()
-        {
-            return await _productRepository.GetAllProductsAsync();
-        }
+        public virtual async Task<ActionResult<IList<Product>>> GetAllAsync() => await _productRepository.GetAllProductsAsync();
 
         [HttpPost("create")]
-        public virtual async Task<ActionResult<ProductDto>> Create([FromBody]CreateProductDto createProductDto)
+        public virtual async Task<ActionResult<ProductDto>> Create([FromBody] CreateProductDto createProductDto)
         {
             if (createProductDto == null) return BadRequest("Something went wrong. Apologies for any inconvenience. Please review your input and try again");
 
@@ -38,7 +37,6 @@ namespace API.Controllers
             {
                 Name = createProductDto.Name,
                 Description = createProductDto.Description,
-                Category = createProductDto.Category,
                 FeaturedImageId = createProductDto.FeaturedImageId,
                 ThumbnailPictures = createProductDto.ThumbnailPictures,
                 Price = createProductDto.Price,
@@ -53,6 +51,20 @@ namespace API.Controllers
 
             var newProduct = await _productRepository.InsertIntoProductsAsync(product);
 
+            if (createProductDto.CategoryIds.Any())
+            {
+                foreach (var categoryId in createProductDto.CategoryIds)
+                {
+                    var productCategoryMapping = new ProductCategory()
+                    {
+                        CategoryId = categoryId,
+                        ProductId = newProduct.Value.Id
+                    };
+
+                    await _productCategoryMappingRepository.AddProductCategoryMappingAsync(productCategoryMapping);
+                }
+            }
+
             return newProduct;
         }
 
@@ -66,7 +78,6 @@ namespace API.Controllers
             if (updatedProduct == null) return BadRequest("Something went wrong, failed to update product");
 
             return updatedProduct;
-
         }
 
         [HttpDelete("delete-product/{productId}")]

@@ -42,7 +42,7 @@ export class CreateProductsComponent implements OnInit {
   showOnHomepage = [true, false];
   includeInTopMenu = [true, false];
   statusSignal: boolean = true;
-  selectedCategoryIds: string = ''
+  selectedCategoryIds: number[] = [];
   selectedTab: string = 'pricing'; // Default to the 'pricing' tab
   price: number = 0;
   oldPrice: number = 0;
@@ -80,7 +80,7 @@ export class CreateProductsComponent implements OnInit {
       oldPrice: [0],
       markAsNew: [false],
       markAsNewStartDateTimeUtc: [],
-      markAsNewEndDateTimeUtc:[]
+      markAsNewEndDateTimeUtc: []
     });
 
     this.imageUploadForm = this.createProductyForm.get('imageUpload') as UntypedFormGroup;
@@ -137,9 +137,10 @@ export class CreateProductsComponent implements OnInit {
     const model: CreateProduct = {
       name: formDetails.name,
       description: formDetails.name,
-      category: this.selectedCategoryIds || '0',
+      CategoryIds: this.selectedCategoryIds,
       featuredImageId: imageUpload.pictureId,
-      thumbnailPictures: bulkUpload.thumbnailPictureId,
+      // thumbnailPictures: bulkUpload.thumbnailPictureId,
+      thumbnailPictures: "3, 4, 5",
       price,
       oldPrice,
       markAsNew,
@@ -151,18 +152,16 @@ export class CreateProductsComponent implements OnInit {
     };
 
     console.log(model);
-    
 
-    // this._productService.create(model).subscribe({
-    //   next: () => this._toastr.success("Product created successfully"),
-    //   error: (error) => this._toastr.error(error.error.message)
-    // });
+    this._productService.create(model).subscribe({
+      next: () => this._toastr.success("Product created successfully"),
+      error: (error) => this._toastr.error(error.error.message)
+    });
 
   }
 
-  onSelectedCategoryIds(selectedCategoryIds: string[]) {
-    const categoryIdsString = selectedCategoryIds.join(', ');
-    this.selectedCategoryIds = categoryIdsString;
+  onSelectedCategoryIds(selectedCategories: any) {
+    this.selectedCategoryIds = Array.from(new Set([...this.selectedCategoryIds, ...selectedCategories]));
   }
 
   selectTab(tab: string): void {
